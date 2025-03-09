@@ -9,7 +9,7 @@ import { Menu } from "lucide-react";
 import { motion, stagger, useAnimate } from "motion/react";
 
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false)
+    // const [menuOpen, setMenuOpen] = useState(false)
     const pathname = usePathname();
 
     const [isScrolled, setIsScrolled] = useState(false);
