@@ -60,7 +60,7 @@ export default function Navbar() {
                 ]
             ]
         );
-        setMenuOpen(prev => !prev)
+        // setMenuOpen(prev => !prev)
     }
 
     const handleToggleMenuClose = () => {
@@ -91,7 +91,7 @@ export default function Navbar() {
 
             ]
         );
-        setMenuOpen(prev => !prev)
+        // setMenuOpen(prev => !prev)
     }
 
     const isTransparent = pathname === "/" || pathname === "/live" || pathname === "/involved"
