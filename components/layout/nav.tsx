@@ -97,7 +97,7 @@ export default function Navbar() {
     const isTransparent = pathname === "/" || pathname === "/live" || pathname === "/involved"
 
     return (
-        <nav className={`flex items-center justify-between py-8 px-6 font-body w-full fixed top-0 left-0 
+        <nav className={`flex items-center justify-between py-8 px-6 font-body w-full fixed top-0 left-0 z-[10]
             ${isTransparent && !isScrolled
                 ? "bg-transparent"
                 : "bg-white"} transition-all duration-500 ease-in-out`}
@@ -108,7 +108,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Menu */}
-            <ul className="hidden md:flex gap-22 justify-self-start">
+            <ul className="hidden md:flex lg:gap-[22px] justify-self-start">
                 {
                     navItems.map((item, index) => (
                         <li key={index}>

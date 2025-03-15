@@ -11,7 +11,7 @@ interface NavLinkProps {
     activeClassName?: string;
 }
 
-const NavLink: FC<NavLinkProps> = ({ href, children, className = "", activeClassName = "border-[2px] border-yellow-400 rounded-full text-yellow-1000 font-semibold hover:text-yellow-1100" }) => {
+const NavLink: FC<NavLinkProps> = ({ href, children, className = "", activeClassName = "text-yellow-1000 font-semibold hover:text-yellow-1100" }) => {
     const pathname = usePathname(); // Get current route
     const isActive = pathname === href; // Check if link is active
 
