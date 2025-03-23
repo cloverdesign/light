@@ -7,7 +7,10 @@ interface CardProps {
     content: string;
     time: string;
     date: string;
-    icon: object;
+    icon: {
+        name: string,
+        style: string
+    };
 }
 
 export const EventCard: React.FC<CardProps> = ({ title, content, time, date, icon }) => {

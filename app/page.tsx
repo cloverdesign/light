@@ -2,17 +2,18 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Asterisk, ChevronLeft, ChevronRight, HeartHandshakeIcon } from "lucide-react";
-import Image from "next/image";
-import hero1 from '/images/hero1.png'
-import hero2 from '/images/hero2.png'
-import hero3 from '/images/hero3.png'
-import foundation from '/images/foundation.png'
-import circle from '/images/circle.png'
 import { useMeasure } from "@uidotdev/usehooks";
 import { animate, useMotionValue, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
+
+const Image = "next/image";
+const hero1 = '/images/hero1.png'
+const hero2 = '/images/hero2.png'
+const hero3 = '/images/hero3.png'
+const foundation = '/images/foundation.png'
+const circle = '/images/circle.png'
 
 export default function Home() {
 
