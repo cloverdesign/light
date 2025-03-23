@@ -77,7 +77,7 @@ export default function Home() {
 
   useEffect(() => {
     let controls
-    let finalPosition = -width / 3 - 32
+    let finalPosition = width ? -width / 3 - 32 : 0
 
     controls = animate(xTranslate, [0, finalPosition], {
       ease: "linear",
