@@ -3,16 +3,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Asterisk, ChevronLeft, ChevronRight, HeartHandshakeIcon } from "lucide-react";
 import Image from "next/image";
-import hero1 from '../public/images/hero1.png'
-import hero2 from '../public/images/hero2.png'
-import hero3 from '../public/images/hero3.png'
-import foundation from '../public/images/foundation.png'
-import circle from '../public/images/circle.png'
+import hero1 from '/images/hero1.png'
+import hero2 from '/images/hero2.png'
+import hero3 from '/images/hero3.png'
+import foundation from '/images/foundation.png'
+import circle from '/images/circle.png'
 import { useMeasure } from "@uidotdev/usehooks";
 import { animate, useMotionValue, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { EventCard } from "@/components/hero/event-card";
-import { style } from "motion/react-client";
 import CircleBadge from "@/components/ui/circle-badge";
 
 export default function Home() {
