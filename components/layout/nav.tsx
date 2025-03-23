@@ -100,7 +100,7 @@ export default function Navbar() {
         <nav className={`flex items-center justify-between py-8 px-6 font-body w-full fixed top-0 left-0 z-[10]
             ${isTransparent && !isScrolled
                 ? "bg-transparent"
-                : "bg-white"} transition-all duration-500 ease-in-out`}
+                : "bg-white"} ${pathname === "/live" && !isScrolled ? "text-aero-100" : ""} transition-all duration-500 ease-in-out`}
             ref={scope}
         >
             <Link href="/">
@@ -119,7 +119,7 @@ export default function Navbar() {
             </ul>
 
             <Button className="hidden md:flex gap-6 justify-self-end">
-                Contact
+                <Link href="contact">Contact</Link>
             </Button>
 
             {/* Mobile Menu */}

@@ -82,3 +82,8 @@ h6 {
   font-family: var(--font-champion-sans);
   text-transform: uppercase;
 }
+
+::selection {
+  background: #FE733C8A;
+  color: #fffefd;
+}
