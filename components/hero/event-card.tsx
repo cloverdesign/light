@@ -18,7 +18,7 @@ export const EventCard: React.FC<CardProps> = ({ title, content, time, date, ico
         <div className="w-[450px] border border-aero-200 rounded-2xl pt-8 flex flex-col gap-6">
             <div className="flex items-center gap-5 px-8">
                 <span className={`${icon.style} w-fit p-3 rounded-full flex items-center justify-center`}>
-                    <DynamicIcon name={icon.name} fallback={() => <Calendar />} className="size-9" />
+                    <DynamicIcon name={icon.name as any} fallback={() => <Calendar />} className="size-9" />
                 </span>
                 <h1 className="text-[30px] !capitalize">{title}</h1>
             </div>
