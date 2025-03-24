@@ -10,28 +10,38 @@ interface BadgeProps {
     }
     className?: string
     ref?: React.RefObject<HTMLElement | null>
+    drag: boolean
 }
 
 
 const CircleBadge: React.FC<BadgeProps> = ({
     className,
+    drag,
     icon,
     ref,
     ...props
 }) => {
-
-    const style = "flex w-fit items-center justify-center border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
+    const style = "flex w-fit items-center justify-center rounded-full h-fit"
     return (
-        <motion.div
-            className={cn(className, style)}
-            {...props}
-            drag
-            dragConstraints={ref}
-            dragElastic={0.9}
-            dragMomentum={false}
-        >
-            <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
-        </motion.div>
+        <>
+            {drag == true ? (<motion.div
+                className={cn(className, style)}
+                {...props}
+                drag
+                dragConstraints={ref}
+                dragElastic={0.9}
+                dragMomentum={false}
+            >
+                <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
+            </motion.div>) :
+                (<div
+                    className={cn(className, style)}
+                    {...props}
+                >
+                    <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
+                </div>)
+            }
+        </>
     )
 }
 
