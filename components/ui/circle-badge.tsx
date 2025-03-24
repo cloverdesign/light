@@ -3,7 +3,7 @@ import { DynamicIcon } from 'lucide-react/dynamic'
 import { Box } from 'lucide-react'
 import { motion } from 'motion/react'
 
-interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+interface BadgeProps {
     icon: {
         name: string
         size: string
@@ -29,6 +29,7 @@ const CircleBadge: React.FC<BadgeProps> = ({
             dragConstraints={ref}
             dragElastic={0.9}
             dragMomentum={false}
+            onDrag={() => { }}
         >
             <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
         </motion.div>
