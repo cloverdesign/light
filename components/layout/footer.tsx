@@ -3,8 +3,7 @@
 import { usePathname } from "next/navigation";
 import Logo from "@/assets/icons/logo2.svg"
 import Link from "next/link";
-import footer from '../../public/images/footer.png'
-import Image from "next/image";
+import footer from '@/assets/images/footer.png'
 import { Button } from "../ui/button";
 
 const Footer = () => {
