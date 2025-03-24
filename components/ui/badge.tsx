@@ -10,7 +10,7 @@ const badgeVariants = cva(
         variants: {
             variant: {
                 default: "bg-linear-to-l from-sky-500 to-sky-200",
-                gray: "text-white bg-gray-700",
+                outline: "text-deep-blue-700 border-aero-200 border",
                 white: "bg-white",
                 header: "bg-yellow-300 text-yellow-1000"
             },

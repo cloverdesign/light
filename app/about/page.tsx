@@ -4,9 +4,11 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 import about from '@/assets/images/about.png';
+import about2 from '@/assets/images/about2.png';
 import circle from '@/assets/images/about-circle.png';
 import mission from '@/assets/images/mission.png';
 import vision from '@/assets/images/vision.png';
+import { Badge } from '@/components/ui/badge';
 
 export default function About() {
     return (
@@ -60,9 +62,59 @@ export default function About() {
                 </svg>
             </div>
 
-            <div className='flex flex-col items-center'>
-                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-[30%]'>FROM A SMALL BEGINNINGS TO A GLOBAL MOVEMENT OF FAITH</h1>
-                <div></div>
+            <div className='flex flex-col items-center gap-28 mb-50'>
+                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-full lg:w-[30%]'>FROM A SMALL BEGINNINGS TO A GLOBAL MOVEMENT OF FAITH</h1>
+                <div className='flex flex-col h-full items-center gap-8'>
+                    <div className='lg:flex flex-col items-center gap-3 text-center hidden'>
+                        <Badge variant="outline" className='w-fit'>
+                            2010
+                        </Badge>
+                        <h1 className='!font-body !capitalize font-bold'>The Spark of Vision</h1>
+                        <p className='text-deep-blue-400 lg:w-[400px]'>A small group of passionate believers came together with a shared dream: to spread the divine presence of God and demonstrate the character of the Spirit in their community.</p>
+                    </div>
+                    <div className='flex flex-col gap-12 pl-10 pr-8 relative'>
+                        <div className='flex items-center justify-center gap-16'>
+                            <div className='lg:hidden flex-col gap-3 flex'>
+                                <Badge variant="outline" className='w-fit'>
+                                    2010
+                                </Badge>
+                                <h1 className='!font-body !capitalize font-bold'>The Spark of Vision</h1>
+                                <p className='text-deep-blue-400 lg:w-[400px] w-full'>A small group of passionate believers came together with a shared dream: to spread the divine presence of God and demonstrate the character of the Spirit in their community.</p>
+                            </div>
+                        </div>
+                        <div className='flex flex-col-reverse lg:flex-row items-center justify-center gap-6 lg:gap-16 lg:relative lg:h-[500px]'>
+                            <Image src={about2} alt="People on a couch praying with their eyes closed." className='rounded-xl lg:w-[400px]' />
+                            <div className='rounded-full bg-orange-600 size-6 border-[5px] border-white hidden lg:block' />
+                            <div className='flex flex-col gap-3'>
+                                <div className='flex items-center'>
+                                    <div className='rounded-full bg-orange-600 size-6 border-[5px] border-white lg:hidden absolute left-2' />
+                                    <Badge variant="outline" className='w-fit'>
+                                        2012
+                                    </Badge>
+                                </div>
+                                <h1 className='!font-body !capitalize font-bold'>First Fellowship Established</h1>
+                                <p className='text-deep-blue-400 lg:w-[400px] w-full'>The first Lighthouse Fellowship was launched, bringing people together through worship, prayer, and service.</p>
+                            </div>
+
+                            <div className='hidden lg:flex flex-col items-center absolute -z-[1]'>
+                                <div className='rounded-full bg-yellow-600 size-6 border-[5px] border-white' />
+                                <div className='h-[500px] w-[3px] bg-deep-blue-600 rounded-full' />
+                            </div>
+                        </div>
+                        <div className='lg:hidden flex flex-col items-center absolute -z-[1] left-2'>
+                            <div className='rounded-full bg-yellow-600 size-6 border-[5px] border-white' />
+                            <div className='h-[500px] w-[3px] bg-deep-blue-600 rounded-full' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className='mb-50'>
+                <div className='flex flex-col items-center gap-4'>
+                    <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-full lg:w-[30%]'>A CULTURE <br /> ROOTED IN CHRIST</h1>
+                    <p className='text-deep-blue-400 text-xl'>We are guided by these core values</p>
+                </div>
+
             </div>
         </section>
     );
