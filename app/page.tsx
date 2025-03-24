@@ -9,11 +9,11 @@ import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
 
-const hero1 = '/images/hero1.png'
-const hero2 = '/images/hero2.png'
-const hero3 = '/images/hero3.png'
-const foundation = '/images/foundation.png'
-const circle = '/images/circle.png'
+import hero1 from '@/assets/images/hero1.png'
+import hero2 from '@/assets/images/hero2.png'
+import hero3 from '@/assets/images/hero3.png'
+import foundation from '@/assets/images/foundation.png'
+import circle from '@/assets/images/circle.png'
 
 export default function Home() {
 

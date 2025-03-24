@@ -3,17 +3,17 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
-const about = '/images/about.png';
-const circle = '/images/about-circle.png';
-const mission = '/images/mission.png';
-const vision = '/images/vision.png';
+import about from '@/assets/images/about.png';
+import circle from '@/assets/images/about-circle.png';
+import mission from '@/assets/images/mission.png';
+import vision from '@/assets/images/vision.png';
 
 export default function About() {
     return (
         <section className="font-body pt-[100px]">
             <div
                 style={{
-                    backgroundImage: `url(${about})`,
+                    backgroundImage: `url(${about.src})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'top'
                 }}
