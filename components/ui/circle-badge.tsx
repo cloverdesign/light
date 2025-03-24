@@ -22,7 +22,7 @@ const CircleBadge: React.FC<BadgeProps> = ({
 
     const style = "flex w-fit items-center justify-center border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
     return (
-        <motion.span
+        <motion.div
             className={cn(className, style)}
             {...props}
             drag
@@ -30,8 +30,8 @@ const CircleBadge: React.FC<BadgeProps> = ({
             dragElastic={0.9}
             dragMomentum={false}
         >
-            <DynamicIcon name={icon.name} fallback={() => <Box />} className={icon.size} />
-        </motion.span>
+            <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
+        </motion.div>
     )
 }
 

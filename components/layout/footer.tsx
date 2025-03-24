@@ -19,7 +19,7 @@ const Footer = () => {
     ];
 
     // Define custom footers for different pages
-    const pageFooters: Record<string, JSX.Element> = {
+    const pageFooters: Record<string, React.ReactNode> = {
         "/": (
             <div className="text-deep-blue-600 font-body flex flex-col gap-14">
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-10">
