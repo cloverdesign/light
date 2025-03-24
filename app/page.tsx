@@ -7,8 +7,8 @@ import { animate, useMotionValue, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
+import Image from "next/image";
 
-const Image = "next/image";
 const hero1 = '/images/hero1.png'
 const hero2 = '/images/hero2.png'
 const hero3 = '/images/hero3.png'

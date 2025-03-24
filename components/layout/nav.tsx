@@ -127,7 +127,7 @@ export default function Navbar() {
                 <Menu />
             </Button>
 
-            <motion.section
+            {/* <motion.section
                 className="bg-aero-500/50 fixed top-0 left-0 h-screen w-screen z-50 menu-backdrop"
                 initial={{
                     opacity: 0,
@@ -147,7 +147,7 @@ export default function Navbar() {
                         </motion.li>
                     ))}
                 </ul>
-            </motion.section>
+            </motion.section> */}
         </nav>
     );
 }
