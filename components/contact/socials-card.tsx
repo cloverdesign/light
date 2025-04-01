@@ -25,7 +25,7 @@ export const SocialsCard: React.FC<CardProps> = ({ title, content, icon, classNa
             {content.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                     <p className="text-deep-blue-600 capitalize">{item.name}</p>
-                    <p>-></p>
+                    <p>-&gt;</p>
                     <a className="text-deep-blue-600 underline" href={item.link}>@{item.handle}</a>
                 </div>
             ))}
