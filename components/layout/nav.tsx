@@ -119,7 +119,7 @@ export default function Navbar() {
             </ul>
 
             <Button className="hidden md:flex gap-6 justify-self-end">
-                <Link href="contact">Contact</Link>
+                <NavLink href="contact" className="h-full w-full">Contact</NavLink>
             </Button>
 
             {/* Mobile Menu */}
