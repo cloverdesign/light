@@ -6,6 +6,7 @@ import { Box } from "lucide-react";
 
 interface TextareaProps extends React.ComponentProps<"textarea"> {
     icon?: string;
+    label?: string;
 }
 
 const Textarea = React.forwardRef<
