@@ -9,8 +9,77 @@ import circle from '@/assets/images/about-circle.png';
 import mission from '@/assets/images/mission.png';
 import vision from '@/assets/images/vision.png';
 import { Badge } from '@/components/ui/badge';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Asterisk } from 'lucide-react';
 
 export default function About() {
+    const campus = [
+        {
+            title: "The Bible is the inspired Word of God.",
+            content: [
+                "We believe that the Bible contains the inspired Word of God (2 Tit 3:16, 2 Pet 1:20-21)",
+            ]
+        },
+        {
+            title: "One God, existing in three persons: Father, Son, and Holy Spirit.",
+            content: [
+                "We believe that there is one God eternally existent in three persons:",
+                "God the Father, God the Son and God the Holy Spirit. (Eph 4:4-5; 1 Cor 8:6)"
+            ]
+        },
+        {
+            title: "We believe in the Deity of Christ.",
+            content: [
+                "He was born of a virgin; (Jn 1:1-4, 10:30, Heb 1:1-5)",
+                "He was conceived of the Holy Spirit; (Matt 1:18-25; Luk 1:30-3 5)",
+                "He died; (John 19:30-3, 5)",
+                "He rose again from the dead bodily; (John 20:25-29, Luke 24:36-40)",
+                "He ascended into heaven bodily, (1 Thess 4:16-17, Matt 24:29-30)"
+            ]
+        },
+        {
+            title: "The Rapture of the church and the Second Coming of Christ.",
+            content: [
+                "We believe in the Rapture of the church, and the Second Coming of Christ (1Thess 4:16-17; Mat 24:29-30)."
+            ]
+        },
+        {
+            title: "The repentence",
+            content: [
+                "We believe that the only means of being cleansed from sin is repentance and faith in the precious blood of Jesus Christ (Acts 3:19, Luk 24:47, Eph 1:7)"
+            ]
+        },
+        {
+            title: "The sanctifying power of the Holy Spirit.",
+            content: [
+                "We believe that regeneration by the power of the Holy Ghost through the Word of God is essential for personal salvation (Tit 2:5, Jn 3:3-5, Eph 5:27)"
+            ]
+        },
+        {
+            title: "Eternal life for the saved and eternal judgment for the lost.",
+            content: [
+                "We believe that the redemptive work of Christ on the cross provides divine healing for the body and salvation for the soul to everyone that believes (Acts3:16 Acts 9:32-35, 1 Pet 2:24)."
+            ]
+        },
+        {
+            title: "Empowered by the Holy Spirit.",
+            content: [
+                "We believe that when an individual receives the Holy Ghost, he receives divine enablement for Christian service and witness (Acts 1:8; 2:4; 3:1-26; 4:5-12)"
+            ]
+        },
+        {
+            title: "The Sanctifying Power of the Holy Spirit.",
+            content: [
+                "We believe in the sanctifying power of the Holy Ghost. (1 Cor 6:11; Rom 15:16)"
+            ]
+        },
+        {
+            title: "Eternal Life and Final Judgment",
+            content: [
+                "We believe in the final resurrection of both the saved and the lost. The former to eternal life and the later to eternal judgment (Rev 20:11-15, 1 Cor 12:23)."
+            ]
+        }
+    ]
     return (
         <section className="font-body pt-[100px]">
             <div
@@ -63,7 +132,7 @@ export default function About() {
             </div>
 
             <div className='flex flex-col items-center gap-28 mb-50'>
-                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-full lg:w-[30%]'>FROM A SMALL BEGINNINGS TO A GLOBAL MOVEMENT OF FAITH</h1>
+                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-full'>FROM A SMALL <br /> BEGINNINGS TO A GLOBAL MOVEMENT <br /> OF FAITH</h1>
                 <div className='flex flex-col h-full items-center gap-8'>
                     <div className='lg:flex flex-col items-center gap-3 text-center hidden'>
                         <Badge variant="outline" className='w-fit'>
@@ -115,6 +184,37 @@ export default function About() {
                     <p className='text-deep-blue-400 text-xl'>We are guided by these core values</p>
                 </div>
 
+            </div>
+            <div className='flex items-center justify-between lg:px-32 px-8 mb-32'>
+                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]'>Grounded in Faith, <br /> Guided by truth</h1>
+                <p className='text-deep-blue-400 text-xl w-[40%]'>Our Statements of Faith have their source in the Bible and are in total alignment with the the doctrines of Christ.</p>
+            </div>
+            <div className="flex flex-col w-full mb-50 border-b border-aero-200">
+                {campus.map((item, index) =>
+                (<Accordion type="single" key={index} collapsible className="w-full">
+                    <AccordionItem value="item">
+                        <AccordionTrigger>
+                            <div className="flex items-center gap-2 lg:gap-8 font-body font-normal">
+                                <p className="text-xl lg:text-3xl">{index + 1 > 9 ? "" : "0"}{index + 1}</p>
+                                <p className="text-xl lg:text-3xl">{item.title}</p>
+                            </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            {
+                                item.content.map((stuff, idx) => (
+                                    <div key={idx} className="flex items-center gap-8">
+                                        <Asterisk className="size-4 lg:size-6 text-aero-600 shrink-0" />
+                                        <p>{stuff}</p>
+                                    </div>
+                                ))
+                            }
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>))}
+            </div>
+
+            <div className='flex flex-col gap-32'>
+                <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center'>Meet the Leaders <br /> who guide our mission</h1>
             </div>
         </section>
     );

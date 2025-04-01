@@ -31,8 +31,8 @@ export default function Campuses() {
     ]
 
     return (
-        <section className="font-body pt-[100px] flex flex-col items-center gap-16">
-            <div className="flex items-center justify-center h-screen">
+        <section className="font-body pt-[150px] flex flex-col items-center gap-16">
+            <div className="flex items-center justify-center">
                 <Image src={campus2} alt="Hands in a circle" className="-rotate-[8.28deg] rounded-2xl border border-white" />
                 <Image src={campus1} alt="People on the grass talking" className="rotate-[6.28deg] -ml-[250px] mt-[100px] rounded-2xl border border-white" />
             </div>

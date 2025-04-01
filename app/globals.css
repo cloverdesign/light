@@ -66,6 +66,10 @@
   --inset-shadow-juicy-blue-disabled-lg: inset 0 -4px 0px #AAB3BA, inset 0 1.5px 0px #EBEEEF;
   --inset-shadow-juicy: inset 0 -3px 0px rgba(0, 0, 0, 0.25), inset 0 1.5px 0px rgba(255, 255, 255, 0.25);
   --inset-shadow-juicy-blue-lg-input: inset 0 -4px 0px #C8EAF8, inset 0 1.5px 0px #FFFFFF;
+
+  --inset-shadow-juicy-blue: inset 0 -10px 0px #4BC1F1, inset 0 7px 0px #CAF0FF;
+  --inset-shadow-juicy-yellow: inset 0 -10px 0px rgba(255, 173, 0), inset 0 7px 0px rgba(255, 236, 197, 0.60);
+  --inset-shadow-juicy-orange: inset 0 -10px 0px #FF6C32, inset 0 7px 0px #FFAD8C;
 }
 
 body {
