@@ -16,7 +16,7 @@ const NavLink: FC<NavLinkProps> = ({ href, children, className = "", activeClass
     const isActive = pathname === href; // Check if link is active
 
     return (
-        <Link href={href} className={`${className} ${isActive ? activeClassName : ""} whitespace-nowrap hover:text-orange-600 py-2 px-4`}>
+        <Link href={href} className={`${className} ${isActive ? activeClassName : ""} whitespace-nowrap hover:text-orange-600 py-2 w-fit px-4`}>
             {children}
         </Link>
     );

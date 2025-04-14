@@ -118,7 +118,7 @@ export default function Navbar() {
                 }
             </ul>
 
-            <Button className="hidden md:flex gap-6 justify-self-end w-fit h-fit">
+            <Button asChild className="hidden md:flex justify-self-end">
                 <NavLink href="contact">Contact</NavLink>
             </Button>
 

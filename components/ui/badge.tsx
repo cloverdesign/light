@@ -33,7 +33,7 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, VariantProps
     asChild?: boolean
 }
 
-// Badge Component
+// Badge Compobnent
 const Badge: React.FC<BadgeProps> = ({
     className,
     variant = "default",
@@ -41,7 +41,7 @@ const Badge: React.FC<BadgeProps> = ({
     asChild = false,
     ...props
 }) => {
-    const Comp = asChild ? Slot : "span" // Changed "badge" to "span" for valid HTML
+    const Comp = asChild ? Slot : "span"
 
     return (
         <Comp
