@@ -14,6 +14,7 @@ import hero2 from '@/assets/images/hero2.png'
 import hero3 from '@/assets/images/hero3.png'
 import foundation from '@/assets/images/foundation.png'
 import circle from '@/assets/images/circle.png'
+import Link from "next/link";
 
 export default function Home() {
 
@@ -114,8 +115,10 @@ export default function Home() {
           </h1>
           <p className="text-deep-blue-400 xl:w-[40%] lg:w-[60%] w-[80%] text-center text-xl">Discover a place where God’s presence transforms lives, and everyone belongs.</p>
         </div>
-        <Button>
-          Plan Your Visit
+        <Button asChild>
+          <Link href="/campuses">
+            Plan Your Visit
+          </Link>
         </Button>
       </div>
       <div className="overflow-x-hidden">
