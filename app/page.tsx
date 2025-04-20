@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Asterisk, ChevronLeft, ChevronRight, HeartHandshakeIcon } from "lucide-react";
 import { useMeasure } from "@uidotdev/usehooks";
 import { animate, useMotionValue, motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -17,6 +17,7 @@ import circle from '@/assets/images/circle.png'
 import Link from "next/link";
 
 export default function Home() {
+
 
   const heroImages = [
     {
@@ -72,6 +73,49 @@ export default function Home() {
     }
   ]
 
+  const initialTestimonials = [
+    {
+      name: "Mabel A",
+      title: "A Life-Changing Experience",
+      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      color: "yellow-600"
+    },
+    {
+      name: "Joel B",
+      title: "A Life-Changing Experience",
+      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      color: "orange-600"
+    },
+    {
+      name: "Justin A",
+      title: "A Life-Changing Experience",
+      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      color: "aero-600"
+    },
+    {
+      name: "Grace A",
+      title: "A Life-Changing Experience",
+      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      color: "yellow-600"
+    }
+  ]
+
+  interface Testimonial {
+    name: string;
+    title: string;
+    content: string;
+    color: string
+  }
+
+  const [currentTestimonial, setCurrentTestimonial] = useState<Testimonial>(initialTestimonials[0])
+  const [testimonials, setTestimonials] = useState(initialTestimonials)
+
+  const handleSelectTestimonial = (item: Testimonial) => {
+    const reordered = testimonials.filter(t => t.name !== item.name).concat(item);
+    setTestimonials(reordered);
+    setCurrentTestimonial(item)
+  }
+
   let [ref, { width }] = useMeasure()
 
   const xTranslate = useMotionValue(0)
@@ -94,7 +138,7 @@ export default function Home() {
   const badgeContainerRef = useRef<HTMLDivElement | null>(null)
 
   return (
-    <section className="font-body pt-[155px] mb-100 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
+    <section className="font-body pt-[155px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
       <div className="flex flex-col items-center justify-center gap-16">
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="xl:text-9xl lg:text-8xl text-6xl text-center leading-[72px] lg:leading-[120px] xl:leading-[144px]">
@@ -223,7 +267,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
+      <div className="flex flex-col gap-24">
         <div className="flex flex-col justify-center items-center gap-4">
           <h1 className="text-[40px] text-center leading-[48px] lg:text-[56px] lg:leading-[72px]">
             OUR
@@ -237,7 +281,37 @@ export default function Home() {
           </h1>
           <p className="text-deep-blue-400 text-xl text-center w-[50%]">Hear how God’s love and the warmth of our community have impacted lives. Let these stories inspire and encourage you on your journey of faith.</p>
         </div>
-        <div>
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-8 w-full justify-center">
+            {
+              initialTestimonials.map((item, index) => (
+                <Badge key={index} variant={currentTestimonial.name === item.name ? "default" : "outline"} onClick={() => handleSelectTestimonial(item)} className="hover:cursor-pointer hover:bg-orange-500">
+                  {item.name.split(" ")[0]}
+                </Badge>
+              ))
+            }
+          </div>
+          <div className="relative w-full flex flex-col justify-center items-center">
+            {
+              testimonials.map((item, index) => (
+                <motion.div
+                  key={index}
+                  layout
+                  className={`absolute top-[80px] w-2/3 rounded-xl p-16 flex flex-col gap-6 bg-${item.color}`}
+                  style={{
+                    zIndex: testimonials.length - index,
+                    scale: 1 - index * 0.05,
+                    translateY: -(index * 20),
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h1 className="text-3xl">&ldquo;{item.title}&quot;</h1>
+                  <p>{item.content}</p>
+                  <p>- {item.name}.</p>
+                </motion.div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </section >
