@@ -260,8 +260,10 @@ export default function Home() {
               <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">NEW TO FAITH? <br /> START STRONG WITH <br /> FOUNDATION SCHOOL</h1>
               <p className="lg:w-[50%]">Whether you’re new to our church or recently born again, the Foundation School is the perfect place to begin your journey of faith, growth, and service in Christ</p>
             </div>
-            <Button variant="secondary-juicy" className="w-fit">
-              Learn More
+            <Button asChild variant="secondary-juicy" className="w-fit">
+              <Link href="/resources#foundation-school">
+                Learn More
+              </Link>
             </Button>
           </div>
         </div>

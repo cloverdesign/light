@@ -57,7 +57,7 @@ export default function Resources() {
                     />
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-32 px-8 lg:px-32 mb-50">
+            <div className="flex flex-col items-center gap-32 px-8 lg:px-32 mb-50" id="foundation-school">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between lg:gap-32 gap-8">
                     <h1 className="lg:text-[56px] text-[40px]">
                         Are you new to our church or recently
