@@ -119,7 +119,7 @@ export default function Navbar() {
             </ul>
 
             <Button asChild className="hidden md:flex justify-self-end">
-                <NavLink href="contact">Contact</NavLink>
+                <NavLink href="/contact">Contact</NavLink>
             </Button>
 
             {/* Mobile Menu */}

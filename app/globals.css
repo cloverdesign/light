@@ -70,6 +70,8 @@
   --inset-shadow-juicy-blue: inset 0 -10px 0px #4BC1F1, inset 0 7px 0px #CAF0FF;
   --inset-shadow-juicy-yellow: inset 0 -10px 0px rgba(255, 173, 0), inset 0 7px 0px rgba(255, 236, 197, 0.60);
   --inset-shadow-juicy-orange: inset 0 -10px 0px #FF6C32, inset 0 7px 0px #FFAD8C;
+
+  --inset-shadow-juicy-card: inset 0 -5px 0px #EBE5D4;
 }
 
 body {

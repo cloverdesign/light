@@ -38,14 +38,14 @@ export default function Resources() {
                         title="Devotionals"
                         content="Weekly or monthly posts to encourage spiritual growth."
                         icon={{ name: "book-open", style: "text-yellow-600" }}
-                        link=""
+                        link="resources/devotionals"
                         className="bg-yellow-400 text-yellow-1000 inset-shadow-juicy-yellow lg:w-[calc(50%-32px)] w-full"
                     />
                     <ResourceCard
                         title="Sermons"
                         content="Video/audio recordings or downloadable notes of live sermons and teachings."
                         icon={{ name: "audio-lines", style: "text-aero-600" }}
-                        link=""
+                        link="resources/sermons"
                         className="bg-aero-400 text-deep-blue-600 inset-shadow-juicy-blue lg:w-[calc(50%-32px)] w-full"
                     />
                     <ResourceCard
