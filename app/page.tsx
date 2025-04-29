@@ -15,11 +15,7 @@ import foundation from '@/assets/images/foundation.png'
 import circle from '@/assets/images/circle.png'
 import Link from "next/link";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
-
-const TRANSITION: AnimationOptions = {
-  ease: "easeInOut",
-  duration: 0.5
-}
+import { spring } from "motion";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
@@ -29,13 +25,13 @@ export default function Home() {
   const scope = useMotionTimeline(
     [
       [
-        ['.heading-1', { y: 0 }, TRANSITION],
-        ['.heading-2', { y: 0 }, TRANSITION],
-        ['.plan-btn', { scale: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
-        ['.sub-heading', { opacity: 1, }, { duration: 1, ease: "easeInOut" }]
+        ['.heading-1', { y: 0 }, { duration: 1, ease: "easeInOut", type: spring, bounce: 0.5 }],
+        ['.heading-2', { y: 0 }, { duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }],
+        ['.plan-btn', { scale: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut", delay: 0.2 }],
+        ['.sub-heading', { opacity: 1, }, { duration: 1, ease: "easeInOut", delay: 0.3, }]
       ],
       [
-        ['.welcome-badge', { scale: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
+        ['.welcome-badge', { scale: 1, opacity: 1, rotate: [0, 4] }, { duration: 0.8, ease: "easeInOut", }],
         ['.path-1', { pathLength: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
       ]
     ],
