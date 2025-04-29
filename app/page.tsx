@@ -1,9 +1,9 @@
 'use client'
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Asterisk, ChevronLeft, ChevronRight, HeartHandshakeIcon } from "lucide-react";
+import { Asterisk, ChevronLeft, ChevronRight, Globe, HeartHandshakeIcon } from "lucide-react";
 import { animate, useMotionValue, motion, AnimationOptions } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -11,11 +11,13 @@ import Image from "next/image";
 import hero1 from '@/assets/images/hero1.png'
 import hero2 from '@/assets/images/hero2.png'
 import hero3 from '@/assets/images/hero3.png'
+import hero4 from '@/assets/images/hero4.png'
 import foundation from '@/assets/images/foundation.png'
 import circle from '@/assets/images/circle.png'
 import Link from "next/link";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 import { spring } from "motion";
+import { DynamicIcon } from "lucide-react/dynamic";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
@@ -43,18 +45,39 @@ export default function Home() {
     {
       url: hero1,
       alt: "Women hugging",
-      style: "mt-2"
+      style: "mt-2",
+      badges: [
+        { icon: "earth", style: "bg-orange-600 text-orange-200 -top-4 left-10 p-2 rotate-9" },
+        { text: "Love", style: "bg-yellow-600 text-yellow-1000 -bottom-6 right-0 px-4 py-2 -rotate-8" }
+      ]
     },
     {
       url: hero2,
       alt: "Picture of a man on his knees on the floor praying in a crowd of people",
-      style: "mt-60"
+      style: "mt-60",
+      badges: [
+        { icon: "hand-heart", style: "bg-aero-600 text-deep-blue-600 top-55 left-10 p-2 rotate-9" },
+        { text: "Faith", style: "bg-orange-600 text-orange-200 -bottom-6 right-0 px-4 py-2 -rotate-8" }
+      ]
     },
     {
       url: hero3,
       alt: "Picture of a man praying with his hands clasped togther.",
-      style: "mt-10"
-    }
+      style: "mt-2",
+      badges: [
+        { text: "Prayer", style: "bg-aero-600 text-deep-blue-600 -top-4 left-10 px-4 py-2 -rotate-9" },
+        { icon: "flame", style: "bg-yellow-600 text-yellow-1000 -bottom-6 right-0 p-2 -rotate-8" }
+      ]
+    },
+    {
+      url: hero4,
+      alt: "Picture of a man on his knees on the floor praying in a crowd of people",
+      style: "mt-60",
+      badges: [
+        { text: "Jesus", style: "bg-yellow-200 text-yellow-1000 top-55 left-10 px-4 py-2 -rotate-9" },
+        { icon: "flame", style: "bg-yellow-600 text-yellow-1000 -bottom-6 right-0 p-2 -rotate-8" }
+      ]
+    },
   ]
 
   const eventsContent = [
@@ -141,8 +164,8 @@ export default function Home() {
   return (
     <section
       ref={scope}
-      className="font-body pt-[155px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
-      <div className="flex flex-col items-center justify-center gap-16">
+      className="font-body pt-[140px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
+      <div className="flex flex-col items-center gap-16 h-screen">
         <div className="flex flex-col items-center justify-center">
           <div className="overflow-y-hidden">
             <motion.h1
@@ -205,37 +228,61 @@ export default function Home() {
           </Link>
         </MotionButton>
       </div>
-      <div className="overflow-x-hidden">
+      <div className="overflow-hidden py-8">
         <motion.div
-          className="flex items-center w-max gap-8 p-5"
+          className="flex items-center w-max gap-8 py-5"
+          initial={{ x: 0 }}
+          animate={{ x: "-50%" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         >
           {
-            [...heroImages, ...heroImages, ...heroImages].map((image, index) => (
-              <Image src={image.url} key={index} alt={image.alt} className={`rounded-xl rotate-[4deg] ${image.style}`} />
+            [...heroImages, ...heroImages,].map((image, index) => (
+              <div className="relative h-max w-max" key={index}>
+                {image.badges?.map((badge, idx) => (
+                  <span key={idx} className={`${badge.style} absolute rounded-full block border-3 border-white z-[10]`}>
+                    {badge.text ? <p className="font-semibold">{badge.text}</p> : <DynamicIcon name={badge.icon as any} fallback={() => <Globe />} className="size-5" />}
+                  </span>
+                ))}
+                <Image src={image.url} alt={image.alt} className={`rounded-xl rotate-4 ${image.style} w-[400px]`} />
+              </div>
             ))
           }
         </motion.div>
       </div>
       <div className="my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
-        <div className="border-y-[1px] bg-white border-aero-300 flex items-center gap-2 py-2 rotate-[8deg]">
-          {
-            [...eventsContent, ...eventsContent].map((eventItem, index) => (
-              <span key={index} className="flex items-center gap-2 w-max">
-                <Asterisk className="size-3" />
-                <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
-              </span>
-            ))
-          }
+        <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden">
+          <motion.div
+            // initial={{ x: 0 }}
+            // animate={{ x: "50%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="flex items-center gap-2 py-2 w-max"
+          >
+            {
+              [...eventsContent, ...eventsContent,].map((eventItem, index) => (
+                <span key={index} className="flex items-center gap-2">
+                  <Asterisk className="size-3" />
+                  <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
+                </span>
+              ))
+            }
+          </motion.div>
         </div>
-        <div className="border-y-[1px] bg-white border-aero-300 flex items-center gap-2 py-2 -rotate-[8deg]">
-          {
-            [...eventsContent, ...eventsContent].map((eventItem, index) => (
-              <span key={index} className="flex items-center gap-2 w-max">
-                <Asterisk className="size-3" />
-                <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
-              </span>
-            ))
-          }
+        <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden">
+          <motion.div
+            // initial={{ x: 0 }}
+            // animate={{ x: "-50%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="flex items-center gap-2 py-2 w-max"
+          >
+            {
+              [...eventsContent, ...eventsContent].map((eventItem, index) => (
+                <span key={index} className="flex items-center gap-2">
+                  <Asterisk className="size-3" />
+                  <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
+                </span>
+              ))
+            }
+          </motion.div>
         </div>
       </div>
 
