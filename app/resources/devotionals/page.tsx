@@ -1,5 +1,6 @@
 'use client'
 import ResourceDetailCard from '@/components/resources/resource-detail-card'
+import ResourceDetailNewCard from '@/components/resources/resource-detail-new-card'
 import { Input } from '@/components/ui/input'
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 import { BookOpen } from 'lucide-react'
@@ -20,20 +21,14 @@ const Devotionals = () => {
                     className='md:w-3/5 px-8'
                 />
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 p-8'>
-                <ResourceDetailCard
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 p-8'>
+                <ResourceDetailNewCard
                     title='The New Creature'
-                    description='Stay connected with our vibrant fellowship through upcoming events'
+                    description='When we come to Christ, something incredible happens not just around us, but within us. We are not merely people who believe differently now; we are people who are different. The Bible tells us we become a new creation. That’s not symbolic language. That’s spiritual reality...'
                     author='pastor jerry kan'
                     duration='10 mins read'
                     date='23rd april'
-                />
-                <ResourceDetailCard
-                    title='The New Creature'
-                    description='Stay connected with our vibrant fellowship through upcoming events'
-                    author='pastor jerry kan'
-                    duration='10 mins read'
-                    date='23rd april'
+                    className='md:col-span-2 lg:col-span-3'
                 />
                 <ResourceDetailCard
                     title='The New Creature'
