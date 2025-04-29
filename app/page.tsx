@@ -385,7 +385,7 @@ export default function Home() {
           className="rounded-4xl relative h-full w-full overflow-hidden origin-center"
           initial={{ height: 0, width: 0 }}
           whileInView={{ height: "100%", width: "100%" }}
-          transition={{ duration: 0.7, delay: 0.2, type: spring, bounce: 0.3 }}
+          transition={{ duration: 1, type: spring, bounce: 0.3 }}
         >
           <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
           <div className="flex flex-col gap-8 text-yellow-1100 absolute bottom-20 left-20 h-fit w-fit">
