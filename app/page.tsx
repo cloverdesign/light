@@ -21,6 +21,7 @@ import { DynamicIcon } from "lucide-react/dynamic";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
+const MotionCircleBadge = motion.create(CircleBadge)
 
 export default function Home() {
 
@@ -346,14 +347,32 @@ export default function Home() {
 
       <div className="mb-50 flex flex-col lg:flex-row items-center justify-center h-[100vh] lg:h-[50vh] p-8 xl:px-32 gap-20 lg:gap-8">
         <div className="relative mx-auto lg:w-1/2 w-full h-1/2 lg:h-full" ref={badgeContainerRef}>
-          <CircleBadge drag ref={badgeContainerRef} icon={{ name: "book-heart", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-100 text-aero-800 lg:p-8 p-5 shadow-md absolute top-10 left-[5px] md:left-[3%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
-          <CircleBadge drag ref={badgeContainerRef} icon={{ name: "user-round", size: "lg:size-[88px] size-[65px]" }} className="bg-orange-600 text-orange-300 lg:p-8 p-5 shadow-md absolute top-0 right-[45%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
-          <CircleBadge drag ref={badgeContainerRef} icon={{ name: "hand-helping", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-600 text-deep-blue-600 lg:p-8 p-5 shadow-md absolute bottom-4 right-[40%] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
-          <CircleBadge drag ref={badgeContainerRef} icon={{ name: "heart-handshake", size: "lg:size-[88px] size-[65px]" }} className="bg-yellow-600 text-yellow-1000 lg:p-8 p-5 shadow-md absolute bottom-0 left-[10%] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+          <CircleBadge
+            drag ref={badgeContainerRef} icon={{ name: "book-heart", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-100 text-aero-800 lg:p-8 p-5 shadow-md absolute top-10 left-[5px] md:left-[3%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+          <CircleBadge
+            drag ref={badgeContainerRef} icon={{ name: "user-round", size: "lg:size-[88px] size-[65px]" }} className="bg-orange-600 text-orange-300 lg:p-8 p-5 shadow-md absolute top-0 right-[45%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+          <CircleBadge
+            drag ref={badgeContainerRef} icon={{ name: "hand-helping", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-600 text-deep-blue-600 lg:p-8 p-5 shadow-md absolute bottom-4 right-[40%] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+          <CircleBadge
+            drag ref={badgeContainerRef} icon={{ name: "heart-handshake", size: "lg:size-[88px] size-[65px]" }} className="bg-yellow-600 text-yellow-1000 lg:p-8 p-5 shadow-md absolute bottom-0 left-[10%] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
         </div>
         <div className="lg:w-1/2 text-center lg:text-right flex flex-col gap-4 h-1/2 lg:h-full">
-          <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">FIND YOUR PLACE TO <br /> GROW, SERVE & BELONG</h1>
-          <p className="text-deep-blue-400">At Light House, there’s a place for everyone to get involved and make a difference.</p>
+          <div className="overflow-y-hidden">
+            <motion.h1 initial={{ y: "100%" }}
+              whileInView={{ y: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+              className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+              FIND YOUR PLACE TO <br /> GROW, SERVE & BELONG
+            </motion.h1>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+            className="text-deep-blue-400"
+          >
+            At Light House, there’s a place for everyone to get involved and make a difference.
+          </motion.p>
         </div>
       </div>
 

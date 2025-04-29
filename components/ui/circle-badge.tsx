@@ -30,7 +30,9 @@ const CircleBadge: React.FC<BadgeProps> = ({
                 drag
                 dragConstraints={ref}
                 dragElastic={0.9}
-                dragMomentum={false}
+                dragMomentum={true}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
             >
                 <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
             </motion.div>) :
