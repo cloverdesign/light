@@ -165,6 +165,8 @@ export default function Home() {
     <section
       ref={scope}
       className="font-body pt-[140px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
+
+      {/* Hero Section */}
       <div className="flex flex-col items-center gap-16 h-screen">
         <div className="flex flex-col items-center justify-center">
           <div className="overflow-y-hidden">
@@ -228,6 +230,8 @@ export default function Home() {
           </Link>
         </MotionButton>
       </div>
+
+      {/* Hero Images */}
       <div className="overflow-hidden py-8">
         <motion.div
           className="flex items-center w-max gap-8 py-5"
@@ -249,6 +253,8 @@ export default function Home() {
           }
         </motion.div>
       </div>
+
+      {/* Events Section */}
       <div className="my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
         <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden">
           <motion.div
@@ -288,15 +294,36 @@ export default function Home() {
 
       <div className="mb-50 lg:pl-[127px] px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between overflow-x-hidden gap-10">
         <div className="flex flex-col gap-4 shrink-0">
-          <h2 className="lg:text-[56px] text-[40px]">Upcoming
-            <div className="relative inline-block ml-4 w-fit h-fit">
-              <p>Events</p>
-              <svg className="absolute left-2 bottom-0 w-full" width="119" height="13" viewBox="0 0 119 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.73944 8.84912C9.59305 8.84912 17.3869 7.91732 25.1483 6.78363C32.5318 5.70515 39.986 4.99725 47.4305 4.46779C53.9941 4.00098 60.4657 3.85806 67.0057 3.0908C73.5987 2.31731 80.2905 2.16401 86.9251 2.21453C91.5177 2.2495 95.9504 3.24781 100.492 3.79494C104.13 4.23327 107.728 4.96366 111.304 5.75089C112.956 6.1146 114.718 6.28537 116.343 6.73669C117.794 7.13995 113.637 6.8776 113.62 6.87752C106.317 6.84418 97.4776 5.22042 90.5866 8.56746C90.1857 8.76221 89.9667 8.84912 89.5226 8.84912C88.3605 8.84912 91.8291 9.20799 92.9338 9.56891C94.5208 10.0874 96.2673 10.4067 97.8941 10.7894C98.3569 10.8983 98.6925 10.665 98.9112 11.1024" stroke="#FFC855" strokeWidth="3" strokeLinecap="round" />
-              </svg>
-            </div>
-          </h2>
-          <p className="text-deep-blue-400 lg:w-[60%] w-full md:w-[30%]">Stay connected with our vibrant fellowship through upcoming events</p>
+          <div className="overflow-y-hidden">
+            <motion.h2
+              initial={{ y: "100%" }}
+              whileInView={{ y: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+              className="lg:text-[56px] text-[40px]">
+              Upcoming
+              <div className="relative inline-block ml-4 w-fit h-fit">
+                <p>Events</p>
+                <svg
+                  className="absolute left-2 bottom-0 w-full" width="119" height="13" viewBox="0 0 119 13" fill="none" xmlns="http://www.w3.org/2000/motion.svg">
+                  <motion.path
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                    d="M1.73944 8.84912C9.59305 8.84912 17.3869 7.91732 25.1483 6.78363C32.5318 5.70515 39.986 4.99725 47.4305 4.46779C53.9941 4.00098 60.4657 3.85806 67.0057 3.0908C73.5987 2.31731 80.2905 2.16401 86.9251 2.21453C91.5177 2.2495 95.9504 3.24781 100.492 3.79494C104.13 4.23327 107.728 4.96366 111.304 5.75089C112.956 6.1146 114.718 6.28537 116.343 6.73669C117.794 7.13995 113.637 6.8776 113.62 6.87752C106.317 6.84418 97.4776 5.22042 90.5866 8.56746C90.1857 8.76221 89.9667 8.84912 89.5226 8.84912C88.3605 8.84912 91.8291 9.20799 92.9338 9.56891C94.5208 10.0874 96.2673 10.4067 97.8941 10.7894C98.3569 10.8983 98.6925 10.665 98.9112 11.1024"
+                    stroke="#FFC855"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+            className="text-deep-blue-400 lg:w-[60%] w-full md:w-[30%]"
+          >Stay connected with our vibrant fellowship through upcoming events</motion.p>
         </div>
         <div className="py-2 flex flex-col gap-10 w-max">
           <div className="flex items-center gap-8">
