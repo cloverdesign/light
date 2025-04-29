@@ -2,9 +2,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Asterisk, ChevronLeft, ChevronRight, HeartHandshakeIcon } from "lucide-react";
-import { useMeasure } from "@uidotdev/usehooks";
-import { animate, useMotionValue, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { animate, useMotionValue, motion, AnimationOptions } from "motion/react";
+import { useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -15,8 +14,33 @@ import hero3 from '@/assets/images/hero3.png'
 import foundation from '@/assets/images/foundation.png'
 import circle from '@/assets/images/circle.png'
 import Link from "next/link";
+import { useMotionTimeline } from "@/hooks/useMotionTimeline";
+
+const TRANSITION: AnimationOptions = {
+  ease: "easeInOut",
+  duration: 0.5
+}
+
+const MotionBadge = motion.create(Badge)
+const MotionButton = motion.create(Button)
 
 export default function Home() {
+
+  const scope = useMotionTimeline(
+    [
+      [
+        ['.heading-1', { y: 0 }, TRANSITION],
+        ['.heading-2', { y: 0 }, TRANSITION],
+        ['.plan-btn', { scale: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
+        ['.sub-heading', { opacity: 1, }, { duration: 1, ease: "easeInOut" }]
+      ],
+      [
+        ['.welcome-badge', { scale: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
+        ['.path-1', { pathLength: 1, opacity: 1 }, { duration: 0.8, ease: "easeInOut" }],
+      ]
+    ],
+    1
+  )
 
 
   const heroImages = [
@@ -116,60 +140,78 @@ export default function Home() {
     setCurrentTestimonial(item)
   }
 
-  let [ref, { width }] = useMeasure()
-
-  const xTranslate = useMotionValue(0)
-
-  useEffect(() => {
-    let controls
-    let finalPosition = width ? -width / 3 - 32 : 0
-
-    controls = animate(xTranslate, [0, finalPosition], {
-      ease: "linear",
-      duration: 25,
-      repeat: Infinity,
-      repeatType: "loop",
-      repeatDelay: 0
-    })
-
-    return controls.stop
-  }, [xTranslate, width])
-
   const badgeContainerRef = useRef<HTMLDivElement | null>(null)
 
   return (
-    <section className="font-body pt-[155px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
+    <section
+      ref={scope}
+      className="font-body pt-[155px] mb-200 bg-radial-[at_50%_-70%] from-aero-600 from-10% to-[#FFFCF7] to-50% relative">
       <div className="flex flex-col items-center justify-center gap-16">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="xl:text-9xl lg:text-8xl text-6xl text-center leading-[72px] lg:leading-[120px] xl:leading-[144px]">
-            <div className="relative inline-block mr-5 w-fit h-fit">
-              <Badge variant="header" className="absolute capitalize transform -rotate-12 -left-5 -top-5 lg:top-2">
-                <HeartHandshakeIcon />
-                Welcome Home
-              </Badge>
-              Where
-            </div>
-            Faith, Love, & Community
-            <div className="relative inline-block ml-4 w-fit h-fit">
-              <p>Flourish</p>
-              <svg width="435" height="144" viewBox="0 0 435 144" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-0 bottom-2.5 h-full w-full">
-                <path d="M273.838 8.51659C205.753 5.8801 126.033 0.818651 62.3827 16.9958C20.4649 27.6495 -2.63556 49.5143 4.18218 72.9789C7.42436 84.1375 14.8087 95.7725 31.3693 103.729C57.6737 116.367 96.0255 125.005 129.041 131.823C189.752 144.359 256.584 144.428 318.948 134.785C368.726 127.089 446.127 113.021 430.113 78.4955C415.192 46.326 344.698 29.9193 289.546 19.8562C220.025 7.17143 149.289 3.962 76.2784 3" stroke="#FFC855" strokeWidth="4" strokeLinecap="round" />
-              </svg>
-            </div>
-          </h1>
-          <p className="text-deep-blue-400 xl:w-[40%] lg:w-[60%] w-[80%] text-center text-xl">Discover a place where God’s presence transforms lives, and everyone belongs.</p>
+        <div className="flex flex-col items-center justify-center">
+          <div className="overflow-y-hidden">
+            <motion.h1
+              initial={{ y: "100%" }}
+              className="heading-1 xl:text-9xl lg:text-8xl text-6xl text-center leading-[72px] lg:leading-[120px] xl:leading-[144px]">
+              <div className="relative inline-block mr-5 w-fit h-fit mt-6 ml-6">
+                <MotionBadge
+                  initial={{ scale: 0, opacity: 0 }}
+                  variant="header"
+                  className="welcome-badge absolute capitalize transform -rotate-12 -left-5 -top-5 lg:top-2">
+                  <HeartHandshakeIcon />
+                  Welcome Home
+                </MotionBadge>
+                Where
+              </div>
+              Faith, Love, &
+            </motion.h1>
+          </div>
+          <div className="overflow-y-hidden">
+            <motion.h1
+              initial={{ y: "100%" }}
+              className="heading-2 xl:text-9xl lg:text-8xl text-6xl text-center leading-[72px] lg:leading-[120px] xl:leading-[144px]">
+              Community
+              <span className="relative inline-block m-4 w-fit h-fit">
+                Flourish
+                <svg
+                  width="435"
+                  height="144"
+                  viewBox="0 0 435 144"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute right-0 bottom-2.5 h-full w-full"
+                >
+                  <motion.path
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    className="path-1"
+                    d="M273.838 8.51659C205.753 5.8801 126.033 0.818651 62.3827 16.9958C20.4649 27.6495 -2.63556 49.5143 4.18218 72.9789C7.42436 84.1375 14.8087 95.7725 31.3693 103.729C57.6737 116.367 96.0255 125.005 129.041 131.823C189.752 144.359 256.584 144.428 318.948 134.785C368.726 127.089 446.127 113.021 430.113 78.4955C415.192 46.326 344.698 29.9193 289.546 19.8562C220.025 7.17143 149.289 3.962 76.2784 3"
+                    stroke="#FFC855"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </motion.h1>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            className="sub-heading text-deep-blue-400 xl:w-[50%] lg:w-[60%] w-[80%] text-center text-xl"
+          >
+            Discover a place where God’s presence transforms lives, and everyone belongs.
+          </motion.p>
         </div>
-        <Button asChild>
+        <MotionButton
+          initial={{ scale: 0, opacity: 0 }}
+          asChild
+          className="plan-btn"
+        >
           <Link href="/campuses">
             Plan Your Visit
           </Link>
-        </Button>
+        </MotionButton>
       </div>
       <div className="overflow-x-hidden">
         <motion.div
           className="flex items-center w-max gap-8 p-5"
-          ref={ref}
-        // style={{ x: xTranslate }}
         >
           {
             [...heroImages, ...heroImages, ...heroImages].map((image, index) => (
@@ -316,6 +358,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
     </section >
   );
 }
