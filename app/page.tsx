@@ -21,7 +21,6 @@ import { DynamicIcon } from "lucide-react/dynamic";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
-const MotionCircleBadge = motion.create(CircleBadge)
 
 export default function Home() {
 
@@ -40,7 +39,6 @@ export default function Home() {
     ],
     1
   )
-
 
   const heroImages = [
     {
@@ -345,7 +343,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-50 flex flex-col lg:flex-row items-center justify-center h-[100vh] lg:h-[50vh] p-8 xl:px-32 gap-20 lg:gap-8">
+      <div className="mb-75 flex flex-col lg:flex-row items-center justify-center h-[100vh] lg:h-[50vh] p-8 xl:px-32 gap-20 lg:gap-8">
         <div className="relative mx-auto lg:w-1/2 w-full h-1/2 lg:h-full" ref={badgeContainerRef}>
           <CircleBadge
             drag ref={badgeContainerRef} icon={{ name: "book-heart", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-100 text-aero-800 lg:p-8 p-5 shadow-md absolute top-10 left-[5px] md:left-[3%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
@@ -358,7 +356,8 @@ export default function Home() {
         </div>
         <div className="lg:w-1/2 text-center lg:text-right flex flex-col gap-4 h-1/2 lg:h-full">
           <div className="overflow-y-hidden">
-            <motion.h1 initial={{ y: "100%" }}
+            <motion.h1
+              initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
               className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
@@ -376,28 +375,70 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-50 h-[80vh] lg:h-screen px-8 lg:px-32 w-full">
-        <div
+      <div className="mb-75 h-[80vh] px-8 lg:px-32 w-full">
+        <motion.div
           style={{
             backgroundImage: `url(${foundation.src})`,
             backgroundPosition: "center",
             backgroundSize: "cover"
           }}
-          className="rounded-4xl relative h-full w-full overflow-hidden"
+          className="rounded-4xl relative h-full w-full overflow-hidden origin-center"
+          initial={{ height: 0, width: 0 }}
+          whileInView={{ height: "100%", width: "100%" }}
+          transition={{ duration: 0.7, delay: 0.2, type: spring, bounce: 0.3 }}
         >
           <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
-          <div className="flex flex-col gap-8 text-yellow-1100 absolute bottom-8 left-8 h-fit w-fit">
+          <div className="flex flex-col gap-8 text-yellow-1100 absolute bottom-20 left-20 h-fit w-fit">
             <div className="flex flex-col gap-4">
-              <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">NEW TO FAITH? <br /> START STRONG WITH <br /> FOUNDATION SCHOOL</h1>
-              <p className="lg:w-[50%]">Whether you’re new to our church or recently born again, the Foundation School is the perfect place to begin your journey of faith, growth, and service in Christ</p>
+              <div className="flex flex-col gap-1">
+                <div className="overflow-y-hidden">
+                  <motion.h1
+                    initial={{ y: "100%" }}
+                    whileInView={{ y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
+                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    NEW TO FAITH?
+                  </motion.h1>
+                </div>
+                <div className="overflow-y-hidden">
+                  <motion.h1
+                    initial={{ y: "100%" }}
+                    whileInView={{ y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
+                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    START STRONG WITH
+                  </motion.h1>
+                </div>
+                <div className="overflow-y-hidden">
+                  <motion.h1
+                    initial={{ y: "100%" }}
+                    whileInView={{ y: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
+                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    FOUNDATION SCHOOL
+                  </motion.h1>
+                </div>
+              </div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                className="lg:w-[50%]"
+              >
+                Whether you’re new to our church or recently born again, the Foundation School is the perfect place to begin your journey of faith, growth, and service in Christ
+              </motion.p>
             </div>
-            <Button asChild variant="secondary-juicy" className="w-fit">
+            <MotionButton
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+              asChild variant="secondary-juicy" className="w-fit">
               <Link href="/resources#foundation-school">
                 Learn More
               </Link>
-            </Button>
+            </MotionButton>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex flex-col gap-24">
