@@ -166,7 +166,7 @@ export default function Home() {
       className="font-body pt-[140px] mb-200 relative">
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center lg:justify-center gap-16 lg:h-screen">
+      <div className="flex flex-col items-center gap-16 lg:h-screen">
         <div className="flex flex-col items-center justify-center">
           <div className="overflow-y-hidden">
             <motion.h1
