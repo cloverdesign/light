@@ -376,7 +376,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-50 lg:mb-75 h-[50vh] lg:h-[80vh] px-8 lg:px-32 w-full">
+      <div className="mb-50 lg:mb-75 h-[60vh] lg:h-[80vh] px-8 lg:px-32 w-full">
         <motion.div
           style={{
             // backgroundImage: `url(${foundation.src})`,
@@ -389,7 +389,7 @@ export default function Home() {
           transition={{ duration: 1, type: spring, bounce: 0.3 }}
         >
           <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
-          <div className="flex flex-col gap-8 text-yellow-100 md:text-yellow-1100 absolute p-20 md:bottom-0 h-fit w-fit">
+          <div className="flex flex-col gap-8 text-yellow-100 md:text-yellow-1100 absolute p-5 lg:p-20 md:bottom-0 h-fit w-fit">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1">
                 <div className="overflow-y-hidden">
@@ -397,7 +397,7 @@ export default function Home() {
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
-                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     NEW TO FAITH?
                   </motion.h1>
                 </div>
@@ -406,7 +406,7 @@ export default function Home() {
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
-                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     START STRONG WITH
                   </motion.h1>
                 </div>
@@ -415,7 +415,7 @@ export default function Home() {
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
-                    className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                    className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     FOUNDATION SCHOOL
                   </motion.h1>
                 </div>
