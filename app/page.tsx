@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Asterisk, ChevronLeft, ChevronRight, Globe, HeartHandshakeIcon } from "lucide-react";
-import { animate, useMotionValue, motion, AnimationOptions } from "motion/react";
+import { animate, useMotionValue, motion, AnimationOptions, useVelocity, useScroll, useAnimationFrame, useTransform, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
@@ -18,9 +18,11 @@ import Link from "next/link";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 import { spring } from "motion";
 import { DynamicIcon } from "lucide-react/dynamic";
+import { Marquee } from "@/components/ui/marquee";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
+const MotionImage = motion.create(Image)
 
 export default function Home() {
 
@@ -77,18 +79,6 @@ export default function Home() {
         { icon: "flame", style: "bg-yellow-600 text-yellow-1000 -bottom-6 right-0 p-2 -rotate-8" }
       ]
     },
-  ]
-
-  const eventsContent = [
-    {
-      text: "Join us this Sunday"
-    },
-    {
-      text: "Bible Study Wednesdays at 7PM"
-    },
-    {
-      text: "Community Outreach this Saturday"
-    }
   ]
 
   const events = [
@@ -159,6 +149,16 @@ export default function Home() {
   }
 
   const badgeContainerRef = useRef<HTMLDivElement | null>(null)
+
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400,
+  });
+
+  const rotate = useTransform(smoothVelocity, [-1000, 0, 1000], ["-2deg", "0deg", "2deg"]);
 
   return (
     <section
@@ -249,14 +249,19 @@ export default function Home() {
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         >
           {
-            [...heroImages, ...heroImages,].map((image, index) => (
+            [...heroImages, ...heroImages, ...heroImages, ...heroImages].map((image, index) => (
               <div className="relative h-max w-max" key={index}>
                 {image.badges?.map((badge, idx) => (
                   <span key={idx} className={`${badge.style} absolute rounded-full block border-3 border-white z-[10]`}>
                     {badge.text ? <p className="font-semibold">{badge.text}</p> : <DynamicIcon name={badge.icon as any} fallback={() => <Globe />} className="size-5" />}
                   </span>
                 ))}
-                <Image src={image.url} alt={image.alt} className={`rounded-xl rotate-4 ${image.style} w-[300px] lg:w-[400px]`} />
+                <MotionImage
+                  src={image.url}
+                  alt={image.alt}
+                  className={`rounded-xl rotate-4 ${image.style} w-[300px] lg:w-[400px]`}
+                  style={{ rotate }}
+                />
               </div>
             ))
           }
@@ -265,39 +270,15 @@ export default function Home() {
 
       {/* Events Section */}
       <div className="my-10 lg:my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
-        <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden">
-          <motion.div
-            // initial={{ x: 0 }}
-            // animate={{ x: "50%" }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="flex items-center gap-2 py-2 w-max"
-          >
-            {
-              [...eventsContent, ...eventsContent,].map((eventItem, index) => (
-                <span key={index} className="flex items-center gap-2">
-                  <Asterisk className="size-3" />
-                  <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
-                </span>
-              ))
-            }
-          </motion.div>
+        <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden py-2">
+          <Marquee baseVelocity={-5}>
+            * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community Outreach this Saturday
+          </Marquee>
         </div>
-        <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden">
-          <motion.div
-            // initial={{ x: 0 }}
-            // animate={{ x: "-50%" }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="flex items-center gap-2 py-2 w-max"
-          >
-            {
-              [...eventsContent, ...eventsContent].map((eventItem, index) => (
-                <span key={index} className="flex items-center gap-2">
-                  <Asterisk className="size-3" />
-                  <p className="whitespace-nowrap text-aero-900 text-[32px]">{eventItem.text}</p>
-                </span>
-              ))
-            }
-          </motion.div>
+        <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden py-2">
+          <Marquee baseVelocity={-5}>
+            * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community Outreach this Saturday
+          </Marquee>
         </div>
       </div>
 
@@ -307,6 +288,7 @@ export default function Home() {
             <motion.h2
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
               className="lg:text-[56px] text-[40px]">
               Upcoming
@@ -317,6 +299,7 @@ export default function Home() {
                   <motion.path
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
                     d="M1.73944 8.84912C9.59305 8.84912 17.3869 7.91732 25.1483 6.78363C32.5318 5.70515 39.986 4.99725 47.4305 4.46779C53.9941 4.00098 60.4657 3.85806 67.0057 3.0908C73.5987 2.31731 80.2905 2.16401 86.9251 2.21453C91.5177 2.2495 95.9504 3.24781 100.492 3.79494C104.13 4.23327 107.728 4.96366 111.304 5.75089C112.956 6.1146 114.718 6.28537 116.343 6.73669C117.794 7.13995 113.637 6.8776 113.62 6.87752C106.317 6.84418 97.4776 5.22042 90.5866 8.56746C90.1857 8.76221 89.9667 8.84912 89.5226 8.84912C88.3605 8.84912 91.8291 9.20799 92.9338 9.56891C94.5208 10.0874 96.2673 10.4067 97.8941 10.7894C98.3569 10.8983 98.6925 10.665 98.9112 11.1024"
                     stroke="#FFC855"
@@ -330,6 +313,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
             className="text-deep-blue-400 lg:w-[60%] w-full md:w-[30%]"
           >Stay connected with our vibrant fellowship through upcoming events</motion.p>
@@ -370,6 +354,7 @@ export default function Home() {
             <motion.h1
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
               className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
               FIND YOUR PLACE TO
@@ -379,6 +364,7 @@ export default function Home() {
             <motion.h1
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
               className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
               GROW, SERVE & BELONG
@@ -387,6 +373,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
             className="text-deep-blue-400"
           >
@@ -405,6 +392,7 @@ export default function Home() {
           className={`rounded-4xl relative h-full w-full flex items-center justify-center md:items-start md:justify-normal overflow-hidden origin-center bg-deep-blue-600 md:bg-[url(/foundation.png)]`}
           initial={{ height: 0, width: 0 }}
           whileInView={{ height: "100%", width: "100%" }}
+          viewport={{ once: true }}
           transition={{ duration: 1, type: spring, bounce: 0.3 }}
         >
           <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
@@ -415,6 +403,7 @@ export default function Home() {
                   <motion.h1
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
                     className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     NEW TO FAITH?
@@ -424,6 +413,7 @@ export default function Home() {
                   <motion.h1
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
                     className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     START STRONG WITH
@@ -433,6 +423,7 @@ export default function Home() {
                   <motion.h1
                     initial={{ y: "100%" }}
                     whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
                     className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
                     FOUNDATION SCHOOL
@@ -442,6 +433,7 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
                 className="lg:w-[50%]"
               >
@@ -451,6 +443,7 @@ export default function Home() {
             <MotionButton
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
               asChild variant="secondary-juicy" className="w-fit">
               <Link href="/resources#foundation-school">
