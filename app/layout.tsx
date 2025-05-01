@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
+import SmoothScroll from "@/components/layout/smooth-scroll";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${interSans.variable} ${championGothic.variable} antialiased relative transition-discrete`}
       >
         <Navbar />
+        <SmoothScroll />
         {children}
         <Footer />
       </body>

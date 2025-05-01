@@ -166,7 +166,7 @@ export default function Home() {
       className="font-body pt-[140px] mb-200 relative">
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center gap-16 lg:h-screen">
+      <div className="flex flex-col items-center gap-16 lg:h-screen z-[2] relative">
         <div className="flex flex-col items-center justify-center">
           <div className="overflow-y-hidden">
             <motion.h1
@@ -229,6 +229,16 @@ export default function Home() {
           </Link>
         </MotionButton>
       </div>
+
+      <svg width="1440" height="735" viewBox="0 0 1440 735" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 w-full z-[1]">
+        <circle cx="720" r="831" fill="url(#paint0_radial_2052_107)" />
+        <defs>
+          <radialGradient id="paint0_radial_2052_107" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(720 -1.55493e-05) rotate(46.6085) scale(806.06)">
+            <stop stopColor="#3DBAEE" stopOpacity="0.63" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
 
       {/* Hero Images */}
       <div className="overflow-hidden py-8">
@@ -362,7 +372,16 @@ export default function Home() {
               whileInView={{ y: 0 }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
               className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
-              FIND YOUR PLACE TO <br /> GROW, SERVE & BELONG
+              FIND YOUR PLACE TO
+            </motion.h1>
+          </div>
+          <div className="overflow-y-hidden">
+            <motion.h1
+              initial={{ y: "100%" }}
+              whileInView={{ y: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+              className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+              GROW, SERVE & BELONG
             </motion.h1>
           </div>
           <motion.p
@@ -454,7 +473,7 @@ export default function Home() {
             </div>
             <br /> OF TRANSFORMATION
           </h1>
-          <p className="text-deep-blue-400 text-xl text-center w-[50%]">Hear how God’s love and the warmth of our community have impacted lives. Let these stories inspire and encourage you on your journey of faith.</p>
+          <p className="text-deep-blue-400 text-xl text-center lg:w-[50%] px-8">Hear how God’s love and the warmth of our community have impacted lives. Let these stories inspire and encourage you on your journey of faith.</p>
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-8 w-full justify-center">
@@ -472,7 +491,7 @@ export default function Home() {
                 <motion.div
                   key={index}
                   layout
-                  className={`absolute top-[80px] w-2/3 rounded-xl p-16 flex flex-col gap-6 bg-${item.color}`}
+                  className={`absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-16 flex flex-col gap-6 bg-${item.color}`}
                   style={{
                     zIndex: testimonials.length - index,
                     scale: 1 - index * 0.05,
