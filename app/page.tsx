@@ -456,17 +456,49 @@ export default function Home() {
 
       <div className="flex flex-col gap-24">
         <div className="flex flex-col justify-center items-center gap-4">
-          <h1 className="text-[40px] text-center leading-[48px] lg:text-[56px] lg:leading-[72px]">
-            OUR
-            <div className="relative inline-block mx-4 w-fit h-fit">
-              <p>Stories</p>
-              <svg width="435" height="144" viewBox="0 0 435 144" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-0 bottom-0 h-full w-full">
-                <path d="M273.838 8.51659C205.753 5.8801 126.033 0.818651 62.3827 16.9958C20.4649 27.6495 -2.63556 49.5143 4.18218 72.9789C7.42436 84.1375 14.8087 95.7725 31.3693 103.729C57.6737 116.367 96.0255 125.005 129.041 131.823C189.752 144.359 256.584 144.428 318.948 134.785C368.726 127.089 446.127 113.021 430.113 78.4955C415.192 46.326 344.698 29.9193 289.546 19.8562C220.025 7.17143 149.289 3.962 76.2784 3" stroke="#FFC855" strokeWidth="4" strokeLinecap="round" />
-              </svg>
+          <div className="flex flex-col gap-2">
+            <div className="overflow-y-hidden">
+              <motion.h1
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
+                className="text-[40px] text-center leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                OUR
+                <div className="relative inline-block mx-4 w-fit h-fit">
+                  <p>Stories</p>
+                  <svg width="435" height="144" viewBox="0 0 435 144" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-0 bottom-0 h-full w-full">
+                    <motion.path
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      whileInView={{ pathLength: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                      d="M273.838 8.51659C205.753 5.8801 126.033 0.818651 62.3827 16.9958C20.4649 27.6495 -2.63556 49.5143 4.18218 72.9789C7.42436 84.1375 14.8087 95.7725 31.3693 103.729C57.6737 116.367 96.0255 125.005 129.041 131.823C189.752 144.359 256.584 144.428 318.948 134.785C368.726 127.089 446.127 113.021 430.113 78.4955C415.192 46.326 344.698 29.9193 289.546 19.8562C220.025 7.17143 149.289 3.962 76.2784 3" stroke="#FFC855" strokeWidth="5" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </motion.h1>
             </div>
-            <br /> OF TRANSFORMATION
-          </h1>
-          <p className="text-deep-blue-400 text-xl text-center lg:w-[50%] px-8">Hear how God’s love and the warmth of our community have impacted lives. Let these stories inspire and encourage you on your journey of faith.</p>
+            <div className="overflow-y-hidden">
+              <motion.h1
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
+                className="text-[40px] text-center leading-[48px] lg:text-[56px] lg:leading-[72px]"
+              >
+                OF TRANSFORMATION
+              </motion.h1>
+            </div>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.8 }}
+            className="text-deep-blue-400 text-xl text-center lg:w-[50%] px-8"
+          >
+            Hear how God’s love and the warmth of our community have impacted lives. Let these stories inspire and encourage you on your journey of faith.
+          </motion.p>
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-8 w-full justify-center">
