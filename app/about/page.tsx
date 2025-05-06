@@ -10,7 +10,9 @@ import mission from '@/assets/images/mission.png';
 import vision from '@/assets/images/vision.png';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Asterisk } from 'lucide-react';
+import { Asterisk, HandHeart } from 'lucide-react';
+import { motion } from 'motion/react'
+import { useMotionTimeline } from '@/hooks/useMotionTimeline';
 
 export default function About() {
     const campus = [
@@ -80,23 +82,62 @@ export default function About() {
             ]
         }
     ]
+
+    const scope = useMotionTimeline(
+        [
+            []
+        ]
+    )
+
     return (
-        <section className="font-body pt-[100px]">
+        <section
+            className="font-body pt-[100px]"
+            ref={scope}
+        >
             <div
                 style={{
                     backgroundImage: `url(${about.src})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'top'
                 }}
-                className="h-screen w-full overflow-hidden relative"
+                className="h-[80vh] w-full overflow-hidden relative"
             >
-                <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
-                <div className="flex flex-col md:items-start items-center gap-16 text-yellow-100 absolute bottom-8 left-8 h-fit w-fit">
-                    <div className="flex flex-col md:text-left text-center gap-4">
-                        <h1 className="xl:text-9xl lg:text-8xl text-6xl leading-[72px] lg:leading-[120px] xl:leading-[144px]">
-                            Living the Vision, <br /> Sharing the Love
-                        </h1>
-                        <p className="lg:w-[70%]">
+                <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full z-[1]" />
+                <div className="flex flex-col md:items-start items-center justify-center gap-16 text-yellow-100 relative z-[2] h-full w-fit lg:pl-10">
+                    <div className="w-[92%] md:w-full flex flex-col md:text-left text-center gap-4">
+                        <div className='flex flex-col'>
+                            <h1 className="xl:text-9xl lg:text-8xl text-[56px] leading-[72px] lg:leading-[120px] xl:leading-[144px] relative">
+                                <span className={`w-fit p-2 bg-aero-600 text-deep-blue-600 absolute rounded-full block border-3 border-white z-[10] top-0 right-[15%] lg:right-0 -rotate-13`}>
+                                    <HandHeart />
+                                </span>
+                                <div className="relative inline-block mr-4 w-fit h-fit">
+                                    <span className={`py-2 px-4 bg-orange-600 text-orange-200 text-base font-body !capitalize absolute rounded-full block border-3 border-white z-[10] -bottom-5 lg:bottom-0 -rotate-13 -left-3`}>
+                                        <p className="font-semibold">Love</p>
+                                    </span>
+                                    Living
+                                </div>
+                                the Vision,
+                            </h1>
+                            <h1 className="xl:text-9xl lg:text-8xl text-[56px] leading-[72px] lg:leading-[120px] xl:leading-[144px] relative">
+                                Sharing the
+                                <div className="relative inline-block mx-4 w-fit h-fit">
+                                    <p>Love</p>
+                                    <svg width="152" height="64" viewBox="0 0 152 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-0 bottom-0 h-full w-full">
+                                        <motion.path
+                                            initial={{ pathLength: 0, opacity: 0 }}
+                                            whileInView={{ pathLength: 1, opacity: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.7 }}
+                                            d="M95.1702 5.30753C71.8544 4.20472 44.5539 2.08756 22.7567 8.85429C8.40181 13.3106 0.490983 22.4565 2.82574 32.2715C3.93603 36.939 6.46483 41.8057 12.136 45.1338C21.1441 50.42 34.2778 54.0334 45.5842 56.8851C66.3748 62.1289 89.2616 62.1578 110.618 58.1244C127.665 54.905 154.171 49.0204 148.687 34.579C143.577 21.1228 119.437 14.2601 100.55 10.0508C76.7418 4.74486 52.518 3.40239 27.5153 3"
+                                            stroke="#FFC855"
+                                            strokeWidth="4.42532"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                </div>
+                            </h1>
+                        </div>
+                        <p className="lg:w-[50%] w-full">
                             Discover a place where God’s presence transforms lives, and everyone belongs.
                         </p>
                     </div>
