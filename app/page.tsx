@@ -270,12 +270,12 @@ export default function Home() {
       {/* Events Section */}
       <div className="my-10 lg:my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
         <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden py-2">
-          <Marquee baseVelocity={-5}>
+          <Marquee baseVelocity={-2}>
             * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community Outreach this Saturday
           </Marquee>
         </div>
         <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden py-2">
-          <Marquee baseVelocity={-5}>
+          <Marquee baseVelocity={-2}>
             * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community Outreach this Saturday
           </Marquee>
         </div>
