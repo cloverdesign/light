@@ -1,9 +1,9 @@
 'use client'
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Asterisk, ChevronLeft, ChevronRight, Globe, HeartHandshakeIcon } from "lucide-react";
-import { animate, useMotionValue, motion, AnimationOptions, useVelocity, useScroll, useAnimationFrame, useTransform, useSpring } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Globe, HeartHandshakeIcon } from "lucide-react";
+import { motion, useVelocity, useScroll, useTransform, useSpring } from "motion/react";
+import { useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -12,7 +12,6 @@ import hero1 from '@/assets/images/hero1.png'
 import hero2 from '@/assets/images/hero2.png'
 import hero3 from '@/assets/images/hero3.png'
 import hero4 from '@/assets/images/hero4.png'
-import foundation from '@/assets/images/foundation.png'
 import circle from '@/assets/images/circle.png'
 import Link from "next/link";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
