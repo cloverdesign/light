@@ -5,12 +5,14 @@ import { Button } from '@/components/ui/button';
 
 import about from '@/assets/images/about.png';
 import about2 from '@/assets/images/about2.png';
+import aboutValues from '@/assets/images/about-values.png';
+import aboutValuesMobile from '@/assets/images/about-values-mobile.png';
 import circle from '@/assets/images/about-circle.png';
 import mission from '@/assets/images/mission.png';
 import vision from '@/assets/images/vision.png';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Asterisk, FlameIcon, HandHeart } from 'lucide-react';
+import { Asterisk, BookOpen, FlameIcon, HandCoins, HandHeart, Trees } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useMotionTimeline } from '@/hooks/useMotionTimeline';
 import { spring } from 'motion';
@@ -118,6 +120,14 @@ export default function About() {
         offset: ["start end", "end center"]
     })
 
+    const { scrollYProgress: lineProgress } = useScroll({
+        target: lineRef,
+        offset: ["start end", "end center"]
+    })
+
+    const imagePosition = useTransform(lineProgress, [0, 0.5], ["-150%", "0%"])
+    const imageOpacity = useTransform(lineProgress, [0, 0.5], [0, 1])
+
     const position1 = useTransform(yProgress1, [0, 0.5], ["-150%", "0%"])
     const posPosition1 = useTransform(yProgress1, [0, 0.5], ["150%", "0%"])
 
@@ -203,7 +213,7 @@ export default function About() {
             </div>
 
             <div
-                className='mb-50'
+                className='mb-100'
             >
                 {/* Mission/Vision Section */}
                 <div className='px-8 lg:px-32 my-100 flex flex-col gap-14 relative overflow-x-hidden'>
@@ -247,7 +257,7 @@ export default function About() {
                             src={vision} alt="Hand on the bible" className='rounded-xl h-[200px] lg:h-full w-full object-cover'
                         />
                     </div>
-                    <svg width="75" height="41" viewBox="0 0 75 41" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute -bottom-10 left-4 lg:-bottom-5 lg:left-24'>
+                    <svg width="75" height="41" viewBox="0 0 75 41" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute -bottom-10 left-4 lg:-bottom-5 lg:left-24 mb-6'>
                         <motion.path
                             initial={{ pathLength: 0, opacity: 0 }}
                             whileInView={{ pathLength: 1, opacity: 1 }}
@@ -361,33 +371,50 @@ export default function About() {
                                 </div>
                             </div>
                             <div className='flex flex-col-reverse lg:flex-row items-center justify-center gap-6 lg:gap-16 lg:relative lg:h-[500px]'>
-                                <Image src={about2} alt="People on a couch praying with their eyes closed." className='rounded-xl lg:w-[400px]' />
+                                <MotionImage
+                                    ref={lineRef}
+                                    style={{ x: imagePosition, opacity: imageOpacity }}
+                                    src={about2} alt="People on a couch praying with their eyes closed." className='rounded-xl lg:w-[400px]' />
                                 <div className='rounded-full bg-orange-600 size-6 border-[5px] border-white hidden lg:block' />
                                 <div className='flex flex-col gap-3'>
                                     <div className='flex items-center'>
                                         <div className='rounded-full bg-orange-600 size-6 border-[5px] border-white lg:hidden absolute left-2' />
-                                        <Badge
+                                        <MotionBadge
+                                            initial={{ scale: 0, opacity: 0 }}
+                                            whileInView={{ scale: 1, opacity: 1 }}
+                                            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
                                             variant="outline"
                                             className='w-fit'
                                         >
                                             2012
-                                        </Badge>
+                                        </MotionBadge>
                                     </div>
-                                    <motion.div
+                                    <div
                                         className='flex flex-col gap-3'
-                                        initial={{ x: "200%" }}
-                                        whileInView={{ x: 0 }}
-                                        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.6 }}
                                     >
-                                        <h1 className='!font-body !capitalize font-bold'>First Fellowship Established</h1>
-                                        <p className='text-deep-blue-400 lg:w-[400px] w-full'>The first Lighthouse Fellowship was launched, bringing people together through worship, prayer, and service.</p>
-                                    </motion.div>
+                                        <div className='overflow-y-hidden'>
+                                            <motion.h1
+                                                initial={{ y: "100%" }}
+                                                whileInView={{ y: 0 }}
+                                                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.6, type: spring, bounce: 0.5 }}
+                                                className='!font-body !capitalize font-bold'
+                                            >
+                                                First Fellowship Established
+                                            </motion.h1>
+                                        </div>
+                                        <motion.p
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.5 }}
+                                            className='text-deep-blue-400 lg:w-[400px] w-full'>
+                                            The first Lighthouse Fellowship was launched, bringing people together through worship, prayer, and service.
+                                        </motion.p>
+                                    </div>
                                 </div>
 
                                 <div className='hidden lg:flex flex-col items-center absolute -z-[1]'>
                                     <div className='rounded-full bg-yellow-600 size-6 border-[5px] border-white' />
                                     <svg
-                                        ref={lineRef}
                                         width="3"
                                         height="503"
                                         viewBox="0 0 3 503"
@@ -406,7 +433,6 @@ export default function About() {
                             <div className='lg:hidden flex flex-col items-center absolute -z-[1] left-2'>
                                 <div className='rounded-full bg-yellow-600 size-6 border-[5px] border-white' />
                                 <svg
-                                    ref={lineRef}
                                     width="3"
                                     height="503"
                                     viewBox="0 0 3 503"
@@ -427,21 +453,221 @@ export default function About() {
             </div>
 
             {/* Core Values Section */}
-            <div className='mb-50'>
+            <div className='mb-100 relative flex flex-col gap-32'>
                 <div className='flex flex-col items-center gap-4'>
-                    <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-full lg:w-[30%]'>A CULTURE <br /> ROOTED IN CHRIST</h1>
-                    <p className='text-deep-blue-400 text-xl'>We are guided by these core values</p>
+                    <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center w-fit'>
+                        A CULTURE
+                        <span className='relative block'>
+                            ROOTED IN CHRIST
+                            <span className='bg-aero-600 rounded-full p-2 block w-fit h-fit absolute -top-5 left-12 -rotate-[9deg] border-3 border-background'>
+                                <Trees className='text-deep-blue-600 size-6' />
+                            </span>
+                        </span>
+                    </h1>
+                    <p className='text-deep-blue-400 text-xl text-center'>We are guided by these core values</p>
+                </div>
+
+                {/* Desktop hehe */}
+                <div className='hidden lg:block h-screen w-full space-y-10'
+                    style={{
+                        backgroundImage: `url(${aboutValues.src})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'top',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                >
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        whileInView={{ y: 0 }}
+                        // viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
+                        className='flex items-center justify-center gap-4'>
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-aero-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-deep-blue-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Service</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-orange-200 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-orange-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Love</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-yellow-200 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-yellow-1000 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Worship</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+                    </motion.div>
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        whileInView={{ y: 0 }}
+                        // viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+                        className='flex items-center justify-center gap-4'>
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-deep-blue-600 rounded-full p-2 block w-fit h-fit'>
+                                    <BookOpen className='text-aero-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Prayer</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-yellow-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandCoins className='text-yellow-1000 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Giving</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-orange-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-orange-200 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Excellence</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+                    </motion.div>
+
+                </div>
+
+                {/* Mobile */}
+                <div className='lg:hidden flex flex-col w-full gap-10'
+                    style={{
+                        backgroundImage: `url(${aboutValuesMobile.src})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'top',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                >
+                    <motion.div
+                        className='flex flex-col items-center justify-center gap-4'>
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-aero-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-deep-blue-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Service</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-orange-200 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-orange-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Love</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-yellow-200 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-yellow-1000 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Worship</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+                    </motion.div>
+                    <motion.div
+                        className='flex flex-col items-center justify-center gap-4'>
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-deep-blue-600 rounded-full p-2 block w-fit h-fit'>
+                                    <BookOpen className='text-aero-600 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Prayer</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-yellow-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandCoins className='text-yellow-1000 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Giving</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+
+                        <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
+                            <div className='flex items-center gap-4'>
+                                <span className='bg-orange-600 rounded-full p-2 block w-fit h-fit'>
+                                    <HandHeart className='text-orange-200 size-6 lg:size-8' />
+                                </span>
+                                <h2 className='!capitalize text-[48px]'>Excellence</h2>
+                            </div>
+                            <p className='text-2xl text-deep-blue-400'>Unconditional love, just as Christ first loved us.</p>
+                        </div>
+                    </motion.div>
+
                 </div>
             </div>
 
             {/* Statements of Faith Section */}
             <div>
-                <div className='flex items-center justify-between lg:px-32 px-8 mb-32'>
-                    <h1 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]'>Grounded in Faith, <br /> Guided by truth</h1>
-                    <p className='text-deep-blue-400 text-xl w-[40%]'>Our Statements of Faith have their source in the Bible and are in total alignment with the the doctrines of Christ.</p>
+                <div className='flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:px-32 px-8 mb-50'>
+                    <div className='flex flex-col'>
+                        <div
+                            className='overflow-y-hidden'>
+                            <motion.h1
+                                initial={{ y: "100%" }}
+                                whileInView={{ y: 0 }}
+                                // viewport={{ once: true }}
+                                transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
+                                className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative mt-4 ml-4'>
+                                <span className='-left-2 -rotate-[9deg] -top-3 font-body text-base font-bold leading-none absolute block bg-yellow-600 text-yellow-1000 rounded-full p-2 border-3 border-background'>
+                                    10
+                                </span>
+                                Grounded in Faith,
+                            </motion.h1>
+                        </div>
+                        <div className='overflow-y-hidden'>
+                            <motion.h1
+                                initial={{ y: "100%" }}
+                                whileInView={{ y: 0 }}
+                                // viewport={{ once: true }}
+                                transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
+                                className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative ml-4'>
+                                Guided by truth
+                            </motion.h1>
+                        </div>
+                    </div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        // viewport={{ once: true }}
+                        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.7 }}
+                        className='text-deep-blue-400 text-xl lg:w-[40%]'>
+                        Our Statements of Faith have their source in the Bible and are in total alignment with the the doctrines of Christ.
+                    </motion.p>
                 </div>
 
-                <div className="flex flex-col w-full mb-50 border-b border-aero-200">
+                <div className="flex flex-col w-full mb-100 border-b border-aero-200">
                     {campus.map((item, index) =>
                     (<Accordion type="single" key={index} collapsible className="w-full">
                         <AccordionItem value="item">
