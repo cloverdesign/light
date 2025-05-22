@@ -141,7 +141,7 @@ export default function Navbar() {
                                     y: 0
                                 }}
                             >
-                                <Link href={item.path}>
+                                <Link href={item.path} onClick={handleToggleMenuClose}>
                                     {item.name}
                                 </Link>
                             </motion.li>
