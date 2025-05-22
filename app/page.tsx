@@ -500,10 +500,10 @@ export default function Home() {
           </motion.p>
         </div>
         <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-8 w-full justify-center">
+          <div className="flex items-center gap-2 md:gap-8 w-full justify-center">
             {
               initialTestimonials.map((item, index) => (
-                <Badge key={index} variant={currentTestimonial.name === item.name ? "default" : "outline"} onClick={() => handleSelectTestimonial(item)} className="hover:cursor-pointer hover:bg-orange-500">
+                <Badge key={index} variant={currentTestimonial.name === item.name ? "default" : "outline"} onClick={() => handleSelectTestimonial(item)} className="text-xs md:text-base hover:cursor-pointer hover:bg-orange-500">
                   {item.name.split(" ")[0]}
                 </Badge>
               ))
