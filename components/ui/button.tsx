@@ -17,12 +17,14 @@ const buttonVariants = cva(
                     "bg-aero-200 text-deep-blue-600 hover:bg-aero-100 focus-visible:ring-aero-300 !pb-3 disabled:bg-deep-blue-100 disabled:text-deep-blue-300",
                 "secondary-juicy":
                     "bg-aero-200 text-deep-blue-600 hover:bg-aero-100 inset-shadow-juicy-blue-lg active:inset-shadow-none active:transform active:translate-y-[5px] disabled:inset-shadow-juicy-blue-disabled-lg disabled:bg-deep-blue-100 disabled:text-deep-blue-300",
+                tertiary: "bg-aero-600 text-aero-100 hover:bg-aero-400 rounded-lg inset-shadow-juicy-lg active:inset-shadow-none active:transform active:translate-y-[5px] focus-visible:ring-yellow-300 disabled:inset-shadow-juicy-blue-disabled-lg disabled:bg-deep-blue-100 disabled:text-deep-blue-300",
                 ghost: "hover:bg-accent hover:text-accent-foreground",
                 link: "underline-offset-4 hover:underline text-primary",
             },
             size: {
                 default: "pt-3 pb-4 px-8",
                 xs: "pt-[6px] pb-2 px-2",
+                round: "px-4 pb-3 pt-2"
             },
         },
         defaultVariants: {

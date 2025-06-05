@@ -1,9 +1,9 @@
 'use client'
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Globe, HeartHandshakeIcon } from "lucide-react";
-import { motion, useVelocity, useScroll, useTransform, useSpring } from "motion/react";
-import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Globe, Grab, Hand, HeartHandshakeIcon } from "lucide-react";
+import { motion, useVelocity, useScroll, useTransform, useSpring, useMotionValue } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -13,15 +13,20 @@ import hero2 from '@/assets/images/hero2.png'
 import hero3 from '@/assets/images/hero3.png'
 import hero4 from '@/assets/images/hero4.png'
 import circle from '@/assets/images/circle.png'
+import circle2 from '@/assets/images/circle2.png'
 import Link from "next/link";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 import { spring } from "motion";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Marquee } from "@/components/ui/marquee";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const MotionBadge = motion.create(Badge)
 const MotionButton = motion.create(Button)
 const MotionImage = motion.create(Image)
+
+const DRAG_BUFFER = 50;
+
 
 export default function Home() {
 
@@ -82,54 +87,47 @@ export default function Home() {
 
   const events = [
     {
-      title: "Sunday Worship Service",
-      content: "Stay connected with our vibrant fellowship through upcoming events",
+      title: "Foundation School Graduation",
+      content: "Celebrate the achievements of our Foundation School graduates as they complete their spiritual journey and step into their next season of ministry and service.",
       time: "10 AM",
-      date: "Every Sunday",
-      icon: { style: "bg-aero-600 text-deep-blue-600", name: "hand-heart" }
+      date: "1st June, 2025",
+      icon: { style: "bg-aero-600 text-deep-blue-600", name: "graduation-cap" }
     },
     {
-      title: "Midweek Bible Study",
-      content: "Dive deeper into God’s Word with engaging Bible studies that inspire, challenge, and transform",
+      title: "Global Communion Service",
+      content: "Join believers worldwide in a powerful time of unity and worship as we partake in communion together, transcending borders and celebrating our shared faith.",
       time: "10 AM",
-      date: "Every Sunday",
+      date: "1st June, 2025",
       icon: { style: "bg-orange-600 text-orange-200", name: "book-open-text" }
     },
-    {
-      title: "Sunday Worship Service",
-      content: "Stay connected with our vibrant fellowship through upcoming events",
-      time: "10 AM",
-      date: "Every Sunday",
-      icon: { style: "bg-aero-600 text-deep-blue-600", name: "hand-heart" }
-    }
   ]
 
   const initialTestimonials = [
     {
-      name: "Mabel A",
+      name: "Noluthando N",
       title: "A Life-Changing Experience",
-      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      content: "Hi, I'm Noluthando Nsele, and I've been attending BLW Lighthouse for the past three years. Being part of this community has profoundly impacted my life. Before joining, I struggled to find purpose and meaning. However, through the church's teachings and ministries, such as the Foundation School, I've grown deeper in my faith and developed a stronger sense of identity.\n\nThe Bible says in 1 Corinthians 15:33, 'Do not be deceived: Bad company corrupts good morals.' I can attest to this truth. The friends I've made at Lighthouse have been instrumental in my spiritual growth. They've taught me to rely on God, pray with me in times of need, and correct me when I'm wrong. I'm truly blessed.\n\nBLW Lighthouse emphasizes holistic growth, covering not only biblical teachings and spiritual growth but also practical life aspects. This comprehensive approach has challenged me to live out my faith in meaningful ways.\n\nI'm grateful for BLW Lighthouse and its role in my spiritual journey. The church has become my family, and I'm committed to continuing to grow and serve. Now I am a leader at the church and I'm thankful for the opportunity to serve in the house of the Lord.\n\nIf you're seeking a church that will challenge, encourage, and support you, I highly recommend BLW LIGHTHOUSE.",
       color: "yellow-600"
     },
     {
-      name: "Joel B",
+      name: "Mbali S",
       title: "A Life-Changing Experience",
-      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      content: "I'm Sister Mbali from Lighthouse SMU. Over the past three years, I've had an incredible journey. I've connected with amazing people, developed a unique skill set through the numerous activities and departments I was a part of, and been prepared for ministry and life.\n\nPastor Semi is the highlight of my experience, embodying excellence and limitless potential. He inspires me to strive for excellence and fulfill my potential. Lighthouse has been a game changer, shifting my life's trajectory. I'm grateful for the impact it's had.",
       color: "orange-600"
     },
     {
-      name: "Justin A",
+      name: "Phenyo M",
       title: "A Life-Changing Experience",
-      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
+      content: "This year, being part of BLW Lighthouse has been such a blessing in my life. It's been a place of hope, encouragement, and faith - a true beacon of light indeed.\n\nThrough the guidance and support l've received, l've grown so much in my faith, learning to trust God more deeply and walk in His purpose. I'm truly thankful for Pastor Semi for his prayers, teachings, and fellowship that have strengthened me spiritually.\n\nNot only has this year been a spiritual breakthrough, but it has also been a year of personal achievement. There was a time when I faced significant challenges in my academics and felt as though there was no hope. However, by God's grace, I was able to overcome those difficulties and achieve excellent results in the module I struggled with—something I could not have accomplished without His strength and the unwavering support and encouragement from the BLW lighthouse family.\n\nThank you, BLW Lighthouse, for being such a big part of my journey this year. Here's to another year of faith, growth, and blessings. God bless you all.",
       color: "aero-600"
     },
     {
-      name: "Grace A",
+      name: "Denzel K",
       title: "A Life-Changing Experience",
-      content: "This fellowship has truly transformed my life. I came here feeling lost, but the love, prayers, and encouragement I received helped me find my purpose. The support here is not just words; it’s a genuine expression of God’s love.",
-      color: "yellow-600"
+      content: "Being part of Lighthouse has been transformative for me. Being part of Lighthouse has provided a nurturing environment where I've built meaningful friendships and grown spiritually.\n\nThe teachings and fellowship have deepened my understanding of God's love and purpose for my life. To me Lighthouse isn't just a church group; it's a family that has encouraged me to step out of my comfort zone, serve others, and strengthen my faith.",
+      color: "aero-600"
     }
-  ]
+  ];
 
   interface Testimonial {
     name: string;
@@ -141,10 +139,74 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState<Testimonial>(initialTestimonials[0])
   const [testimonials, setTestimonials] = useState(initialTestimonials)
 
+  const [eventsIndex, setEventsIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const size = useWindowSize();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(size.width < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [size]);
+
+  const getCardWidth = () => {
+    if (isMobile) {
+      return size.width - 32;
+    } else {
+      return 450;
+    }
+  };
+
+  const gap = 32;
+  const cardWidth = getCardWidth();
+  const totalCardWidth = cardWidth + gap;
+
+  const dragX = useMotionValue(0);
+
+  const onDragEnd = () => {
+    const x = dragX.get();
+
+    if (x <= -DRAG_BUFFER && eventsIndex < events.length - 1) {
+      setEventsIndex((prev) => prev + 1);
+    } else if (x >= DRAG_BUFFER && eventsIndex > 0) {
+      setEventsIndex((prev => prev - 1))
+    }
+  }
+
+  const goToPrevious = () => {
+    if (eventsIndex > 0) {
+      setEventsIndex((prev) => prev - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (eventsIndex < events.length - 1) {
+      setEventsIndex((prev) => prev + 1);
+    }
+  };
+
   const handleSelectTestimonial = (item: Testimonial) => {
-    const reordered = testimonials.filter(t => t.name !== item.name).concat(item);
-    setTestimonials(reordered);
-    setCurrentTestimonial(item)
+    const newOrder = [item, ...testimonials.filter(t => t.name !== item.name)];
+    setTestimonials(newOrder);
+    setCurrentTestimonial(item);
+  }
+
+  const handleDragTestimonialCard = (event, info, draggedItem) => {
+    const dragThreshold = 100;
+    const dragDistance = Math.abs(info.offset.x);
+
+    if (dragDistance > dragThreshold) {
+      const currentIndex = testimonials.findIndex(t => t.name === draggedItem.name);
+      if (currentIndex === 0 && testimonials.length > 1) {
+        const newOrder = [...testimonials.slice(1), testimonials[0]];
+        setTestimonials(newOrder);
+        setCurrentTestimonial(newOrder[0]);
+      }
+    }
   }
 
   const badgeContainerRef = useRef<HTMLDivElement | null>(null)
@@ -162,10 +224,10 @@ export default function Home() {
   return (
     <section
       ref={scope}
-      className="font-body pt-[140px] mb-200 relative">
+      className="font-body pt-[100px] lg:pt-[140px] mb-400 ld:mb-250 relative">
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center gap-16 lg:h-screen z-[2] relative">
+      <div className="flex flex-col items-center gap-8 lg:gap-16 lg:h-screen z-[2] relative">
         <div className="flex flex-col items-center justify-center">
           <div className="overflow-y-hidden">
             <motion.h1
@@ -175,7 +237,7 @@ export default function Home() {
                 <MotionBadge
                   initial={{ scale: 0, opacity: 0 }}
                   variant="header"
-                  className="welcome-badge absolute capitalize transform -rotate-12 -left-5 -top-5 lg:top-2">
+                  className="welcome-badge absolute capitalize transform -rotate-12 -left-5 -top-5 lg:top-2 mt-4">
                   <HeartHandshakeIcon />
                   Welcome Home
                 </MotionBadge>
@@ -187,7 +249,7 @@ export default function Home() {
           <div className="overflow-y-hidden">
             <motion.h1
               initial={{ y: "100%" }}
-              className="heading-2 xl:text-9xl lg:text-8xl text-6xl text-center leading-[72px] lg:leading-[120px] xl:leading-[144px]">
+              className="heading-2 xl:text-9xl lg:text-8xl text-6xl text-center">
               Community
               <span className="relative inline-block m-4 w-fit h-fit">
                 Flourish
@@ -197,7 +259,7 @@ export default function Home() {
                   viewBox="0 0 435 144"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="absolute right-0 bottom-2.5 h-full w-full"
+                  className="absolute right-0 -bottom-2 h-full w-full"
                 >
                   <motion.path
                     initial={{ pathLength: 0, opacity: 0 }}
@@ -223,13 +285,13 @@ export default function Home() {
           asChild
           className="plan-btn"
         >
-          <Link href="/campuses">
+          <Link href="/contact">
             Plan Your Visit
           </Link>
         </MotionButton>
       </div>
 
-      <svg width="1440" height="735" viewBox="0 0 1440 735" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 w-full z-[1]">
+      <svg width="1440" height="735" viewBox="0 0 1440 735" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute lg:block hidden top-0 w-full z-[1]">
         <circle cx="720" r="831" fill="url(#paint0_radial_2052_107)" />
         <defs>
           <radialGradient id="paint0_radial_2052_107" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(720 -1.55493e-05) rotate(46.6085) scale(806.06)">
@@ -238,6 +300,17 @@ export default function Home() {
           </radialGradient>
         </defs>
       </svg>
+
+      <svg width="393" height="882" viewBox="0 0 393 882" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute block lg:hidden top-0 w-full z-[1]">
+        <circle cx="197" cy="51" r="831" fill="url(#paint0_radial_2338_2146)" />
+        <defs>
+          <radialGradient id="paint0_radial_2338_2146" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(197 51) rotate(49.5892) scale(829.455)">
+            <stop stopColor="#3DBAEE" stopOpacity="0.63" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+
 
       {/* Hero Images */}
       <div className="overflow-hidden py-8">
@@ -282,19 +355,19 @@ export default function Home() {
       </div>
 
       <div className="mb-50 lg:pl-[127px] px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between overflow-x-hidden gap-10">
-        <div className="flex flex-col gap-4 shrink-0">
+        <div className="flex flex-col gap-4">
           <div className="overflow-y-hidden">
             <motion.h2
               initial={{ y: "100%" }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
-              className="lg:text-[56px] text-[40px]">
+              className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
               Upcoming
               <div className="relative inline-block ml-4 w-fit h-fit">
                 <p>Events</p>
                 <svg
-                  className="absolute left-2 bottom-0 w-full" width="119" height="13" viewBox="0 0 119 13" fill="none" xmlns="http://www.w3.org/2000/motion.svg">
+                  className="absolute left-2 -bottom-0.5 w-full" width="119" height="13" viewBox="0 0 119 13" fill="none" xmlns="http://www.w3.org/2000/motion.svg">
                   <motion.path
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
@@ -313,23 +386,55 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.8 }}
             className="text-deep-blue-400 lg:w-[60%] w-full md:w-[30%]"
-          >Stay connected with our vibrant fellowship through upcoming events</motion.p>
+          >Stay connected with our vibrant fellowship through upcoming events
+          </motion.p>
         </div>
-        <div className="py-2 flex flex-col gap-10 w-max">
-          <div className="flex items-center gap-8">
+        <div className="py-2 flex flex-col gap-10 overflow-hidden relative">
+          <motion.div
+            drag="x"
+            dragConstraints={{
+              left: 0,
+              right: 0,
+            }}
+            style={{
+              x: dragX,
+            }}
+            animate={{
+              translateX: -eventsIndex * totalCardWidth
+            }}
+            transition={{
+              type: "spring",
+              mass: 3,
+              stiffness: 400,
+              damping: 50,
+            }}
+            onDragEnd={onDragEnd}
+            className="flex items-center gap-8 cursor-grab active:cursor-grabbing w-max relative">
             {
               [...events].map((item, index) => (
                 <EventCard icon={item.icon} key={index} title={item.title} content={item.content} time={item.time} date={item.date} />
               ))
             }
-          </div>
+          </motion.div>
           <div className="flex items-center lg:ml-20 gap-8">
-            <Button className="bg-aero-600 rounded-full text-aero-100 px-4 pb-3 pt-2 hover:bg-aero-400">
+            <Button
+              variant="tertiary"
+              size="round"
+              className="rounded-full"
+              onClick={goToPrevious}
+              disabled={eventsIndex === 0}
+            >
               <ChevronLeft />
             </Button>
-            <Button className="bg-aero-600 rounded-full text-aero-100 px-4 pb-3 pt-2 hover:bg-aero-400">
+            <Button
+              variant="tertiary"
+              size="round"
+              className="rounded-full"
+              onClick={goToNext}
+              disabled={eventsIndex === events.length - 1}
+            >
               <ChevronRight />
             </Button>
           </div>
@@ -338,36 +443,38 @@ export default function Home() {
 
       {/* Grow Section */}
       <div className="mb-50 lg:mb-75 flex flex-col lg:flex-row items-center justify-center h-[100vh] lg:h-[50vh] p-8 xl:px-32 gap-20 lg:gap-8">
-        <div className="relative mx-auto lg:w-1/2 w-full h-1/2 lg:h-full" ref={badgeContainerRef}>
+        <div className="relative mx-auto size-[300px]" ref={badgeContainerRef}>
           <CircleBadge
-            drag ref={badgeContainerRef} icon={{ name: "book-heart", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-100 text-aero-800 lg:p-8 p-5 shadow-md absolute top-10 left-[5px] md:left-[3%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+            drag ref={badgeContainerRef} icon={{ name: "book-heart", size: "size-[88px]" }} className="bg-aero-100 text-aero-800 p-8 shadow-md absolute top-[22px] left-[21px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
           <CircleBadge
-            drag ref={badgeContainerRef} icon={{ name: "user-round", size: "lg:size-[88px] size-[65px]" }} className="bg-orange-600 text-orange-300 lg:p-8 p-5 shadow-md absolute top-0 right-[45%] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+            drag ref={badgeContainerRef} icon={{ name: "user-round", size: "size-[88px]" }} className="bg-orange-600 text-orange-300 p-8 shadow-md absolute top-[37px] left-[100px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
           <CircleBadge
-            drag ref={badgeContainerRef} icon={{ name: "hand-helping", size: "lg:size-[88px] size-[65px]" }} className="bg-aero-600 text-deep-blue-600 lg:p-8 p-5 shadow-md absolute bottom-4 right-[40%] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+            drag ref={badgeContainerRef} icon={{ name: "hand-helping", size: "size-[88px]" }} className="bg-aero-600 text-deep-blue-600 p-8 shadow-md absolute top-[135px] left-[121px] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
           <CircleBadge
-            drag ref={badgeContainerRef} icon={{ name: "heart-handshake", size: "lg:size-[88px] size-[65px]" }} className="bg-yellow-600 text-yellow-1000 lg:p-8 p-5 shadow-md absolute bottom-0 left-[10%] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
+            drag ref={badgeContainerRef} icon={{ name: "heart-handshake", size: "size-[88px]" }} className="bg-yellow-600 text-yellow-1000 p-8 shadow-md absolute top-[121px] left-[14px] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing" />
         </div>
-        <div className="lg:w-1/2 text-center lg:text-right flex flex-col gap-4 h-1/2 lg:h-full">
-          <div className="overflow-y-hidden">
-            <motion.h1
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
-              className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
-              FIND YOUR PLACE TO
-            </motion.h1>
-          </div>
-          <div className="overflow-y-hidden">
-            <motion.h1
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
-              className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
-              GROW, SERVE & BELONG
-            </motion.h1>
+        <div className="lg:w-1/2 text-center lg:text-right flex flex-col lg:justify-center gap-4 h-1/2 lg:h-full">
+          <div className="flex flex-col gap-1">
+            <div className="overflow-y-hidden">
+              <motion.h1
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+                className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                FIND YOUR PLACE TO
+              </motion.h1>
+            </div>
+            <div className="overflow-y-hidden">
+              <motion.h1
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
+                className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
+                GROW, SERVE & BELONG
+              </motion.h1>
+            </div>
           </div>
           <motion.p
             initial={{ opacity: 0 }}
@@ -394,10 +501,11 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 1, type: spring, bounce: 0.3 }}
         >
-          <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full" />
+          <Image src={circle} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full hidden md:block" />
+          <Image src={circle2} alt="Circle yellow gradient" className="absolute bottom-0 left-0 w-full h-full md:hidden block" />
           <div className="flex flex-col gap-8 text-yellow-100 md:text-yellow-1100 absolute p-5 lg:p-20 md:bottom-0 h-fit w-fit">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col lg:gap-1">
                 <div className="overflow-y-hidden">
                   <motion.h1
                     initial={{ y: "100%" }}
@@ -415,7 +523,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
                     className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
-                    START STRONG WITH
+                    START STRONG
                   </motion.h1>
                 </div>
                 <div className="overflow-y-hidden">
@@ -425,7 +533,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: 0.7, type: spring, bounce: 0.5 }}
                     className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]">
-                    FOUNDATION SCHOOL
+                    WITH FOUNDATION SCHOOL
                   </motion.h1>
                 </div>
               </div>
@@ -515,17 +623,42 @@ export default function Home() {
                 <motion.div
                   key={index}
                   layout
-                  className={`absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-16 flex flex-col gap-6 bg-${item.color}`}
+                  className={`absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-8 md:p-16 flex flex-col gap-6 bg-${item.color} cursor-${index === 0 ? 'grab' : 'default'} ${index === 0 ? 'h-auto' : 'h-[300px] overflow-hidden'}`}
+                  drag="x"
+                  dragConstraints={{
+                    left: 0,
+                    right: 0
+                  }}
+                  dragElastic={0.2}
+                  whileDrag={{
+                    scale: 1.05,
+                    rotate: 5,
+                    zIndex: 1000
+                  }}
+                  onDragEnd={(event, info) => handleDragTestimonialCard(event, info, item)}
                   style={{
                     zIndex: testimonials.length - index,
                     scale: 1 - index * 0.05,
-                    translateY: -(index * 20),
                   }}
-                  transition={{ duration: 0.4 }}
+                  transition={{
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30
+                  }}
+                  animate={{
+                    scale: 1 - index * 0.05,
+                    y: -(index * 20),
+                  }}
                 >
                   <h1 className="text-3xl">&ldquo;{item.title}&quot;</h1>
-                  <p>{item.content}</p>
+                  <p className="whitespace-pre-line">{item.content}</p>
                   <p>- {item.name}.</p>
+                  {index === 0 && (
+                    <div className="absolute top-4 right-4 text-deep-blue-500 rounded-full bg-background p-2 text-sm">
+                      <Hand className="size-4" />
+                    </div>
+                  )}
                 </motion.div>
               ))
             }

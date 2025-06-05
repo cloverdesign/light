@@ -3,7 +3,8 @@ import Image from "next/image";
 import campus1 from "@/assets/images/campus1.png"
 import campus2 from "@/assets/images/campus2.png"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Asterisk } from "lucide-react";
+import { Asterisk, HandHeart } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function Campuses() {
     const campus = [
@@ -32,9 +33,14 @@ export default function Campuses() {
 
     return (
         <section className="font-body pt-[150px] flex flex-col items-center gap-16">
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center relative">
+                <motion.span
+                    initial={{ scale: 0 }}
+                    className={`badge-1 w-fit p-2 bg-aero-600 text-deep-blue-600 absolute top-0 rounded-full block border-3 border-white z-[10] -rotate-13`}>
+                    <HandHeart />
+                </motion.span>
                 <Image src={campus2} alt="Hands in a circle" className="-rotate-[8.28deg] rounded-2xl border border-white" />
-                <Image src={campus1} alt="People on the grass talking" className="rotate-[6.28deg] -ml-[250px] mt-[100px] rounded-2xl border border-white" />
+                <Image src={campus1} alt="People on the grass talking" className="rotate-[6.28deg] -ml-[250px] mt-[100px] rounded-2xl border-[6px] border-background" />
             </div>
             <h1 className="text-[56px] leading-[72px] lg:text-[112px] lg:leading-[111px] text-center">Our <br /> Campuses</h1>
             <div className="flex flex-col w-full mb-50 border-b border-aero-200">
