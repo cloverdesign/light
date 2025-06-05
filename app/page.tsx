@@ -145,7 +145,7 @@ export default function Home() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(size.width < 768); // md breakpoint
+      setIsMobile(size.width ? size.width < 768 : false); // md breakpoint
     };
 
     checkMobile();
@@ -155,7 +155,7 @@ export default function Home() {
 
   const getCardWidth = () => {
     if (isMobile) {
-      return size.width - 32;
+      return size.width ? size.width - 32 : 320; // fallback to 320px if width is null
     } else {
       return 450;
     }
@@ -195,7 +195,7 @@ export default function Home() {
     setCurrentTestimonial(item);
   }
 
-  const handleDragTestimonialCard = (event, info, draggedItem) => {
+  const handleDragTestimonialCard = (_event: MouseEvent | TouchEvent | PointerEvent, info: any, draggedItem: Testimonial) => {
     const dragThreshold = 100;
     const dragDistance = Math.abs(info.offset.x);
 
