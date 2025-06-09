@@ -1,13 +1,7 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Globe,
-  Hand,
-  HeartHandshakeIcon,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Globe, Hand } from "lucide-react";
 import {
   motion,
   useVelocity,
@@ -131,21 +125,21 @@ export default function Home() {
   const initialTestimonials = [
     {
       name: "Noluthando N",
-      title: "A Life-Changing Experience",
+      title: "Exponential Spiritual Growth",
       content:
         "Hi, I'm Noluthando Nsele, and I've been attending BLW Lighthouse for the past three years. Being part of this community has profoundly impacted my life. Before joining, I struggled to find purpose and meaning. However, through the church's teachings and ministries, such as the Foundation School, I've grown deeper in my faith and developed a stronger sense of identity.\n\nThe Bible says in 1 Corinthians 15:33, 'Do not be deceived: Bad company corrupts good morals.' I can attest to this truth. The friends I've made at Lighthouse have been instrumental in my spiritual growth. They've taught me to rely on God, pray with me in times of need, and correct me when I'm wrong. I'm truly blessed.\n\nBLW Lighthouse emphasizes holistic growth, covering not only biblical teachings and spiritual growth but also practical life aspects. This comprehensive approach has challenged me to live out my faith in meaningful ways.\n\nI'm grateful for BLW Lighthouse and its role in my spiritual journey. The church has become my family, and I'm committed to continuing to grow and serve. Now I am a leader at the church and I'm thankful for the opportunity to serve in the house of the Lord.\n\nIf you're seeking a church that will challenge, encourage, and support you, I highly recommend BLW LIGHTHOUSE.",
       color: "yellow-600",
     },
     {
       name: "Mbali S",
-      title: "A Life-Changing Experience",
+      title: "Lighthouse has been a game changer!",
       content:
         "I'm Sister Mbali from Lighthouse SMU. Over the past three years, I've had an incredible journey. I've connected with amazing people, developed a unique skill set through the numerous activities and departments I was a part of, and been prepared for ministry and life.\n\nPastor Semi is the highlight of my experience, embodying excellence and limitless potential. He inspires me to strive for excellence and fulfill my potential. Lighthouse has been a game changer, shifting my life's trajectory. I'm grateful for the impact it's had.",
       color: "orange-600",
     },
     {
       name: "Phenyo M",
-      title: "A Life-Changing Experience",
+      title: "A True Beacon of Light",
       content:
         "This year, being part of BLW Lighthouse has been such a blessing in my life. It's been a place of hope, encouragement, and faith - a true beacon of light indeed.\n\nThrough the guidance and support l've received, l've grown so much in my faith, learning to trust God more deeply and walk in His purpose. I'm truly thankful for Pastor Semi for his prayers, teachings, and fellowship that have strengthened me spiritually.\n\nNot only has this year been a spiritual breakthrough, but it has also been a year of personal achievement. There was a time when I faced significant challenges in my academics and felt as though there was no hope. However, by God's grace, I was able to overcome those difficulties and achieve excellent results in the module I struggled with—something I could not have accomplished without His strength and the unwavering support and encouragement from the BLW lighthouse family.\n\nThank you, BLW Lighthouse, for being such a big part of my journey this year. Here's to another year of faith, growth, and blessings. God bless you all.",
       color: "aero-600",
@@ -170,6 +164,9 @@ export default function Home() {
     initialTestimonials[0],
   );
   const [testimonials, setTestimonials] = useState(initialTestimonials);
+  const [expandedTestimonials, setExpandedTestimonials] = useState<Set<string>>(
+    new Set(),
+  );
 
   const [eventsIndex, setEventsIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -183,7 +180,7 @@ export default function Home() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
-  }, [size]);
+  }, [size.width]);
 
   const getCardWidth = () => {
     if (isMobile) {
@@ -228,11 +225,22 @@ export default function Home() {
     ];
     setTestimonials(newOrder);
     setCurrentTestimonial(item);
+
+    // Auto-collapse testimonials that are no longer in front position
+    setExpandedTestimonials((prev) => {
+      const newSet = new Set(prev);
+      // Keep only the front card expanded if it was already expanded
+      const nonFrontCards = newOrder.slice(1);
+      nonFrontCards.forEach((testimonial) => {
+        newSet.delete(testimonial.name);
+      });
+      return newSet;
+    });
   };
 
   const handleDragTestimonialCard = (
     _event: MouseEvent | TouchEvent | PointerEvent,
-    info: any,
+    info: { offset: { x: number; y: number } },
     draggedItem: Testimonial,
   ) => {
     const dragThreshold = 100;
@@ -246,8 +254,27 @@ export default function Home() {
         const newOrder = [...testimonials.slice(1), testimonials[0]];
         setTestimonials(newOrder);
         setCurrentTestimonial(newOrder[0]);
+
+        // Auto-collapse the card that was dragged away from front position
+        setExpandedTestimonials((prev) => {
+          const newSet = new Set(prev);
+          newSet.delete(draggedItem.name);
+          return newSet;
+        });
       }
     }
+  };
+
+  const toggleTestimonialExpansion = (testimonialName: string) => {
+    setExpandedTestimonials((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(testimonialName)) {
+        newSet.delete(testimonialName);
+      } else {
+        newSet.add(testimonialName);
+      }
+      return newSet;
+    });
   };
 
   const badgeContainerRef = useRef<HTMLDivElement | null>(null);
@@ -267,7 +294,7 @@ export default function Home() {
   );
 
   return (
-    <section className="font-body pt-[100px] lg:pt-[140px] mb-400 ld:mb-250 relative">
+    <section className="font-body pt-[100px] lg:pt-[140px] relative">
       <Hero />
       <svg
         width="1440"
@@ -337,7 +364,13 @@ export default function Home() {
                       <p className="font-semibold">{badge.text}</p>
                     ) : (
                       <DynamicIcon
-                        name={badge.icon as any}
+                        name={
+                          badge.icon as
+                            | "globe"
+                            | "hand-heart"
+                            | "flame"
+                            | "earth"
+                        }
                         fallback={() => <Globe />}
                         className="size-5"
                       />
@@ -666,7 +699,9 @@ export default function Home() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-24">
+      <div
+        className={`flex flex-col gap-24 ${expandedTestimonials.size > 0 ? "pb-[600px]" : "pb-24"}`}
+      >
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="flex flex-col gap-2">
             <div className="overflow-y-hidden">
@@ -757,51 +792,76 @@ export default function Home() {
               </Badge>
             ))}
           </div>
-          <div className="relative w-full flex flex-col justify-center items-center">
-            {testimonials.map((item, index) => (
-              <motion.div
-                key={index}
-                layout
-                className={`absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-8 md:p-16 flex flex-col gap-6 bg-${item.color} cursor-${index === 0 ? "grab" : "default"} ${index === 0 ? "h-auto" : "h-[300px] overflow-hidden"}`}
-                drag="x"
-                dragConstraints={{
-                  left: 0,
-                  right: 0,
-                }}
-                dragElastic={0.2}
-                whileDrag={{
-                  scale: 1.05,
-                  rotate: 5,
-                  zIndex: 1000,
-                }}
-                onDragEnd={(event, info) =>
-                  handleDragTestimonialCard(event, info, item)
-                }
-                style={{
-                  zIndex: testimonials.length - index,
-                  scale: 1 - index * 0.05,
-                }}
-                transition={{
-                  duration: 0.4,
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                }}
-                animate={{
-                  scale: 1 - index * 0.05,
-                  y: -(index * 20),
-                }}
-              >
-                <h1 className="text-3xl">&ldquo;{item.title}&quot;</h1>
-                <p className="whitespace-pre-line">{item.content}</p>
-                <p>- {item.name}.</p>
-                {index === 0 && (
-                  <div className="absolute top-4 right-4 text-deep-blue-500 rounded-full bg-background p-2 text-sm">
-                    <Hand className="size-4" />
-                  </div>
-                )}
-              </motion.div>
-            ))}
+          <div
+            className={`relative w-full flex flex-col justify-center items-center ${expandedTestimonials.size > 0 ? "min-h-[800px]" : "min-h-[600px]"}`}
+          >
+            {testimonials.map((item, index) => {
+              const isExpanded = expandedTestimonials.has(item.name);
+              const shouldTruncateContent =
+                !isExpanded && item.content.length > 200;
+              const displayContent = shouldTruncateContent
+                ? item.content.substring(0, 200) + "..."
+                : item.content;
+
+              return (
+                <motion.div
+                  key={index}
+                  layout
+                  className={`${isExpanded ? "h-auto min-h-[400px] max-h-[500px]" : "h-[400px]"} overflow-hidden absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-8 md:p-16 flex flex-col gap-6 bg-${item.color} cursor-${index === 0 ? "grab" : "default"}`}
+                  drag="x"
+                  dragConstraints={{
+                    left: 0,
+                    right: 0,
+                  }}
+                  dragElastic={0.2}
+                  whileDrag={{
+                    scale: 1.05,
+                    rotate: 5,
+                    zIndex: 1000,
+                  }}
+                  onDragEnd={(event, info) =>
+                    handleDragTestimonialCard(event, info, item)
+                  }
+                  style={{
+                    zIndex: testimonials.length - index,
+                    scale: 1 - index * 0.05,
+                  }}
+                  transition={{
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                  animate={{
+                    scale: 1 - index * 0.05,
+                    y: -(index * 20),
+                  }}
+                >
+                  <h1 className="text-3xl">&ldquo;{item.title}&quot;</h1>
+                  <p
+                    className={`flex-1 ${isExpanded ? "overflow-y-auto" : ""}`}
+                  >
+                    {displayContent}
+                  </p>
+                  <p>- {item.name}.</p>
+                  {index === 0 && (
+                    <div className="flex items-center justify-center w-full">
+                      <Button
+                        variant="link"
+                        onClick={() => toggleTestimonialExpansion(item.name)}
+                      >
+                        {isExpanded ? "Read Less" : "Read More"}
+                      </Button>
+                    </div>
+                  )}
+                  {index === 0 && (
+                    <div className="absolute top-4 right-4 text-deep-blue-500 rounded-full bg-background p-2 text-sm">
+                      <Hand className="size-4" />
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

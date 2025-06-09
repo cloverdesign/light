@@ -479,7 +479,7 @@ export default function About() {
                     <motion.div
                         initial={{ y: "100%" }}
                         whileInView={{ y: 0 }}
-                        // viewport={{ once: true }}
+                        viewport={{ once: true }}
                         transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
                         className='flex items-center justify-center gap-4'>
                         <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
@@ -515,7 +515,7 @@ export default function About() {
                     <motion.div
                         initial={{ y: "100%" }}
                         whileInView={{ y: 0 }}
-                        // viewport={{ once: true }}
+                        viewport={{ once: true }}
                         transition={{ duration: 1, ease: "easeInOut", delay: 0.2, type: spring, bounce: 0.5 }}
                         className='flex items-center justify-center gap-4'>
                         <div className='w-[350px] border border-aero-200 rounded-2xl p-8 flex flex-col gap-6 bg-background -rotate-[7.11deg]'>
@@ -637,7 +637,7 @@ export default function About() {
                             <motion.h1
                                 initial={{ y: "100%" }}
                                 whileInView={{ y: 0 }}
-                                // viewport={{ once: true }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
                                 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative mt-4 ml-4'>
                                 <span className='-left-2 -rotate-[9deg] -top-3 font-body text-base font-bold leading-none absolute block bg-yellow-600 text-yellow-1000 rounded-full p-2 border-3 border-background'>
@@ -650,7 +650,7 @@ export default function About() {
                             <motion.h1
                                 initial={{ y: "100%" }}
                                 whileInView={{ y: 0 }}
-                                // viewport={{ once: true }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 1, ease: "easeInOut", delay: 0.1, type: spring, bounce: 0.5 }}
                                 className='text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative ml-4'>
                                 Guided by truth
@@ -660,7 +660,7 @@ export default function About() {
                     <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        // viewport={{ once: true }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.7 }}
                         className='text-deep-blue-400 text-xl lg:w-[40%]'>
                         Our Statements of Faith have their source in the Bible and are in total alignment with the the doctrines of Christ.

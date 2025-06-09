@@ -1,5 +1,5 @@
 import { DOMKeyframesDefinition, AnimationOptions, ElementOrSelector, useAnimate } from "motion/react"
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 type AnimateParams = [
     ElementOrSelector,
@@ -13,17 +13,7 @@ export const useMotionTimeline = (keyframes: Animation[], count: number = 1) => 
     const [scope, animate] = useAnimate();
     const mounted = useRef(true)
 
-    useEffect(() => {
-        mounted.current = true
-
-        handleAnimate()
-
-        return () => {
-            mounted.current = false;
-        }
-    }, [])
-
-    const processAnimation = async (animation: Animation) => {
+    const processAnimation = useCallback(async (animation: Animation): Promise<void> => {
         if (Array.isArray(animation[0])) {
             await Promise.all(
                 animation.map(async a => {
@@ -33,9 +23,9 @@ export const useMotionTimeline = (keyframes: Animation[], count: number = 1) => 
         } else {
             await animate(...animation as AnimateParams)
         }
-    }
+    }, [animate])
 
-    const handleAnimate = async () => {
+    const handleAnimate = useCallback(async () => {
         for (let i = 0; i < count; i++) {
             for (const animation of keyframes) {
                 if (!mounted.current) return;
@@ -43,7 +33,17 @@ export const useMotionTimeline = (keyframes: Animation[], count: number = 1) => 
                 await processAnimation(animation)
             }
         }
-    }
+    }, [keyframes, count, processAnimation])
+
+    useEffect(() => {
+        mounted.current = true
+
+        handleAnimate()
+
+        return () => {
+            mounted.current = false;
+        }
+    }, [handleAnimate])
 
     return scope
 }

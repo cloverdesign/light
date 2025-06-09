@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { HeartHandshakeIcon } from "lucide-react";
 import Link from "next/link";
 
+const MotionBadge = motion.create(Badge);
+
 export const Hero = () => {
   const scope = useMotionTimeline([
     [
@@ -55,8 +57,6 @@ export const Hero = () => {
       ],
     ],
   ]);
-
-  const MotionBadge = motion.create(Badge);
 
   return (
     <div

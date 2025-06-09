@@ -6,14 +6,21 @@ const SmoothScroll = () => {
     useEffect(() => {
         // Initialize Lenis
         const lenis = new Lenis();
+        let rafId: number;
 
-        function raf(time: any) {
+        function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            rafId = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
-    })
+        rafId = requestAnimationFrame(raf);
+
+        // Cleanup function to prevent memory leaks
+        return () => {
+            cancelAnimationFrame(rafId);
+            lenis.destroy();
+        };
+    }, [])
     return (
         <></>
     )
