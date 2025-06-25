@@ -380,7 +380,7 @@ export default function Home() {
                 <MotionImage
                   src={image.url}
                   alt={image.alt}
-                  className={`rounded-xl rotate-4 ${image.style} w-[300px] lg:w-[400px]`}
+                  className={`rounded-xl rotate-4 ${image.style} w-[300px] lg:w-[400px] h-full`}
                   style={{ rotate }}
                 />
               </div>
