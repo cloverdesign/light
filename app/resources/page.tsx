@@ -116,8 +116,8 @@ export default function Resources() {
   return (
     <section className="pt-[150px] font-body">
       <div className="flex flex-col gap-20 mb-50">
-        <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-32 gap-40">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-32 gap-16">
+          <div className="flex flex-col lg:gap-1">
             <h1 className="text-[56px] leading-[72px] lg:text-[112px] lg:leading-[111px]">
               Resource
             </h1>
@@ -125,7 +125,10 @@ export default function Resources() {
               Center
               <CircleBadge
                 drag={false}
-                icon={{ name: "users-round", size: "size-[57px]" }}
+                icon={{
+                  name: "book-heart",
+                  size: "lg:size-[57px] size-[27px]",
+                }}
                 className="bg-orange-600 text-orange-200 p-3 lg:p-[19px]"
               />
             </h1>

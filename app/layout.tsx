@@ -5,16 +5,17 @@ import "./globals.css";
 import Navbar from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import SmoothScroll from "@/components/layout/smooth-scroll";
+import Providers from "./providers";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
-  subsets: ["latin"]
-})
+  subsets: ["latin"],
+});
 
 const championGothic = localFont({
-  src: '../public/fonts/championGothic.woff2',
-  variable: '--font-champion-sans',
-})
+  src: "../public/fonts/championGothic.woff2",
+  variable: "--font-champion-sans",
+});
 
 export const metadata: Metadata = {
   title: "LightHouse",
@@ -33,7 +34,7 @@ export default function RootLayout({
       >
         <Navbar />
         <SmoothScroll />
-        {children}
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>
