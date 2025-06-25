@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +26,7 @@ interface EpisodeData {
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-const AudioContent = () => {
+const AudioPlayer = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -250,6 +250,23 @@ const AudioContent = () => {
         }
       `}</style>
     </div>
+  );
+};
+
+const AudioContent = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600">Loading audio player...</p>
+          </div>
+        </div>
+      }
+    >
+      <AudioPlayer />
+    </Suspense>
   );
 };
 
