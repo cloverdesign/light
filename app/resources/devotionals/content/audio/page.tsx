@@ -73,10 +73,14 @@ const AudioContent = () => {
 
     if (isPlaying) {
       audio.pause();
-      dotLottie?.pause();
+      if (dotLottie && typeof dotLottie.pause === "function") {
+        dotLottie.pause();
+      }
     } else {
       audio.play();
-      dotLottie?.play();
+      if (dotLottie && typeof dotLottie.play === "function") {
+        dotLottie.play();
+      }
     }
     setIsPlaying(!isPlaying);
   };
@@ -116,10 +120,10 @@ const AudioContent = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const [dotLottie, setDotLottie] = React.useState(null);
+  const [dotLottie, setDotLottie] = React.useState<any>(null);
 
-  const dotLottieRefCallback = (dotLottie: any) => {
-    setDotLottie(dotLottie);
+  const dotLottieRefCallback = (dotLottieInstance: any) => {
+    setDotLottie(dotLottieInstance);
   };
 
   if (!episodeData) {
