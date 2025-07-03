@@ -11,6 +11,10 @@ import {
   Clock,
 } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import BuzzsproutPlayer from "@/components/audio/buzzsprout-player";
+import CustomAudioPlayer from "@/components/audio/custom-audio-player";
+import { DevotionalEpisode } from "@/types/devotional";
+import Image from "next/image";
 
 interface EpisodeData {
   title: string;
@@ -21,6 +25,8 @@ interface EpisodeData {
   pubDate: string;
   duration: string;
 }
+
+type PlayerMode = "embed" | "custom" | "fallback";
 
 // Audio format detection
 const checkAudioSupport = (url: string): boolean => {
@@ -42,6 +48,7 @@ const checkAudioSupport = (url: string): boolean => {
 const AudioPlayer = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [playerMode, setPlayerMode] = React.useState<PlayerMode>("custom");
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [audioDuration, setAudioDuration] = React.useState(0);
@@ -73,6 +80,17 @@ const AudioPlayer = () => {
       return null;
     }
   }, [episodeParam]);
+
+  // Convert EpisodeData to DevotionalEpisode format
+  const devotionalEpisode: DevotionalEpisode | null = React.useMemo(() => {
+    if (!episodeData) return null;
+    return {
+      ...episodeData,
+      link: episodeData.audioUrl || "",
+      guid: `episode-${Date.now()}`,
+      summary: episodeData.description,
+    };
+  }, [episodeData]);
 
   // Audio event handlers
   React.useEffect(() => {
@@ -231,7 +249,7 @@ const AudioPlayer = () => {
     setDotLottie(dotLottieInstance);
   };
 
-  if (!episodeData) {
+  if (!episodeData || !devotionalEpisode) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -242,39 +260,6 @@ const AudioPlayer = () => {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Go Back
           </Button>
-        </div>
-      </div>
-    );
-  }
-
-  if (audioError) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto px-4">
-          <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">Audio Error</h1>
-          <p className="text-gray-600 mb-4">{audioError}</p>
-          <div className="flex gap-4 justify-center mb-4">
-            <Button onClick={() => window.location.reload()}>Try Again</Button>
-            <Button variant="outline" onClick={() => router.back()}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Go Back
-            </Button>
-          </div>
-          <div className="mt-4 p-4 bg-gray-100 rounded-lg text-left">
-            <p className="text-sm text-gray-600">
-              <strong>Troubleshooting:</strong>
-              <br />
-              • Enable autoplay in browser settings
-              <br />
-              • Try Chrome, Safari, or Firefox
-              <br />
-              • Check your internet connection
-              <br />
-              • Disable ad blockers temporarily
-              <br />• On iOS: Make sure &quot;Low Power Mode&quot; is off
-            </p>
-          </div>
         </div>
       </div>
     );
@@ -293,110 +278,110 @@ const AudioPlayer = () => {
           </span>
           <span className="flex items-center gap-1">
             <Clock className="w-4 h-4" />
-            {audioDuration ? formatTime(audioDuration) : episodeData.duration}
+            {episodeData.duration}
           </span>
         </div>
       </div>
 
-      <div className="w-full rounded-2xl overflow-hidden">
-        <audio
-          ref={audioRef}
-          src={episodeData.audioUrl}
-          preload="metadata"
-          playsInline
-          controls={false}
-          crossOrigin="anonymous"
-          style={{ display: "none" }}
-        />
+      {/* Player Mode Selection */}
+      {/* <div className="flex gap-2 flex-wrap justify-center">
+        <Button
+          variant={playerMode === "embed" ? "main" : "outline"}
+          size="xs"
+          onClick={() => setPlayerMode("embed")}
+        >
+          Embed Player
+        </Button>
+        <Button
+          variant={playerMode === "custom" ? "main" : "outline"}
+          size="xs"
+          onClick={() => setPlayerMode("custom")}
+        >
+          Custom Player
+        </Button>
+        <Button
+          variant={playerMode === "fallback" ? "main" : "outline"}
+          size="xs"
+          onClick={() => setPlayerMode("fallback")}
+        >
+          Fallback Player
+        </Button>
+      </div> */}
 
-        <div className="relative flex items-center justify-center lg:h-[500px] h-[50vh] bg-aero-500">
-          <DotLottieReact
-            src="/wave.lottie"
-            loop
-            dotLottieRefCallback={dotLottieRefCallback}
+      {/* Audio Players */}
+      <div className="w-full">
+        {playerMode === "embed" && (
+          <BuzzsproutPlayer
+            episode={devotionalEpisode}
+            height={300}
+            className="mb-4"
           />
+        )}
 
-          <Button
-            onClick={togglePlayPause}
-            className="absolute mx-auto z-[2]"
-            disabled={isLoading || !canPlay}
-          >
-            {isLoading ? (
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-deep-blue-500" />
-            ) : isPlaying ? (
-              <Pause className="w-8 h-8" />
-            ) : (
-              <Play className="w-8 h-8" />
-            )}
-          </Button>
-        </div>
+        {playerMode === "custom" && (
+          <CustomAudioPlayer episode={devotionalEpisode} className="mb-4" />
+        )}
 
-        {/* Progress Bar */}
-        <div className="bg-yellow-500 flex items-center w-full gap-4 p-4">
-          <div className="w-full flex items-center gap-3">
-            <Play className="w-5 h-5 text-white flex-shrink-0" />
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={audioDuration ? (currentTime / audioDuration) * 100 : 0}
-              onChange={handleSeek}
-              disabled={!canPlay || isLoading}
-              className="flex-1 h-[2px] bg-white/50 rounded-lg appearance-none cursor-pointer slider disabled:opacity-50"
-            />
-            <div className="flex items-center text-sm text-white flex-shrink-0">
-              <span>{formatTime(currentTime)}</span>
-              <span className="mx-1">/</span>
-              <span>{formatTime(audioDuration)}</span>
+        {playerMode === "fallback" && (
+          <div className="bg-white rounded-lg shadow-lg border overflow-hidden">
+            <div className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 border-b">
+              <div className="flex items-start gap-4">
+                {episodeData.image && (
+                  <Image
+                    src={episodeData.image}
+                    alt={episodeData.title}
+                    className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                  />
+                )}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-gray-900 text-lg line-clamp-2">
+                    {episodeData.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {episodeData.author} •{" "}
+                    {new Date(episodeData.pubDate).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4">
+              <audio controls className="w-full" preload="metadata" playsInline>
+                <source src={episodeData.audioUrl} type="audio/mpeg" />
+                <p className="text-gray-600">
+                  Your browser does not support the audio element.
+                  <a
+                    href={episodeData.audioUrl}
+                    className="text-orange-600 hover:text-orange-700 ml-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Download the audio file
+                  </a>
+                </p>
+              </audio>
+            </div>
+
+            <div className="p-4 border-t bg-gray-50">
+              <p className="text-sm text-gray-600 line-clamp-3">
+                {episodeData.description}
+              </p>
             </div>
           </div>
+        )}
+      </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Volume2 className="w-5 h-5 text-white" />
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume * 100}
-              onChange={handleVolumeChange}
-              disabled={!canPlay}
-              className="w-20 md:w-32 h-[2px] bg-white/50 rounded-lg appearance-none cursor-pointer slider disabled:opacity-50"
-            />
+      {/* Description */}
+      <div className="w-full max-w-4xl">
+        <div className="bg-white rounded-lg shadow-sm border p-6">
+          <h2 className="text-xl font-semibold mb-4">About this episode</h2>
+          <div className="prose max-w-none">
+            <p className="text-gray-700 leading-relaxed">
+              {episodeData.description}
+            </p>
           </div>
         </div>
       </div>
-
-      {/* Custom Slider Styles */}
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #ffffff;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-          border: none;
-        }
-
-        .slider::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #ffffff;
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .slider::-webkit-slider-track {
-          background: transparent;
-        }
-
-        .slider::-moz-range-track {
-          background: transparent;
-        }
-      `}</style>
     </div>
   );
 };
