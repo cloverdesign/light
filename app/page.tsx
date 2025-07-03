@@ -594,7 +594,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-50 lg:mb-75 h-[60vh] lg:h-[80vh] px-8 lg:px-32 w-full">
+      <div className="mb-50 lg:mb-75 h-fit px-8 lg:px-32 w-full">
         <motion.div
           style={{
             // backgroundImage: `url(${foundation.src})`,
@@ -617,7 +617,7 @@ export default function Home() {
             alt="Circle yellow gradient"
             className="absolute bottom-0 left-0 w-full h-full md:hidden block"
           />
-          <div className="flex flex-col gap-8 text-yellow-100 md:text-yellow-1100 absolute p-5 lg:p-20 md:bottom-0 h-fit w-fit">
+          <div className="flex flex-col gap-8 text-yellow-100 md:text-yellow-1100 relative p-8 lg:p-20 md:bottom-0 h-fit w-fit">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col lg:gap-1">
                 <div className="overflow-y-hidden">
@@ -798,16 +798,16 @@ export default function Home() {
             {testimonials.map((item, index) => {
               const isExpanded = expandedTestimonials.has(item.name);
               const shouldTruncateContent =
-                !isExpanded && item.content.length > 200;
+                !isExpanded && item.content.length > 160;
               const displayContent = shouldTruncateContent
-                ? item.content.substring(0, 200) + "..."
+                ? item.content.substring(0, 160) + "..."
                 : item.content;
 
               return (
                 <motion.div
                   key={index}
                   layout
-                  className={`${isExpanded ? "h-auto min-h-[400px] max-h-[500px]" : "h-[400px]"} overflow-hidden absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-8 md:p-16 flex flex-col gap-6 bg-${item.color} cursor-${index === 0 ? "grab" : "default"}`}
+                  className={`${isExpanded ? "h-auto min-h-[400px] max-h-[500px]" : "h-[450px]"} overflow-hidden absolute top-[80px] w-[80%] md:w-2/3 rounded-xl p-8 md:p-16 flex flex-col gap-6 bg-${item.color} cursor-${index === 0 ? "grab" : "default"}`}
                   drag="x"
                   dragConstraints={{
                     left: 0,
