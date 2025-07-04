@@ -45,6 +45,48 @@ export default function Resources() {
   const letterRef = useRef(null);
   const textRef = useRef(null);
 
+  // Download function for Foundation School Letter
+  const downloadFoundationLetter = async () => {
+    if (isDownloading) return; // Prevent multiple simultaneous downloads
+
+    setIsDownloading(true);
+    try {
+      // Check if file exists first
+      const response = await fetch("/foundationschoolLetter.pdf", {
+        method: "HEAD",
+      });
+
+      if (!response.ok) {
+        console.error("PDF file not found");
+        alert(
+          "Sorry, the Foundation School Letter is currently unavailable. Please try again later.",
+        );
+        return;
+      }
+
+      // Create download link
+      const link = document.createElement("a");
+      link.href = "/foundationschoolLetter.pdf";
+      link.download = "foundationschoolLetter.pdf";
+      link.style.display = "none";
+
+      // Add to DOM, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Optional: Show success message
+      console.log("Download started successfully");
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert(
+        "Download failed. Please check your internet connection and try again.",
+      );
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   const { scrollYProgress: yProgress1 } = useScroll({
     target: letterRef,
     offset: ["start end", "end center"],
@@ -56,11 +98,11 @@ export default function Resources() {
   });
 
   const position = useTransform(yProgress1, [0, 0.5], ["20%", "0%"]);
-  const pathLength = useTransform(yProgress2, [0, 0.5], [0, 1]);
 
   // Carousel state and logic
   const [foundationIndex, setFoundationIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const size = useWindowSize();
 
   useEffect(() => {
@@ -278,12 +320,21 @@ export default function Resources() {
               incredible transformation that awaits you.
             </p>
 
-            <Button variant="secondary-juicy" className="w-fit hidden lg:block">
-              Download Your Letter
+            <Button
+              variant="secondary-juicy"
+              className="w-fit hidden lg:block"
+              onClick={downloadFoundationLetter}
+              disabled={isDownloading}
+            >
+              {isDownloading ? "Downloading..." : "Download Your Letter"}
             </Button>
           </div>
-          <Button className="absolute bottom-4 lg:hidden block">
-            Download Your Letter
+          <Button
+            className="absolute bottom-4 lg:hidden block"
+            onClick={downloadFoundationLetter}
+            disabled={isDownloading}
+          >
+            {isDownloading ? "Downloading..." : "Download Your Letter"}
           </Button>
           <svg
             width="361"
