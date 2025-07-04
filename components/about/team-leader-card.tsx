@@ -260,7 +260,7 @@ const TeamLeaderCard: React.FC<TeamLeaderCardProps> = ({
       >
         {/* Sticky Note Image */}
         {image && (
-          <div className="absolute -top-2 -right-2 z-10 transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
+          <div className="absolute -top-2 -right-2 z-[2] transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
             <div className="relative w-20 h-20 sm:w-42 sm:h-42 bg-yellow-400 rounded-lg border-2 border-yellow-300 p-1">
               <div className="relative w-full h-full rounded-md overflow-hidden">
                 <Image
@@ -279,7 +279,7 @@ const TeamLeaderCard: React.FC<TeamLeaderCardProps> = ({
 
         {/* Placeholder sticky note for no image */}
         {!image && (
-          <div className="absolute -top-2 -right-2 z-10 transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
+          <div className="absolute -top-2 -right-2 z-[2] transform rotate-12 group-hover:rotate-6 transition-transform duration-300">
             <div className="relative w-20 h-20 sm:w-42 sm:h-42 bg-yellow-400 rounded-lg border-2 border-yellow-300 p-1">
               <div className="relative w-full h-full rounded-md overflow-hidden bg-yellow-500 flex items-center justify-center">
                 <Asterisk className="w-6 h-6 text-yellow-900" />
