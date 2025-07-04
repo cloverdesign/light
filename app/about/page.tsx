@@ -281,7 +281,7 @@ export default function About() {
               <div className="overflow-y-hidden">
                 <motion.h1
                   initial={{ y: "100%" }}
-                  className="heading-2 xl:text-9xl lg:text-8xl text-[56px] leading-none relative ml-4"
+                  className="heading-2 xl:text-9xl lg:text-8xl text-[56px] leading-none relative lg:ml-4"
                 >
                   Sharing the
                   <div className="relative inline-block mx-4 w-fit h-fit">
@@ -431,7 +431,7 @@ export default function About() {
                   duration: 1,
                   ease: "easeInOut",
                   delay: 0.2,
-                  type: spring,
+                  type: "spring",
                   bounce: 0.5,
                 }}
                 className="text-[40px] lg:text-[56px] m-2 leading-none text-center"
@@ -448,7 +448,7 @@ export default function About() {
                   duration: 1,
                   ease: "easeInOut",
                   delay: 0.2,
-                  type: spring,
+                  type: "spring",
                   bounce: 0.5,
                 }}
                 className="text-[40px] lg:text-[56px] ml-2 mr-4 my-2 leading-none text-center relative"
@@ -462,7 +462,7 @@ export default function About() {
                     duration: 0.8,
                     ease: "easeInOut",
                     delay: 0.7,
-                    type: spring,
+                    type: "spring",
                     bounce: 0.5,
                   }}
                   className={`w-fit p-2 bg-yellow-600 text-yellow-1000 absolute rounded-full block border-3 border-white z-[10] -bottom-2 right-2 -rotate-13`}
@@ -480,7 +480,7 @@ export default function About() {
                   duration: 1,
                   ease: "easeInOut",
                   delay: 0.2,
-                  type: spring,
+                  type: "spring",
                   bounce: 0.5,
                 }}
                 className="text-[40px] lg:text-[56px] m-2 leading-none text-center"
@@ -508,7 +508,7 @@ export default function About() {
                     duration: 0.5,
                     ease: "easeInOut",
                     delay: 0.6,
-                    type: spring,
+                    type: "spring",
                     bounce: 0.5,
                   }}
                   className="!font-body !capitalize font-bold"
@@ -551,7 +551,7 @@ export default function About() {
                         duration: 0.5,
                         ease: "easeInOut",
                         delay: 0.6,
-                        type: spring,
+                        type: "spring",
                         bounce: 0.5,
                       }}
                       className="!font-body !capitalize font-bold"
@@ -610,7 +610,7 @@ export default function About() {
                           duration: 0.5,
                           ease: "easeInOut",
                           delay: 0.6,
-                          type: spring,
+                          type: "spring",
                           bounce: 0.5,
                         }}
                         className="!font-body !capitalize font-bold"
@@ -723,7 +723,7 @@ export default function About() {
               duration: 1,
               ease: "easeInOut",
               delay: 0.1,
-              type: spring,
+              type: "spring",
               bounce: 0.5,
             }}
             className="flex items-center justify-center gap-4"
@@ -772,7 +772,7 @@ export default function About() {
               duration: 1,
               ease: "easeInOut",
               delay: 0.2,
-              type: spring,
+              type: "spring",
               bounce: 0.5,
             }}
             className="flex items-center justify-center gap-4"
@@ -904,7 +904,7 @@ export default function About() {
 
       {/* Statements of Faith Section */}
       <div>
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:px-32 px-8 mb-10 lg:mb-50">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-8 mb-10 lg:mb-50">
           <div className="flex flex-col">
             <div className="overflow-y-hidden">
               <motion.h1
@@ -915,10 +915,10 @@ export default function About() {
                   duration: 1,
                   ease: "easeInOut",
                   delay: 0.1,
-                  type: spring,
+                  type: "spring",
                   bounce: 0.5,
                 }}
-                className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative mt-4 ml-4"
+                className="whitespace-nowrap text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative mt-4 ml-4"
               >
                 <span className="-left-2 -rotate-[9deg] -top-3 font-body text-base font-bold leading-none absolute block bg-yellow-600 text-yellow-1000 rounded-full p-2 border-3 border-background">
                   10
@@ -935,7 +935,7 @@ export default function About() {
                   duration: 1,
                   ease: "easeInOut",
                   delay: 0.1,
-                  type: spring,
+                  type: "spring",
                   bounce: 0.5,
                 }}
                 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] relative ml-4"

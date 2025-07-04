@@ -8,7 +8,7 @@ import { Flame } from "lucide-react";
 
 interface TeamLeader {
   name: string;
-  role: string; // Will be split by \n for multiple roles
+  role: string;
   description: string;
   image?: string | StaticImageData;
   imageAlt?: string;

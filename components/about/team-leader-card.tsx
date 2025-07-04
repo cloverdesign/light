@@ -253,9 +253,6 @@ const TeamLeaderCard: React.FC<TeamLeaderCardProps> = ({
     <>
       <motion.div
         variants={cardVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
         className="group bg-white text-deep-blue-600 rounded-xl border border-aero-200 overflow-hidden hover:rotate-[3deg] transition-all duration-300 hover:-translate-y-1 relative"
       >
         {/* Sticky Note Image */}
