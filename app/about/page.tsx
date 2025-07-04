@@ -37,6 +37,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 import { spring } from "motion";
 import { useRef } from "react";
+import TeamLeadersGrid from "@/components/about/team-leaders-grid";
 
 const MotionButton = motion.create(Button);
 const MotionImage = motion.create(Image);
@@ -121,77 +122,30 @@ export default function About() {
         "I'm passionate about pursuing my purpose in Christ, spreading the gospel and medicine. I've been going to church since childhood but I joined this ministry in 2022, its been almost three years now.",
       image: danielle,
       imageAlt: "Danielle Herbst",
-      nameRotation: "rotate-[3deg]",
-      roleRotation: "-rotate-[6deg]",
-      cardRotation: "-rotate-[3deg]",
-      imageRotation: "rotate-[4deg]",
-      imagePosition: "top-20 -right-25",
-      containerPosition: "-ml-24 lg:ml-0",
-      nameColor: "bg-yellow-600 text-yellow-1000",
-      roleColor: "bg-deep-blue-600 text-aero-200",
-      cardColor: "bg-aero-600 text-deep-blue-600",
-      iconColor: "bg-orange-600 text-orange-200",
-      icon: Flame,
     },
-
     {
       name: "Angelina Basani Shilenge",
-      role: "Head of Foundation School",
+      role: "Fellowship Coordinator, Lighthouse \nHead of Foundation School",
       description:
-        "My journey with Christ began in early 2023 when I made the life-changing decision to surrender my life to Him. Everything changed for the better, and my spiritual growth accelerated after joining BLW Lighthouse in May 2023. Since graduating from Foundation School that year, I’ve served actively in the ministry as a member of the Ushering Department, Cell Leader of Relentless Pursuit Cell (2024), Foundation School Officer, and Fellowship Coordinator for BLW Lighthouse Madeira. Driven by a growth mindset, I find great joy in seeing new converts mature into leaders. I’ve learned that investing in my spiritual development not only impacts those I lead but also helps others discover and pursue God’s purpose for their lives. \n\n Fellowship Coordinator, Lighthouse Madeira",
+        "My journey with Christ began in early 2023 when I made the life-changing decision to surrender my life to Him. Everything changed for the better, and my spiritual growth accelerated after joining BLW Lighthouse in May 2023. Since graduating from Foundation School that year, I've served actively in the ministry as a member of the Ushering Department, Cell Leader of Relentless Pursuit Cell (2024), Foundation School Officer, and Fellowship Coordinator for BLW Lighthouse Madeira. Driven by a growth mindset, I find great joy in seeing new converts mature into leaders. I've learned that investing in my spiritual development not only impacts those I lead but also helps others discover and pursue God's purpose for their lives.",
       image: angelina,
       imageAlt: "Angelina Basani Shilenge",
-      nameRotation: "rotate-[3deg]",
-      roleRotation: "-rotate-[6deg]",
-      cardRotation: "-rotate-[3deg]",
-      imageRotation: "rotate-[4deg]",
-      imagePosition: "top-20 -right-25",
-      containerPosition: "-ml-24 lg:ml-0",
-      nameColor: "bg-orange-200 text-orange-800",
-      roleColor: "bg-deep-blue-600 text-aero-200",
-      cardColor: "bg-aero-100 text-deep-blue-600",
-      iconColor: "bg-yellow-600 text-yellow-900",
-      icon: Heart,
     },
-
     {
       name: "Pastor Khutsiso Malatji",
-      role: "Assistant Group Pastor, Lighthouse Group",
+      role: "Assistant Group Pastor, Lighthouse \nFellowship Pastor, Lighthouse TUT GA",
       description:
-        "Who I Am \n\n I am Pastor Khutsiso Malatji, a dedicated member of the Believers Loveworld Campus Ministry and a passionate follower of Christ, I have been actively involved in ministry for 5 years, I joined  the ministry in 2020. Throughout this time, I have had the privilege of serving in various capacities, including event coordination, being a cell leader,an usher, a chapter coordinator,a Zonal Finnance officer, a Rhapsody officer, and community service initiatives. My journey in ministry has been a transformative experience, enriching my life and enabling me to impact others positively. \n\nWhat I Am Passionate About  \n*⁠My passion lies in living a purposeful life \n*In leading people to deepen their relationship with God and to discover their purpose in Christ \n*Spreading the gospel all around the world through my partnership",
+        "I am Pastor Khutsiso Malatji, a dedicated member of the Believers Loveworld Campus Ministry and a passionate follower of Christ, I have been actively involved in ministry for 5 years, I joined the ministry in 2020. Throughout this time, I have had the privilege of serving in various capacities, including event coordination, being a cell leader, an usher, a chapter coordinator, a Zonal Finance officer, a Rhapsody officer, and community service initiatives. My journey in ministry has been a transformative experience, enriching my life and enabling me to impact others positively.\n\nWhat I Am Passionate About:\n• My passion lies in living a purposeful life\n• In leading people to deepen their relationship with God and to discover their purpose in Christ\n• Spreading the gospel all around the world through my partnership",
       image: khutsiso,
       imageAlt: "Pastor Khutsiso Malatji",
-      nameRotation: "rotate-[3deg]",
-      roleRotation: "-rotate-[6deg]",
-      cardRotation: "-rotate-[3deg]",
-      imageRotation: "rotate-[4deg]",
-      imagePosition: "top-20 -right-25",
-      containerPosition: "-ml-24 lg:ml-0",
-      nameColor: "bg-yellow-600 text-yellow-1000",
-      roleColor: "bg-deep-blue-600 text-aero-200",
-      cardColor: "bg-orange-100 text-orange-900",
-      iconColor: "bg-aero-100 text-aero-800",
-      icon: Flashlight,
     },
-
     {
       name: "Mulamuleli Madele",
-      role: "Fellowship Coordinator, Lighthouse SMU ",
+      role: "Fellowship Coordinator, Lighthouse SMU\nHead of Connect Groups",
       description:
-        "I am a 20-year-old MBChB student at SMU in Ga-Rankuwa and the youngest of four siblings. I joined this ministry in 2023, and it has since been a life-transforming journey—deepening my understanding of God and my identity in Christ. I currently serve as the LH Group PFCC Officer, Program Coordinator, and SMU Chapter Coordinator. Passionate about soul winning, I’m driven by a strong desire to impact my community positively while continually growing and developing myself.",
+        "I am a 20-year-old MBChB student at SMU in Ga-Rankuwa and the youngest of four siblings. I joined this ministry in 2023, and it has since been a life-transforming journey—deepening my understanding of God and my identity in Christ. I currently serve as the LH Group PFCC Officer, Program Coordinator, and SMU Chapter Coordinator. Passionate about soul winning, I'm driven by a strong desire to impact my community positively while continually growing and developing myself.",
       image: "",
-      imageAlt: "Angelina Basani Shilenge",
-      nameRotation: "rotate-[3deg]",
-      roleRotation: "-rotate-[6deg]",
-      cardRotation: "-rotate-[3deg]",
-      imageRotation: "rotate-[4deg]",
-      imagePosition: "top-20 -right-25",
-      containerPosition: "-ml-24 lg:ml-0",
-      nameColor: "bg-orange-200 text-orange-800",
-      roleColor: "bg-deep-blue-600 text-aero-200",
-      cardColor: "bg-aero-100 text-deep-blue-600",
-      iconColor: "bg-yellow-600 text-yellow-900",
-      icon: Heart,
+      imageAlt: "Mulamuleli Madele",
     },
   ];
 
@@ -1030,167 +984,11 @@ export default function About() {
       </div>
 
       {/* Meet the Team Section */}
-      <div className="flex flex-col gap-32">
-        <div className="relative flex flex-col items-center justify-center">
-          <div className="overflow-y-hidden">
-            <motion.h1
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 0.2,
-                type: spring,
-                bounce: 0.5,
-              }}
-              className="text-[40px] lg:text-[56px] m-2 leading-none text-center"
-            >
-              MEET THE LEADERS
-            </motion.h1>
-          </div>
-
-          <div className="overflow-y-hidden">
-            <motion.h1
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 0.2,
-                type: spring,
-                bounce: 0.5,
-              }}
-              className="text-[40px] lg:text-[56px] ml-2 mr-4 my-2 leading-none text-center relative"
-            >
-              Who Guide Our Mission
-              <motion.span
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeInOut",
-                  delay: 0.7,
-                  type: spring,
-                  bounce: 0.5,
-                }}
-                className={`w-fit p-2 bg-yellow-600 text-yellow-1000 absolute rounded-full block border-3 border-white z-[3] right-0 bottom-4 -rotate-13`}
-              >
-                <Lightbulb />
-              </motion.span>
-            </motion.h1>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center gap-8 -ml-20">
-          {leaders.map((leader, index) => (
-            <motion.div
-              key={index}
-              initial={{ y: "60%" }}
-              whileInView={{ y: 0 }}
-              // viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                type: spring,
-                bounce: 0.5,
-              }}
-              className={`flex flex-col gap-1 p-8 relative w-fit ${leader.containerPosition}`}
-            >
-              {leader.image ? (
-                <MotionImage
-                  src={leader.image}
-                  alt={leader.imageAlt}
-                  initial={{ y: -20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.8,
-                    ease: "easeInOut",
-                    delay: index * 0.1 + 0.3,
-                    type: spring,
-                    bounce: 0.5,
-                  }}
-                  className={`rounded-xl w-[150px] absolute ${leader.imagePosition} ${leader.imageRotation} border-[3px] border-background z-[2]`}
-                />
-              ) : (
-                <MotionDiv
-                  initial={{ y: -20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.8,
-                    ease: "easeInOut",
-                    delay: index * 0.1 + 0.3,
-                    type: spring,
-                    bounce: 0.5,
-                  }}
-                  className={`flex items-center justify-center text-4xl leading-none rounded-xl w-[150px] absolute ${leader.imagePosition} ${leader.imageRotation} border-[3px] border-background z-[2] bg-yellow-500 text-yellow-900 h-[200px]`}
-                >
-                  *
-                </MotionDiv>
-              )}
-
-              <div className="flex flex-col gap-2 relative -ml-12">
-                <MotionDiv
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    ease: "easeInOut",
-                    delay: index * 0.1 + 0.4,
-                    type: spring,
-                    bounce: 0.5,
-                  }}
-                  className={`${leader.nameColor} rounded-full px-4 py-2 w-fit h-fit relative z-[1] border-[3px] border-background -mt-3 ${leader.nameRotation}`}
-                >
-                  <p className="font-semibold">{leader.name}</p>
-                </MotionDiv>
-                <MotionDiv
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    ease: "easeInOut",
-                    delay: index * 0.1 + 0.5,
-                    type: spring,
-                    bounce: 0.5,
-                  }}
-                  className={`${leader.roleColor} rounded-full px-4 py-2 w-fit h-fit relative z-[1] border-[3px] border-background -mt-3 ${leader.roleRotation}`}
-                >
-                  <p className="font-semibold">{leader.role}</p>
-                </MotionDiv>
-              </div>
-
-              <div
-                className={`${leader.cardColor} rounded-lg p-4 w-[220px] lg:w-[400px] h-fit border-[3px] border-background ${leader.cardRotation} -mt-3`}
-              >
-                <p className="whitespace-pre-line">{leader.description}</p>
-              </div>
-
-              <motion.span
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  delay: index * 0.1 + 0.6,
-                  type: spring,
-                  bounce: 0.5,
-                }}
-                className={`w-fit p-2 ${leader.iconColor} rounded-full block border-3 border-white z-[4] -mt-3`}
-              >
-                <leader.icon />
-              </motion.span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      <TeamLeadersGrid
+        leaders={leaders}
+        title="Meet the Leaders"
+        subtitle="Passionate leaders who guide our mission with wisdom and dedication"
+      />
     </section>
   );
 }

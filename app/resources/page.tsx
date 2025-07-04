@@ -144,19 +144,19 @@ export default function Resources() {
             link="resources/devotionals"
             className="bg-yellow-400 text-yellow-1000 inset-shadow-juicy-yellow lg:w-[calc(50%-32px)] w-full"
           />
-          <ResourceCard
+          {/* <ResourceCard
             title="Sermons"
             content="Video/audio recordings or downloadable notes of live sermons and teachings."
             icon={{ name: "audio-lines", style: "text-aero-600" }}
             link="resources/sermons"
             className="bg-aero-400 text-deep-blue-600 inset-shadow-juicy-blue lg:w-[calc(50%-32px)] w-full"
-          />
+          /> */}
           <ResourceCard
             title="Foundational School"
             content="Grow in your walk with God."
             icon={{ name: "crown", style: "text-orange-500" }}
             link=""
-            className="bg-orange-400 text-orange-1000 inset-shadow-juicy-orange w-full"
+            className="bg-orange-400 text-orange-1000 inset-shadow-juicy-orange lg:w-[calc(50%-32px)] w-full"
           />
         </div>
       </div>

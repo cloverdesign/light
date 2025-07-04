@@ -1,83 +1,94 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFFCF7;
-  --foreground: #011C31;
+    --background: #fffcf7;
+    --foreground: #011c31;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-body: var(--font-inter-sans);
-  --font-heading: var(--font-champion-sans)
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-body: var(--font-inter-sans);
+    --font-heading: var(--font-champion-sans);
 }
 
 @theme {
-  --color-deep-blue-100: #D4D9DC;
-  --color-deep-blue-200: #AAB3BA;
-  --color-deep-blue-300: #808D98;
-  --color-deep-blue-400: #556775;
-  --color-deep-blue-500: #2B4153;
-  --color-deep-blue-600: #011C31;
-  --color-deep-blue-700: #001728;
-  --color-deep-blue-800: #001220;
-  --color-deep-blue-900: #000E18;
-  --color-deep-blue-1000: #000910;
-  --color-deep-blue-1100: #000408;
+    --color-deep-blue-100: #d4d9dc;
+    --color-deep-blue-200: #aab3ba;
+    --color-deep-blue-300: #808d98;
+    --color-deep-blue-400: #556775;
+    --color-deep-blue-500: #2b4153;
+    --color-deep-blue-600: #011c31;
+    --color-deep-blue-700: #001728;
+    --color-deep-blue-800: #001220;
+    --color-deep-blue-900: #000e18;
+    --color-deep-blue-1000: #000910;
+    --color-deep-blue-1100: #000408;
 
-  --color-aero-100: #E3F4FB;
-  --color-aero-200: #C8EAF8;
-  --color-aero-300: #ADDFF5;
-  --color-aero-400: #91D5F1;
-  --color-aero-500: #76CAEE;
-  --color-aero-600: #5BC0EB;
-  --color-aero-700: #4BA0C3;
-  --color-aero-800: #3C809C;
-  --color-aero-900: #2D6075;
-  --color-aero-1000: #1E404E;
-  --color-aero-1100: #0F2027;
+    --color-aero-100: #e3f4fb;
+    --color-aero-200: #c8eaf8;
+    --color-aero-300: #addff5;
+    --color-aero-400: #91d5f1;
+    --color-aero-500: #76caee;
+    --color-aero-600: #5bc0eb;
+    --color-aero-700: #4ba0c3;
+    --color-aero-800: #3c809c;
+    --color-aero-900: #2d6075;
+    --color-aero-1000: #1e404e;
+    --color-aero-1100: #0f2027;
 
-  --color-orange-100: #FEE3D7;
-  --color-orange-200: #FEC7B1;
-  --color-orange-300: #FEAB8A;
-  --color-orange-400: #FE8F63;
-  --color-orange-500: #FE733C;
-  --color-orange-600: #FE5715;
-  --color-orange-700: #D34811;
-  --color-orange-800: #A93A0E;
-  --color-orange-900: #7F2B0A;
-  --color-orange-1000: #541D07;
-  --color-orange-1100: #2A0E03;
+    --color-orange-100: #fee3d7;
+    --color-orange-200: #fec7b1;
+    --color-orange-300: #feab8a;
+    --color-orange-400: #fe8f63;
+    --color-orange-500: #fe733c;
+    --color-orange-600: #fe5715;
+    --color-orange-700: #d34811;
+    --color-orange-800: #a93a0e;
+    --color-orange-900: #7f2b0a;
+    --color-orange-1000: #541d07;
+    --color-orange-1100: #2a0e03;
 
-  --color-yellow-100: #FFF1D4;
-  --color-yellow-200: #FFE3AA;
-  --color-yellow-300: #FFD67F;
-  --color-yellow-400: #FFC855;
-  --color-yellow-500: #FFBA2A;
-  --color-yellow-600: #FFAD00;
-  --color-yellow-700: #D49000;
-  --color-yellow-800: #AA7300;
-  --color-yellow-900: #7F5600;
-  --color-yellow-1000: #553900;
-  --color-yellow-1100: #2A1C00;
+    --color-yellow-100: #fff1d4;
+    --color-yellow-200: #ffe3aa;
+    --color-yellow-300: #ffd67f;
+    --color-yellow-400: #ffc855;
+    --color-yellow-500: #ffba2a;
+    --color-yellow-600: #ffad00;
+    --color-yellow-700: #d49000;
+    --color-yellow-800: #aa7300;
+    --color-yellow-900: #7f5600;
+    --color-yellow-1000: #553900;
+    --color-yellow-1100: #2a1c00;
 
-  --inset-shadow-juicy-lg: inset 0 -4px 0px rgba(0, 0, 0, 0.25), inset 0 1.5px 0px rgba(255, 255, 255, 0.25);
-  --inset-shadow-juicy-blue-lg: inset 0 -4px 0px #5BC0EB, inset 0 1.5px 0px #E3F4FB;
-  --inset-shadow-juicy-blue-disabled-lg: inset 0 -4px 0px #AAB3BA, inset 0 1.5px 0px #EBEEEF;
-  --inset-shadow-juicy: inset 0 -3px 0px rgba(0, 0, 0, 0.25), inset 0 1.5px 0px rgba(255, 255, 255, 0.25);
-  --inset-shadow-juicy-blue-lg-input: inset 0 -4px 0px #C8EAF8, inset 0 1.5px 0px #FFFFFF;
+    --inset-shadow-juicy-lg:
+        inset 0 -4px 0px rgba(0, 0, 0, 0.25),
+        inset 0 1.5px 0px rgba(255, 255, 255, 0.25);
+    --inset-shadow-juicy-blue-lg:
+        inset 0 -4px 0px #5bc0eb, inset 0 1.5px 0px #e3f4fb;
+    --inset-shadow-juicy-blue-disabled-lg:
+        inset 0 -4px 0px #aab3ba, inset 0 1.5px 0px #ebeeef;
+    --inset-shadow-juicy:
+        inset 0 -3px 0px rgba(0, 0, 0, 0.25),
+        inset 0 1.5px 0px rgba(255, 255, 255, 0.25);
+    --inset-shadow-juicy-blue-lg-input:
+        inset 0 -4px 0px #c8eaf8, inset 0 1.5px 0px #ffffff;
 
-  --inset-shadow-juicy-blue: inset 0 -10px 0px #4BC1F1, inset 0 7px 0px #CAF0FF;
-  --inset-shadow-juicy-yellow: inset 0 -10px 0px rgba(255, 173, 0), inset 0 7px 0px rgba(255, 236, 197, 0.60);
-  --inset-shadow-juicy-orange: inset 0 -10px 0px #FF6C32, inset 0 7px 0px #FFAD8C;
+    --inset-shadow-juicy-blue:
+        inset 0 -10px 0px #4bc1f1, inset 0 7px 0px #caf0ff;
+    --inset-shadow-juicy-yellow:
+        inset 0 -10px 0px rgba(255, 173, 0),
+        inset 0 7px 0px rgba(255, 236, 197, 0.6);
+    --inset-shadow-juicy-orange:
+        inset 0 -10px 0px #ff6c32, inset 0 7px 0px #ffad8c;
 
-  --inset-shadow-juicy-card: inset 0 -5px 0px #EBE5D4;
+    --inset-shadow-juicy-card: inset 0 -5px 0px #ebe5d4;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1,
@@ -86,18 +97,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-champion-sans);
-  text-transform: uppercase;
+    font-family: var(--font-champion-sans);
+    text-transform: uppercase;
 }
 
 ::selection {
-  background: #FE733C8A;
-  color: #fffefd;
+    background: #fe733c8a;
+    color: #fffefd;
 }
 
 @layer utilities {
-  .dropdown-content-width-full {
-    width: var(--radix-dropdown-menu-trigger-width);
-    max-height: var(--radix-dropdown-menu-content-available-height);
-  }
+    .dropdown-content-width-full {
+        width: var(--radix-dropdown-menu-trigger-width);
+        max-height: var(--radix-dropdown-menu-content-available-height);
+    }
 }
