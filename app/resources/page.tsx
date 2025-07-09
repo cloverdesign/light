@@ -197,7 +197,7 @@ export default function Resources() {
             title="Foundational School"
             content="Grow in your walk with God."
             icon={{ name: "crown", style: "text-orange-500" }}
-            link=""
+            link="/resources/foundation"
             className="bg-orange-400 text-orange-1000 inset-shadow-juicy-orange lg:w-[calc(50%-32px)] w-full"
           />
         </div>
