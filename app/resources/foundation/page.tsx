@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FoundationCard } from "@/components/resources/foundation-card";
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, GraduationCap } from "lucide-react";
 import Link from "next/link";
@@ -148,7 +148,7 @@ export default function FoundationSchool() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {classes.map((classItem, index) => (
+          {classes.map((classItem) => (
             <motion.div
               key={classItem.id}
               variants={itemVariants}

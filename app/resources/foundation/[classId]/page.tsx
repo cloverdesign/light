@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Clock, Users, Target } from "lucide-react";
@@ -14,7 +14,7 @@ interface ClassContent {
   introduction: string;
   keyScriptures?: string[];
   themeScriptures?: string[];
-  topicsCovered?: string[];
+  topicsCovered: string[];
   keyPoints?: string[];
   keyConcepts?: string[];
   importantTruths?: string[];
@@ -124,6 +124,12 @@ const classData: Record<string, ClassContent> = {
     title: "Evangelism",
     introduction:
       "Evangelism is every Christian's responsibility—not just to preach, but to win souls and raise them into disciples. This class defines soul-winning and outlines a practical strategy for consistent evangelism.",
+    topicsCovered: [
+      "The Ministry of Reconciliation given to all believers",
+      "Evangelism as obedience to Christ's command",
+      "Soul-winning and discipleship strategies",
+      "Follow-up and mentorship processes",
+    ],
     keyPoints: [
       "The Ministry of Reconciliation is given to all believers (2 Cor 5:17–18)",
       "Evangelism is not optional—it's obedience to Christ (Matt 28:19–20)",
@@ -154,6 +160,8 @@ const classData: Record<string, ClassContent> = {
       "The Cell is the basic outreach and fellowship unit of the Church",
       "Cell growth = Church growth",
       "Functions of the Cell: prayer, Bible study, evangelism, care, leadership development",
+      "Why every member must belong to a Cell",
+      "Structure and organization of Cell Ministry",
     ],
     keyPoints: [
       "It ensures no member is left out or uncared for",
@@ -196,6 +204,15 @@ const classData: Record<string, ClassContent> = {
     title: "Christian Living",
     introduction:
       "The Christian life is practical. While salvation is instant upon believing in Jesus, spiritual maturity is a journey. This class covers how to live daily as a successful and productive Christian. It emphasizes personal discipline, habits, and values that align with the Word of God.",
+    topicsCovered: [
+      "Daily devotion and spiritual disciplines",
+      "Walking in love and forgiveness",
+      "Living by faith in daily decisions",
+      "Understanding righteousness and holiness",
+      "Financial stewardship and God's principles",
+      "Christian communication and speech",
+      "Being filled with the Spirit continuously",
+    ],
     keyPoints: [
       "Daily Devotion: Commit to prayer, Bible study, and meditation every day",
       "Walking in Love: Love is the hallmark of Christian maturity",
@@ -218,12 +235,13 @@ const classData: Record<string, ClassContent> = {
     introduction:
       "Ministry is every Christian's calling. God saved you to serve. This class teaches students how to serve in the local church, how to be effective in ministry, and how to leverage technology in spreading the Gospel.",
     topicsCovered: [
-      "You are saved to serve—Christianity without service is incomplete",
-      "The Church is your platform for expressing your gifts and fulfilling your calling",
-      "Serving in the Church helps build Christian character, faithfulness, and leadership",
-      "Every role in the Church, from ushering to media, is significant in God's Kingdom",
-      "Ministry in today's world requires technology",
-      "Service and Leadership: Be consistent, punctual, and passionate",
+      "Understanding that you are saved to serve",
+      "The local Church as your ministry platform",
+      "Building character through faithful service",
+      "The significance of every Church role",
+      "Using technology effectively in ministry",
+      "Leadership principles and consistency in service",
+      "Ministry tools and applications training",
     ],
     assignments: [
       "Complete all tutorials on ministry tools",
@@ -236,9 +254,10 @@ const classData: Record<string, ClassContent> = {
 export default function ClassContentPage({
   params,
 }: {
-  params: { classId: string };
+  params: Promise<{ classId: string }>;
 }) {
-  const classContent = classData[params.classId];
+  const { classId } = use(params);
+  const classContent = classData[classId];
 
   if (!classContent) {
     return (

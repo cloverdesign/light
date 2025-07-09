@@ -92,11 +92,6 @@ export default function Resources() {
     offset: ["start end", "end center"],
   });
 
-  const { scrollYProgress: yProgress2 } = useScroll({
-    target: textRef,
-    offset: ["start end", "end start"],
-  });
-
   const position = useTransform(yProgress1, [0, 0.5], ["20%", "0%"]);
 
   // Carousel state and logic
