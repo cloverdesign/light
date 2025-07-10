@@ -45,7 +45,6 @@ export default function Resources() {
   const letterRef = useRef(null);
   const textRef = useRef(null);
 
-  // Download function for Foundation School Letter
   const downloadFoundationLetter = async () => {
     if (isDownloading) return; // Prevent multiple simultaneous downloads
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,8 @@ import { ArrowLeft, BookOpen, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export default function FoundationSchool() {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const classes = [
     {
       id: "class-1",
@@ -88,6 +90,47 @@ export default function FoundationSchool() {
         ease: "easeOut",
       },
     },
+  };
+
+  const downloadFoundationLetter = async () => {
+    if (isDownloading) return; // Prevent multiple simultaneous downloads
+
+    setIsDownloading(true);
+    try {
+      // Check if file exists first
+      const response = await fetch("/foundationschoolLetter.pdf", {
+        method: "HEAD",
+      });
+
+      if (!response.ok) {
+        console.error("PDF file not found");
+        alert(
+          "Sorry, the Foundation School Letter is currently unavailable. Please try again later.",
+        );
+        return;
+      }
+
+      // Create download link
+      const link = document.createElement("a");
+      link.href = "/foundationschoolLetter.pdf";
+      link.download = "foundationschoolLetter.pdf";
+      link.style.display = "none";
+
+      // Add to DOM, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Optional: Show success message
+      console.log("Download started successfully");
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert(
+        "Download failed. Please check your internet connection and try again.",
+      );
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -216,15 +259,14 @@ export default function FoundationSchool() {
                 Register Now
               </Button>
             </Link>
-            <Link href="/resources">
-              <Button
-                variant="outline"
-                size="default"
-                className="w-full sm:w-auto text-orange-900 border-orange-900"
-              >
-                Download Letter
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              size="default"
+              className="w-full sm:w-auto text-orange-900 border-orange-900"
+              onClick={downloadFoundationLetter}
+            >
+              Download Letter
+            </Button>
           </div>
         </motion.div>
       </div>
