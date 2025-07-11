@@ -12,22 +12,31 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, BookHeart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useRef } from "react";
+import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 
 export default function Involved() {
   const badgeContainerRef = useRef<HTMLDivElement | null>(null);
+  const scope = useMotionTimeline([
+    [
+      [
+        "[data-animate='']",
+        {}
+      ]
+    ]
+  ])
   return (
-    <section className="font-body">
+    <section className="font-body" ref={scope}>
       <div className="bg-yellow-100 py-[130px] flex flex-col lg:flex-row items-center justify-center px-8 lg:px-32 gap-28 mb-50">
-        <div className="grid grid-cols-3 lg:gap-8 gap-4 lg:w-1/2">
+        <div className="grid grid-cols-3 lg:gap-8 gap-4 lg:w-1/3">
           <CircleBadge
             drag={false}
             icon={{ name: "users-round", size: "w-full h-full" }}
-            className="bg-aero-600 text-aero-1100 !w-full p-3 lg:p-6"
+            className="bg-aero-600 text-aero-1100 !w-full p-6 lg:p-8"
           />
           <CircleBadge
             drag={false}
             icon={{ name: "heart-handshake", size: "w-full h-full" }}
-            className="bg-yellow-200 text-yellow-700 !w-full p-3 lg:p-6"
+            className="bg-yellow-200 text-yellow-700 !w-full p-6 lg:p-8"
           />
           <Image
             src={involved1}
@@ -37,7 +46,7 @@ export default function Involved() {
           <CircleBadge
             drag={false}
             icon={{ name: "book-heart", size: "w-full h-full" }}
-            className="bg-orange-600 text-orange-100 !w-full p-3 lg:p-6"
+            className="bg-orange-600 text-orange-100 !w-full p-6 lg:p-8"
           />
           <Image
             src={involved2}
@@ -47,7 +56,7 @@ export default function Involved() {
           <CircleBadge
             drag={false}
             icon={{ name: "hand-helping", size: "w-full h-full" }}
-            className="bg-aero-200 text-deep-blue-1000 !w-full p-3 lg:p-6"
+            className="bg-aero-200 text-deep-blue-1000 !w-full p-6 lg:p-8"
           />
           <Image
             src={involved3}
@@ -57,17 +66,17 @@ export default function Involved() {
           <CircleBadge
             drag={false}
             icon={{ name: "asterisk", size: "w-full h-full" }}
-            className="bg-orange-200 text-orange-600 !w-full p-3 lg:p-6"
+            className="bg-orange-200 text-orange-600 !w-full p-6 lg:p-8"
           />
           <CircleBadge
             drag={false}
             icon={{ name: "blocks", size: "w-full h-full" }}
-            className="bg-yellow-600 text-yellow-1000 !w-full p-3 lg:p-6"
+            className="bg-yellow-600 text-yellow-1000 !w-full p-6 lg:p-8"
           />
         </div>
-        <div className="flex flex-col gap-16 lg:w-1/2">
+        <div className="flex flex-col gap-16 lg:w-[40%]">
           <div className="flex flex-col gap-4">
-            <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center lg:text-left">
+            <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] lg:w-[70%] text-center lg:text-left">
               TAKE YOUR NEXT STEPS
             </h1>
             <p className="text-deep-blue-400 text-center lg:text-left">

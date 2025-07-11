@@ -35,13 +35,13 @@ const CircleBadge: React.FC<BadgeProps> = ({
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
             >
-                <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
+                <DynamicIcon name={icon.name as any} fallback={() => <Box className='size-full' />} className={icon.size} />
             </motion.div>) :
                 (<div
                     className={cn(className, style)}
                     {...props}
                 >
-                    <DynamicIcon name={icon.name as any} fallback={() => <Box />} className={icon.size} />
+                    <DynamicIcon name={icon.name as any} fallback={() => <Box className='size-full' />} className={icon.size} />
                 </div>)
             }
         </>
