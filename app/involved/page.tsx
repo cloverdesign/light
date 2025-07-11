@@ -13,88 +13,301 @@ import { ArrowDown, BookHeart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useRef } from "react";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
+import { motion, useInView } from "motion/react";
 
 export default function Involved() {
   const badgeContainerRef = useRef<HTMLDivElement | null>(null);
+  const communityRef = useRef<HTMLDivElement>(null);
+  const giftRef = useRef<HTMLDivElement>(null);
+  const isCommunityInView = useInView(communityRef, {
+    once: true,
+    amount: 0.3,
+  });
+  const isGiftInView = useInView(giftRef, { once: true, amount: 0.3 });
+
   const scope = useMotionTimeline([
     [
       [
-        "[data-animate='']",
-        {}
-      ]
-    ]
-  ])
+        [
+          "[data-animate='badge1']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='badge2']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='image1']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+      ],
+      [
+        [
+          "[data-animate='badge3']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='image2']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='badge4']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+      ],
+      [
+        [
+          "[data-animate='image3']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='badge5']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+        [
+          "[data-animate='badge6']",
+          { scale: 1 },
+          {
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "spring",
+            damping: 10,
+            stiffness: 100,
+          },
+        ],
+      ],
+    ],
+    [
+      [
+        "[data-animate='heading1']",
+        { y: 0 },
+        {
+          duration: 0.5,
+          ease: "easeInOut",
+          type: "spring",
+          damping: 10,
+          stiffness: 100,
+        },
+      ],
+      [
+        "[data-animate='heading2']",
+        { y: 0 },
+        {
+          duration: 0.5,
+          ease: "easeInOut",
+          delay: 0.1,
+          type: "spring",
+          damping: 10,
+          stiffness: 100,
+        },
+      ],
+      [
+        "[data-animate='sub']",
+        { opacity: 1 },
+        {
+          duration: 0.5,
+          ease: "easeInOut",
+          delay: 0.2,
+        },
+      ],
+      [
+        "[data-animate='btn']",
+        { scale: 1 },
+        {
+          duration: 0.5,
+          ease: "easeInOut",
+          delay: 0.1,
+          type: "spring",
+          damping: 10,
+          stiffness: 50,
+        },
+      ],
+    ],
+  ]);
   return (
     <section className="font-body" ref={scope}>
       <div className="bg-yellow-100 py-[130px] flex flex-col lg:flex-row items-center justify-center px-8 lg:px-32 gap-28 mb-50">
         <div className="grid grid-cols-3 lg:gap-8 gap-4 lg:w-1/3">
-          <CircleBadge
-            drag={false}
-            icon={{ name: "users-round", size: "w-full h-full" }}
-            className="bg-aero-600 text-aero-1100 !w-full p-6 lg:p-8"
-          />
-          <CircleBadge
-            drag={false}
-            icon={{ name: "heart-handshake", size: "w-full h-full" }}
-            className="bg-yellow-200 text-yellow-700 !w-full p-6 lg:p-8"
-          />
-          <Image
-            src={involved1}
-            alt="Black woman smiling wide"
-            className="rounded-full w-full h-fit object-cover"
-          />
-          <CircleBadge
-            drag={false}
-            icon={{ name: "book-heart", size: "w-full h-full" }}
-            className="bg-orange-600 text-orange-100 !w-full p-6 lg:p-8"
-          />
-          <Image
-            src={involved2}
-            alt="Black man smiling wide"
-            className="rounded-full w-full h-fit"
-          />
-          <CircleBadge
-            drag={false}
-            icon={{ name: "hand-helping", size: "w-full h-full" }}
-            className="bg-aero-200 text-deep-blue-1000 !w-full p-6 lg:p-8"
-          />
-          <Image
-            src={involved3}
-            alt="Black man smiling wide"
-            className="rounded-full w-full h-fit"
-          />
-          <CircleBadge
-            drag={false}
-            icon={{ name: "asterisk", size: "w-full h-full" }}
-            className="bg-orange-200 text-orange-600 !w-full p-6 lg:p-8"
-          />
-          <CircleBadge
-            drag={false}
-            icon={{ name: "blocks", size: "w-full h-full" }}
-            className="bg-yellow-600 text-yellow-1000 !w-full p-6 lg:p-8"
-          />
+          <motion.div data-animate="badge1" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "users-round", size: "w-full h-full" }}
+              className="bg-aero-600 text-aero-1100 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
+          <motion.div data-animate="badge2" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "heart-handshake", size: "w-full h-full" }}
+              className="bg-yellow-200 text-yellow-700 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
+          <motion.div data-animate="image1" initial={{ scale: 0 }}>
+            <Image
+              src={involved1}
+              alt="Black woman smiling wide"
+              className="rounded-full w-full h-fit object-cover"
+            />
+          </motion.div>
+          <motion.div data-animate="badge3" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "book-heart", size: "w-full h-full" }}
+              className="bg-orange-600 text-orange-100 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
+          <motion.div data-animate="image2" initial={{ scale: 0 }}>
+            <Image
+              src={involved2}
+              alt="Black man smiling wide"
+              className="rounded-full w-full h-fit"
+            />
+          </motion.div>
+          <motion.div data-animate="badge4" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "hand-helping", size: "w-full h-full" }}
+              className="bg-aero-200 text-deep-blue-1000 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
+          <motion.div data-animate="image3" initial={{ scale: 0 }}>
+            <Image
+              src={involved3}
+              alt="Black man smiling wide"
+              className="rounded-full w-full h-fit"
+            />
+          </motion.div>
+          <motion.div data-animate="badge5" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "asterisk", size: "w-full h-full" }}
+              className="bg-orange-200 text-orange-600 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
+          <motion.div data-animate="badge6" initial={{ scale: 0 }}>
+            <CircleBadge
+              drag={false}
+              icon={{ name: "blocks", size: "w-full h-full" }}
+              className="bg-yellow-600 text-yellow-1000 !w-full p-6 lg:p-8"
+            />
+          </motion.div>
         </div>
         <div className="flex flex-col gap-16 lg:w-[40%]">
           <div className="flex flex-col gap-4">
-            <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] lg:w-[70%] text-center lg:text-left">
-              TAKE YOUR NEXT STEPS
-            </h1>
-            <p className="text-deep-blue-400 text-center lg:text-left">
+            <div className="flex flex-col gap-0.5">
+              <div className="overflow-y-hidden">
+                <motion.h1
+                  data-animate="heading1"
+                  initial={{ y: 100 }}
+                  className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] lg:w-[70%] text-center lg:text-left"
+                >
+                  TAKE YOUR
+                </motion.h1>
+              </div>
+              <div className="overflow-y-hidden">
+                <motion.h1
+                  data-animate="heading1"
+                  initial={{ y: 100 }}
+                  className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] lg:w-[70%] text-center lg:text-left"
+                >
+                  NEXT STEPS
+                </motion.h1>
+              </div>
+            </div>
+            <motion.p
+              data-animate="sub"
+              initial={{ opacity: 0 }}
+              className="text-deep-blue-400 text-center lg:text-left"
+            >
               At BLW Lighthouse, we believe everyone has unique gifts to share.
               That’s why we provide diverse ministries and programs to help you
               deepen your faith and discover new opportunities to thrive.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-center justify-center lg:justify-start gap-6">
+          <motion.div
+            data-animate="btn"
+            initial={{ scale: 0 }}
+            className="flex items-center justify-center lg:justify-start gap-6 cursor-pointer"
+            onClick={() => {
+              communityRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
+          >
             <Button className="w-fit px-4 pb-4 pt-3">
               <ArrowDown />
             </Button>
             <p className="text-deep-blue-400 text-sm">Learn More</p>
-          </div>
+          </motion.div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-8 mb-50 px-8 lg:px-32">
+      <motion.div
+        ref={communityRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={
+          isCommunityInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+        }
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="flex flex-col items-center gap-8 mb-50 px-8 lg:px-32"
+      >
         <h1 className="text-[40px] leading-[48px] w-fit lg:text-[56px] lg:leading-[72px] text-center lg:text-left relative">
           Find A Community
           <Badge
@@ -141,9 +354,13 @@ export default function Involved() {
         </p>
 
         <Button variant="secondary-juicy">Join a Group</Button>
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
+        ref={giftRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isGiftInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         style={{
           backgroundImage: `url(${gift.src})`,
           backgroundSize: "cover",
@@ -210,7 +427,7 @@ export default function Involved() {
           </p>
           <Button className="w-fit">Join a Team</Button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
