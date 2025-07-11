@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import SmoothScroll from "@/components/layout/smooth-scroll";
 import Providers from "./providers";
+import Preloader from "@/components/ui/preloader";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
       >
         <Navbar />
         <SmoothScroll />
+        <Preloader />
         <Providers>{children}</Providers>
         <Footer />
       </body>
