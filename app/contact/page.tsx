@@ -13,10 +13,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTriggerButton } from "@/components/ui/dropdown-trigger"
-import { Asterisk } from "lucide-react"
+import { Asterisk, Megaphone, MessageCircleHeart } from "lucide-react"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { SocialsCard } from "@/components/contact/socials-card"
+import { motion } from "motion/react";
+
 
 
 export default function Contact() {
@@ -55,7 +57,7 @@ export default function Contact() {
                     handle: "blw.lighthouse"
                 }
             ],
-            style: "absolute lg:-top-[100px] to-[200px] rotate-[20deg]"
+            style: "absolute lg:-top-[100px] top-[200px] rotate-[20deg]"
         },
         {
             icon: "tiktok",
@@ -94,7 +96,7 @@ export default function Contact() {
                     </div>
                     <div className="flex flex-col lg:flex-row gap-6">
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="w-2/6 h-fit">
+                            <DropdownMenuTrigger className="lg:w-2/6 h-fit">
                                 <DropdownMenuTriggerButton>
                                     <div className="flex gap-2 items-center">
                                         <Asterisk className="size-4 shrink-0" />
@@ -109,13 +111,16 @@ export default function Contact() {
                                     <DropdownMenuRadioItem value="Questions">Questions</DropdownMenuRadioItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuRadioItem value="Suggestions">Suggestions</DropdownMenuRadioItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuRadioItem value="Plan a visit">Plan a visit</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
                         <Textarea
                             icon="message-square-heart"
                             placeholder="Enter your message here"
-                            className="w-4/6"
+                            className="lg:w-4/6"
+                            label="Message"
                         />
                     </div>
                     <Button variant="outline" className="lg:self-end self-center lg:w-fit w-full">
@@ -126,7 +131,21 @@ export default function Contact() {
             <div className="lg:px-32 px-8 mb-50 h-screen">
                 <div className="bg-orange-600 flex flex-col lg:flex-row lg:items-center lg:justify-center h-full rounded-4xl overflow-hidden">
                     <div className="lg:w-1/2 lg:h-full h-1/2 flex items-center justify-center">
-                        <h1 className="text-orange-100 text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center lg:text-left">OUR SOCIALS <br /> TO STAY CONNECTED</h1>
+                        <div className="relative">
+                            <motion.span
+                                // initial={{ scale: 0 }}
+                                className={`badge-1 w-fit p-2 bg-yellow-600 text-yellow-1000 absolute lg:bottom-0 -bottom-7 -left-7 rounded-full block border-3 border-white z-[2] rotate-15`}
+                            >
+                                <MessageCircleHeart />
+                            </motion.span>
+                            <motion.span
+                                // initial={{ scale: 0 }}
+                                className={`badge-1 w-fit p-2 bg-aero-600 text-deep-blue-600 absolute lg:top-0 -top-5 lg:right-30 right-0 rounded-full block border-3 border-white z-[2] rotate-15`}
+                            >
+                                <Megaphone />
+                            </motion.span>
+                            <h1 className="text-orange-100 text-[32px] leading-[40px] lg:text-[56px] lg:leading-[72px] text-center lg:text-left">OUR SOCIALS <br /> TO STAY CONNECTED</h1>
+                        </div>
                     </div>
                     <div className="relative lg:w-1/2 lg:h-fit h-1/2">
                         {
