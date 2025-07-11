@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTriggerButton } from "@/components/ui/dropdown-trigger"
-import { Asterisk, Megaphone, MessageCircleHeart } from "lucide-react"
+import { Asterisk, Hand, HandHeart, Megaphone, MessageCircleHeart } from "lucide-react"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { SocialsCard } from "@/components/contact/socials-card"
@@ -74,9 +74,21 @@ export default function Contact() {
     ]
     return (
         <section className="pt-[105px] font-body">
-            <div className="h-screen flex flex-col lg:flex-row items-center gap-16 lg:gap-32 lg:px-32 px-8 mb-50">
+            <div className="pt-20 h-screen flex flex-col lg:flex-row items-center gap-16 lg:gap-32 lg:px-32 px-8 mb-50">
                 <div className="flex flex-col gap-4 lg:w-1/3">
-                    <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center lg:text-left">WE’D LOVE TO <br /> HEAR FROM YOU!</h1>
+                    <div className="relative">
+                        <span
+                            className={`badge-1 w-fit p-2 bg-aero-600 text-deep-blue-600 absolute top-[45%] lg:-left-5 rounded-full block border-3 border-white z-[2] rotate-15`}
+                        >
+                            <HandHeart />
+                        </span>
+                        <span
+                            className={`badge-1 w-fit p-2 bg-orange-600 text-orange-200 absolute lg:top-0 2xl:right-48 right-6  rounded-full block border-3 border-white z-[2] rotate-15`}
+                        >
+                            <Hand />
+                        </span>
+                        <h1 className="text-[40px] leading-[48px] lg:text-[56px] lg:leading-[72px] text-center lg:text-left">WE’D LOVE TO <br /> HEAR FROM YOU!</h1>
+                    </div>
                     <p className="text-deep-blue-400 text-center lg:text-left">For questions, suggestions, or prayer requests: No matter the situation, you can always feel free to reach out, even if it’s just to say hi.</p>
                 </div>
                 <form className="flex flex-col gap-6 lg:w-2/3">
