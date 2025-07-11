@@ -14,6 +14,8 @@ import { motion } from "motion/react";
 import { useMotionTimeline } from "@/hooks/useMotionTimeline";
 import Image from "next/image";
 import { useState, useCallback } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Campuses() {
     const campus = [
@@ -213,53 +215,60 @@ export default function Campuses() {
                     </motion.h1>
                 </div>
             </div>
-            <div className="flex flex-col w-full mb-50 border-b border-aero-200">
-                {campus.map((item, index) => (
-                    <Accordion type="single" key={index} collapsible className="w-full">
-                        <AccordionItem value="item">
-                            <AccordionTrigger
-                                onMouseMove={handleMouseMove}
-                                onMouseEnter={() => handleMouseEnter(index)}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                <div className="flex items-center gap-2 lg:gap-8">
-                                    <Asterisk className="size-4 lg:size-8 shrink-0" />
-                                    <p className="text-xl lg:text-3xl font-body font-normal">
-                                        {item.title}
-                                    </p>
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <div className="space-y-4">
-                                    {/* Mobile Image */}
-                                    <div className="lg:hidden relative">
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
-                                            width={400}
-                                            height={256}
-                                        />
+            <div className="w-full flex flex-col gap-32 items-center mb-50">
+                <div className="flex flex-col w-full border-b border-aero-200">
+                    {campus.map((item, index) => (
+                        <Accordion type="single" key={index} collapsible className="w-full">
+                            <AccordionItem value="item">
+                                <AccordionTrigger
+                                    onMouseMove={handleMouseMove}
+                                    onMouseEnter={() => handleMouseEnter(index)}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <div className="flex items-center gap-2 lg:gap-8">
+                                        <Asterisk className="size-4 lg:size-8 shrink-0" />
+                                        <p className="text-xl lg:text-3xl font-body font-normal">
+                                            {item.title}
+                                        </p>
                                     </div>
-
-                                    {/* Content */}
-                                    <div className="space-y-3">
-                                        {item.content.map((stuff, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="flex items-center gap-4 lg:gap-8"
-                                            >
-                                                <Asterisk className="size-4 lg:size-6 text-aero-600 shrink-0" />
-                                                <p className="text-sm sm:text-base">{stuff}</p>
-                                            </div>
-                                        ))}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="space-y-4">
+                                        {/* Mobile Image */}
+                                        <div className="lg:hidden relative">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
+                                                width={400}
+                                                height={256}
+                                            />
+                                        </div>
+                                        {/* Content */}
+                                        <div className="space-y-3">
+                                            {item.content.map((stuff, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="flex items-center gap-4 lg:gap-8"
+                                                >
+                                                    <Asterisk className="size-4 lg:size-6 text-aero-600 shrink-0" />
+                                                    <p className="text-sm sm:text-base">{stuff}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                ))}
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    ))}
+                </div>
+                <Link href="/contact">
+                    <Button>
+                        Contact us
+                    </Button>
+                </Link>
             </div>
+
 
             {/* Floating image that follows mouse on hover - Desktop only */}
             {hoveredIndex !== null && (
