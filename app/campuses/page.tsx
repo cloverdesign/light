@@ -20,7 +20,7 @@ export default function Campuses() {
         {
             title: "Lighthouse SMU",
             content: [
-                "New Auditorium, Sefako Makghto University",
+                "New Auditorium, Sefako Makgatho University",
                 "Sundays 10am / Wednesdays 6pm",
             ],
             image: campusSM,
