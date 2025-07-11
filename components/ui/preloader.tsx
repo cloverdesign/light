@@ -15,7 +15,7 @@ export default function Preloader() {
       setTimeout(() => {
         setLoading(false);
         document.body.style.overflow = "unset";
-      }, 1000); // Small delay to ensure animation completes
+      }, 3000);
     };
 
     if (document.readyState === "complete") {
