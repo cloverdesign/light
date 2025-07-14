@@ -333,7 +333,7 @@ export default function Involved() {
         <p className="text-deep-blue-400 lg:w-[50%] text-center">
           Our Cell Groups are a great way to stay connected with your
           churchfamily for a weekly time of study. Grow spiritually as part of a
-          <div className="relative inline-block w-fit h-fit">
+          <div className="relative inline-block w-fit h-fit ml-2">
             connect group.
             <svg
               width="126"
@@ -341,7 +341,7 @@ export default function Involved() {
               viewBox="0 0 126 39"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute right-0 -bottom-2 w-full"
+              className="absolute right-0 -bottom-2 w-[105%]"
             >
               <path
                 d="M78.8447 4.31291C59.6528 3.68544 37.1809 2.48086 19.239 6.33089C7.42306 8.86639 0.91143 14.0701 2.83324 19.6545C3.74715 22.3101 5.82867 25.0791 10.4968 26.9727C17.9116 29.9804 28.7223 32.0363 38.029 33.6588C55.1423 36.6423 73.9812 36.6588 91.5606 34.3639C105.592 32.5321 127.41 29.184 122.896 20.9674C118.69 13.3113 98.819 9.40659 83.2725 7.01166C63.6757 3.99277 43.7364 3.22895 23.1559 3"
