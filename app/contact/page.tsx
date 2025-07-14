@@ -49,7 +49,7 @@ export default function Contact() {
                 {
                     name: "Lighthouse Madeira",
                     link: "https://www.instagram.com/blw.lighthouse/",
-                    handle: "blw.lighthouse",
+                    handle: "blw.lighthouse.madeira",
                 },
             ],
             style: "absolute lg:-top-[300px] top-0 rotate-[10deg]",
