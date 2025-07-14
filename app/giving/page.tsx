@@ -2,6 +2,7 @@ import footer from "@/assets/images/footer.png"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
+import Link from "next/link"
 export default function Giving() {
     return (
         <section className="font-body pt-[100px]">
@@ -34,9 +35,12 @@ export default function Giving() {
                     <br />
                     Join us in shining the light of transformation and making dreams come true for students everywhere. With your partnership, we’ll
                     continue to impact our world, one life at a time.</p>
-                <Button className="w-[235px]">
-                    Give Now
-                </Button>
+                <Link href="/giving/donations" >
+                    <Button className="w-full" >
+                        Give Now
+                    </Button>
+                </Link>
+
             </div>
         </section>
     )

@@ -28,12 +28,16 @@ const Footer = () => {
                             <p>Your support helps us share God’s love and serve our community.</p>
                         </div>
                         <div className="flex items-center gap-6 w-full">
-                            <Button className="w-full">
-                                Give Now
-                            </Button>
-                            <Button variant="outline" className="w-full border-deep-blue-600">
-                                Learn More
-                            </Button>
+                            <Link href="/giving/donations" className="w-full" >
+                                <Button className="w-full" >
+                                    Give Now
+                                </Button>
+                            </Link>
+                            <Link href="/giving" className="w-full" >
+                                <Button variant="outline" className="w-full border-deep-blue-600">
+                                    Learn More
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                     <div
@@ -82,12 +86,16 @@ const Footer = () => {
                             <p>Your support helps us share God’s love and serve our community.</p>
                         </div>
                         <div className="flex items-center gap-6 w-full">
-                            <Button className="w-full">
-                                Give Now
-                            </Button>
-                            <Button variant="outline" className="w-full border-deep-blue-600">
-                                Learn More
-                            </Button>
+                            <Link href="/giving" className="w-full" >
+                                <Button className="w-full" >
+                                    Give Now
+                                </Button>
+                            </Link>
+                            <Link href="/giving" className="w-full" >
+                                <Button variant="outline" className="w-full border-deep-blue-600">
+                                    Learn More
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                     <div
