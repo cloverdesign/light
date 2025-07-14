@@ -127,7 +127,7 @@ export default function Home() {
       name: "Noluthando N",
       title: "Exponential Spiritual Growth",
       content:
-        "Hi, I'm Noluthando Nsele, and I've been attending BLW Lighthouse for the past three years. Being part of this community has profoundly impacted my life. Before joining, I struggled to find purpose and meaning. However, through the church's teachings and ministries, such as the Foundation School, I've grown deeper in my faith and developed a stronger sense of identity.\n\nThe Bible says in 1 Corinthians 15:33, 'Do not be deceived: Bad company corrupts good morals.' I can attest to this truth. The friends I've made at Lighthouse have been instrumental in my spiritual growth. They've taught me to rely on God, pray with me in times of need, and correct me when I'm wrong. I'm truly blessed.\n\nBLW Lighthouse emphasizes holistic growth, covering not only biblical teachings and spiritual growth but also practical life aspects. This comprehensive approach has challenged me to live out my faith in meaningful ways.\n\nI'm grateful for BLW Lighthouse and its role in my spiritual journey. The church has become my family, and I'm committed to continuing to grow and serve. Now I am a leader at the church and I'm thankful for the opportunity to serve in the house of the Lord.\n\nIf you're seeking a church that will challenge, encourage, and support you, I highly recommend BLW LIGHTHOUSE.",
+        "Hi, I'm Noluthando Nsele, and I've been attending BLW Lighthouse for the past three years. Being part of this community has profoundly impacted my life. Before joining, I struggled to find purpose and meaning. However, through the church's teachings and ministries, such as the Foundation School, I've grown deeper in my faith and developed a stronger sense of identity.\n\nThe Bible says in 1 Corinthians 15:33, 'Do not be deceived: Bad company corrupts good morals.' I can attest to this truth. The friends I've made at Lighthouse have been instrumental in my spiritual growth. They've taught me to rely on God, pray with me in times of need, and correct me when I'm wrong. I'm truly blessed.\n\nBLW Lighthouse emphasizes holistic growth, covering not only biblical teachings and spiritual growth but also practical life aspects. This comprehensive approach has challenged me to live out my faith in meaningful ways.\n\nI'm grateful for BLW Lighthouse and its role in my spiritual journey. The church has become my family, and I'm committed to continuing to grow and serve. Now I am a leader at the church and I'm thankful for the opportunity to serve in the house of the Lord.\n\nIf you're seeking a church that will challenge, encourage, and support you, I highly recommend BLW Lighthouse.",
       color: "yellow-600",
     },
     {
@@ -141,7 +141,7 @@ export default function Home() {
       name: "Phenyo M",
       title: "A True Beacon of Light",
       content:
-        "This year, being part of BLW Lighthouse has been such a blessing in my life. It's been a place of hope, encouragement, and faith - a true beacon of light indeed.\n\nThrough the guidance and support l've received, l've grown so much in my faith, learning to trust God more deeply and walk in His purpose. I'm truly thankful for Pastor Semi for his prayers, teachings, and fellowship that have strengthened me spiritually.\n\nNot only has this year been a spiritual breakthrough, but it has also been a year of personal achievement. There was a time when I faced significant challenges in my academics and felt as though there was no hope. However, by God's grace, I was able to overcome those difficulties and achieve excellent results in the module I struggled with—something I could not have accomplished without His strength and the unwavering support and encouragement from the BLW lighthouse family.\n\nThank you, BLW Lighthouse, for being such a big part of my journey this year. Here's to another year of faith, growth, and blessings. God bless you all.",
+        "This year, being part of BLW Lighthouse has been such a blessing in my life. It's been a place of hope, encouragement, and faith - a true beacon of light indeed.\n\nThrough the guidance and support l've received, l've grown so much in my faith, learning to trust God more deeply and walk in His purpose. I'm truly thankful for Pastor Semi for his prayers, teachings, and fellowship that have strengthened me spiritually.\n\nNot only has this year been a spiritual breakthrough, but it has also been a year of personal achievement. There was a time when I faced significant challenges in my academics and felt as though there was no hope. However, by God's grace, I was able to overcome those difficulties and achieve excellent results in the module I struggled with—something I could not have accomplished without His strength and the unwavering support and encouragement from the BLW Lighthouse family.\n\nThank you, BLW Lighthouse, for being such a big part of my journey this year. Here's to another year of faith, growth, and blessings. God bless you all.",
       color: "aero-600",
     },
     {
@@ -366,10 +366,10 @@ export default function Home() {
                       <DynamicIcon
                         name={
                           badge.icon as
-                            | "globe"
-                            | "hand-heart"
-                            | "flame"
-                            | "earth"
+                          | "globe"
+                          | "hand-heart"
+                          | "flame"
+                          | "earth"
                         }
                         fallback={() => <Globe />}
                         className="size-5"
@@ -588,7 +588,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
             className="text-deep-blue-400"
           >
-            At Light House, there’s a place for everyone to get involved and
+            At Lighthouse, there’s a place for everyone to get involved and
             make a difference.
           </motion.p>
         </div>

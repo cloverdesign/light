@@ -125,7 +125,7 @@ export default function About() {
     },
     {
       name: "Angelina Basani Shilenge",
-      role: "Fellowship Coordinator, Lighthouse \nHead of Foundation School",
+      role: "Fellowship Coordinator, Lighthouse\nHead of Foundation School",
       description:
         "My journey with Christ began in early 2023 when I made the life-changing decision to surrender my life to Him. Everything changed for the better, and my spiritual growth accelerated after joining BLW Lighthouse in May 2023. Since graduating from Foundation School that year, I've served actively in the ministry as a member of the Ushering Department, Cell Leader of Relentless Pursuit Cell (2024), Foundation School Officer, and Fellowship Coordinator for BLW Lighthouse Madeira. Driven by a growth mindset, I find great joy in seeing new converts mature into leaders. I've learned that investing in my spiritual development not only impacts those I lead but also helps others discover and pursue God's purpose for their lives.",
       image: angelina,
@@ -133,7 +133,7 @@ export default function About() {
     },
     {
       name: "Pastor Khutsiso Malatji",
-      role: "Assistant Group Pastor, Lighthouse \nFellowship Pastor, Lighthouse TUT GA",
+      role: "Assistant Group Pastor, Lighthouse\nFellowship Pastor, Lighthouse TUT GA",
       description:
         "I am Pastor Khutsiso Malatji, a dedicated member of the Believers Loveworld Campus Ministry and a passionate follower of Christ, I have been actively involved in ministry for 5 years, I joined the ministry in 2020. Throughout this time, I have had the privilege of serving in various capacities, including event coordination, being a cell leader, an usher, a chapter coordinator, a Zonal Finance officer, a Rhapsody officer, and community service initiatives. My journey in ministry has been a transformative experience, enriching my life and enabling me to impact others positively.\n\nWhat I Am Passionate About:\n• My passion lies in living a purposeful life\n• In leading people to deepen their relationship with God and to discover their purpose in Christ\n• Spreading the gospel all around the world through my partnership",
       image: khutsiso,

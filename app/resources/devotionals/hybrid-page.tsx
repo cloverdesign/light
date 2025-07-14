@@ -58,8 +58,8 @@ async function fetchDevotionalFeed(): Promise<DevotionalEpisode[]> {
       duration: item['itunes:duration']?.[0] || '',
       summary: item['itunes:summary']?.[0] || item.description?.[0] || '',
       image: item['itunes:image']?.[0]?.$?.href ||
-             result.rss?.channel?.[0]?.image?.[0]?.url?.[0] ||
-             '/images/default-devotional.jpg',
+        result.rss?.channel?.[0]?.image?.[0]?.url?.[0] ||
+        '/images/default-devotional.jpg',
       audioUrl: item.enclosure?.[0]?.$?.url || item.link?.[0] || '',
     }));
 
