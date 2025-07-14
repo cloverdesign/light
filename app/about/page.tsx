@@ -326,7 +326,7 @@ export default function About() {
             variant="secondary-juicy"
             className="join-btn ml-4 w-fit"
           >
-            Join The BLW
+            Join The Family
           </MotionButton>
         </div>
       </div>
