@@ -7,6 +7,7 @@ import Footer from "@/components/layout/footer";
 import SmoothScroll from "@/components/layout/smooth-scroll";
 import Providers from "./providers";
 import Preloader from "@/components/ui/preloader";
+import LiveButton from "@/components/live/liveBtn";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Preloader />
         <Providers>{children}</Providers>
         <Footer />
+        <LiveButton />
       </body>
     </html>
   );

@@ -366,10 +366,10 @@ export default function Home() {
                       <DynamicIcon
                         name={
                           badge.icon as
-                          | "globe"
-                          | "hand-heart"
-                          | "flame"
-                          | "earth"
+                            | "globe"
+                            | "hand-heart"
+                            | "flame"
+                            | "earth"
                         }
                         fallback={() => <Globe />}
                         className="size-5"
@@ -588,8 +588,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
             className="text-deep-blue-400"
           >
-            At Lighthouse, there’s a place for everyone to get involved and
-            make a difference.
+            At Lighthouse, there’s a place for everyone to get involved and make
+            a difference.
           </motion.p>
         </div>
       </div>
