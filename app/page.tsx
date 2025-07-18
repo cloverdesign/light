@@ -19,6 +19,7 @@ import hero1 from "@/assets/images/hero1.png";
 import hero2 from "@/assets/images/hero2.png";
 import hero3 from "@/assets/images/hero3.png";
 import hero4 from "@/assets/images/hero4.png";
+import hero5 from "@/assets/images/hero5.png";
 import circle from "@/assets/images/circle.png";
 import circle2 from "@/assets/images/circle2.png";
 import Link from "next/link";
@@ -86,6 +87,23 @@ export default function Home() {
     },
     {
       url: hero4,
+      alt: "Picture of a man on his knees on the floor praying in a crowd of people",
+      style: "mt-60",
+      badges: [
+        {
+          text: "Jesus",
+          style:
+            "bg-yellow-200 text-yellow-1000 top-55 left-10 px-4 py-2 -rotate-9",
+        },
+        {
+          icon: "flame",
+          style:
+            "bg-yellow-600 text-yellow-1000 -bottom-6 right-0 p-2 -rotate-8",
+        },
+      ],
+    },
+    {
+      url: hero5,
       alt: "Picture of a man on his knees on the floor praying in a crowd of people",
       style: "mt-60",
       badges: [
