@@ -24,7 +24,7 @@ export default function LiveButton() {
     fetchLiveStatus();
   }, []);
 
-  if (live.isLive) return null;
+  if (!live.isLive) return null;
 
   return (
     <a
