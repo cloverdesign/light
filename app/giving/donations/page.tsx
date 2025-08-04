@@ -48,6 +48,7 @@ const Donations = () => {
                         type="number"
                         name="amount"
                         min="1"
+                        max="2147483647"
                         step="0.01"
                         required
                         value={amount}
