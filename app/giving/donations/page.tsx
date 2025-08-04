@@ -33,12 +33,10 @@ const Donations = () => {
                 className="border border-aero-400 rounded-lg p-10 space-y-10 w-full max-w-2xl"
             >
                 {/* Required Merchant Info */}
-                <input type="hidden" name="merchant_id" value={process.env.MERCHANT_ID} />
-                <input type="hidden" name="merchant_key" value={process.env.MERCHANT_KEY} />
-                <input type="hidden" name="return_url" value="https://your-site.com/thank-you" />
-                <input type="hidden" name="cancel_url" value="https://your-site.com/cancelled" />
-                <input type="hidden" name="notify_url" value="https://your-site.com/ipn-handler" />
-
+                <input type="hidden" name="merchant_id" value="24181130" />
+                <input type="hidden" name="merchant_key" value="lhg9udtxhawad" />
+                {/* <input type="hidden" name="return_url" value="https://your-site.com/thank-you" /> */}
+                {/* <input type="hidden" name="cancel_url" value="https://your-site.com/cancelled" /> */}
                 {/* Payment Info */}
                 <input type="hidden" name="item_name" value="Donation" />
                 <input type="hidden" name="item_description" value="Support our ministry" />
@@ -72,14 +70,14 @@ const Donations = () => {
                         <Input
                             type="text"
                             name="name_first"
-                            required
+                            // required
                             icon="user"
                             placeholder="First Name"
                         />
                         <Input
                             type="text"
                             name="name_last"
-                            required
+                            // required
                             icon="user"
                             placeholder="Last Name"
                         />
