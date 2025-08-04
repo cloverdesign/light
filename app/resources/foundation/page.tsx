@@ -256,7 +256,9 @@ export default function FoundationSchool() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/resources#foundation-school">
               <Button size="default" className="w-full sm:w-auto">
-                Register Now
+                <a href="https://kingsforms.online/fs-reg">
+                  Register Now
+                </a>
               </Button>
             </Link>
             <Button

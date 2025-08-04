@@ -353,7 +353,11 @@ export default function Involved() {
           </div>
         </p>
 
-        <Button variant="secondary-juicy">Join a Group</Button>
+        <Button variant="secondary-juicy">
+          <a href="https://kingsforms.online/join-a-team">
+            Join a Group
+          </a>
+        </Button>
       </motion.div>
 
       <motion.div

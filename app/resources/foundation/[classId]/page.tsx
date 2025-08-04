@@ -517,7 +517,9 @@ export default function ClassContentPage({
           </Link>
           <Link href="/resources#foundation-school">
             <Button className="w-full sm:w-auto">
-              Register for Foundation School
+              <a href="https://kingsforms.online/fs-reg">
+                Register for Foundation School
+              </a>
             </Button>
           </Link>
         </motion.div>
