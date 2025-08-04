@@ -130,7 +130,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="border-t border-deep-blue-600 pt-6">
-                    <p className="text-sm">&copy; Copyright {new Date().getFullYear()} Light House BLW. All Rights Reserved.</p>
+                    <p className="text-sm">&copy; Copyright {new Date().getFullYear()} Lighthouse BLW. All Rights Reserved.</p>
                 </div>
             </div>
         ),
@@ -161,7 +161,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="border-t border-deep-blue-600 pt-6">
-                <p className="text-sm">&copy; Copyright {new Date().getFullYear()} Light House BLW. All Rights Reserved.</p>
+                <p className="text-sm">&copy; Copyright {new Date().getFullYear()} Lighthouse BLW. All Rights Reserved.</p>
             </div>
         </div>
     );

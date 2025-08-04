@@ -19,7 +19,7 @@ export default function Giving() {
                     <div className="relative inline-block mr-5 w-fit h-fit">
                         <Badge variant="header" className="absolute capitalize transform -rotate-12 -left-5 -top-5 lg:top-2">
                             <Heart />
-                            BLW LightHouse
+                            BLW Lighthouse
                         </Badge>
                         Where
                     </div> Dreams <br /> Come True
