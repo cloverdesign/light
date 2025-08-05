@@ -13,6 +13,8 @@ import vision from "@/assets/images/vision.png";
 import danielle from "@/assets/images/danielle.webp";
 import angelina from "@/assets/images/angelina.webp";
 import khutsiso from "@/assets/images/khutsiso.webp";
+import mulamuleli from "@/assets/images/mulamuleli.webp";
+import semi from "@/assets/images/semi.jpg";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -116,6 +118,14 @@ export default function About() {
 
   const leaders = [
     {
+      name: "Pastor Semilore Oketunji",
+      role: "Group Pastor, BLW Lighthouse",
+      description:
+        "I owe my life to this ministry, literally. My parents were married in this ministry and of course I am a product of their marriage. Safe to say I grew up on the message of the man of God Pastor Chris, a message that works, a message that has shaped my walk with Christ and given me a mindset of a victor.\nBeing born to ministers of the Gospel I actually never wanted to be a Pastor but little did I know God had other plans for my life. Now 8+ years of being ordained as Pastor I cannot imagine doing anything else with my life. I am passionate about God's people and helping them realise their God given destiny and living up to their full potential. I have served in many capacities in ministry and now have had the privilege to preside over this Group since 2023 and I wouldn't have it any other way.\nP.s: I used to make music, look up Se Ok on any platform.",
+      image: semi,
+      imageAlt: "Pastor Semilore Oketunji",
+    },
+    {
       name: "Danielle Herbst",
       role: "Head of Administration",
       description:
@@ -144,7 +154,7 @@ export default function About() {
       role: "Fellowship Coordinator, Lighthouse SMU\nHead of Connect Groups",
       description:
         "I am a 20-year-old MBChB student at SMU in Ga-Rankuwa and the youngest of four siblings. I joined this ministry in 2023, and it has since been a life-transforming journey—deepening my understanding of God and my identity in Christ. I currently serve as the LH Group PFCC Officer, Program Coordinator, and SMU Chapter Coordinator. Passionate about soul winning, I'm driven by a strong desire to impact my community positively while continually growing and developing myself.",
-      image: "",
+      image: mulamuleli,
       imageAlt: "Mulamuleli Madele",
     },
   ];
@@ -488,7 +498,7 @@ export default function About() {
             </div>
           </div>
           <div className="px-32 flex items-center">
-            <p className="w-1/2">BLW is a long-standing ministry of over 30 years, with various fellowships in campuses across the world. The vision for BLW-Lighthouse was birthed in 2024, with fellowships across Pretoria North and a mandate to raise a generation of young people who are sold out for Jesus Christ and walk in God’s perfect will for their lives. BLW-Lighthouse is a group of fellowships that started with Sefako Makgatho University, with cells and fellowships in TUT Ga-rankuwa, TUT Soshanguve and Madeira Isles. The fellowship has contributed to the spiritual growth of over 500 students and counting. If you are in the Pretoria North area, then we look forward to being a part of your journey as well.</p>
+            <p className="text-center">BLW is a long-standing ministry of over 30 years, with various fellowships in campuses across the world. The vision for BLW-Lighthouse was birthed in 2024, with fellowships across Pretoria North and a mandate to raise a generation of young people who are sold out for Jesus Christ and walk in God’s perfect will for their lives. BLW-Lighthouse is a group of fellowships that started with Sefako Makgatho University, with cells and fellowships in TUT Ga-rankuwa, TUT Soshanguve and Madeira Isles. The fellowship has contributed to the spiritual growth of over 500 students and counting. If you are in the Pretoria North area, then we look forward to being a part of your journey as well.</p>
           </div>
         </div>
       </div>

@@ -122,21 +122,29 @@ export default function Home() {
   ];
 
   const events = [
+    // {
+    //   title: "Foundation School Graduation",
+    //   content:
+    //     "Celebrate the achievements of our Foundation School graduates as they complete their spiritual journey and step into their next season of ministry and service.",
+    //   time: "10 AM",
+    //   date: "1st June, 2025",
+    //   icon: { style: "bg-aero-600 text-deep-blue-600", name: "graduation-cap" },
+    // },
+    // {
+    //   title: "Global Communion Service",
+    //   content:
+    //     "Join believers worldwide in a powerful time of unity and worship as we partake in communion together, transcending borders and celebrating our shared faith.",
+    //   time: "10 AM",
+    //   date: "1st June, 2025",
+    //   icon: { style: "bg-orange-600 text-orange-200", name: "book-open-text" },
+    // },
     {
-      title: "Foundation School Graduation",
-      content:
-        "Celebrate the achievements of our Foundation School graduates as they complete their spiritual journey and step into their next season of ministry and service.",
-      time: "10 AM",
-      date: "1st June, 2025",
-      icon: { style: "bg-aero-600 text-deep-blue-600", name: "graduation-cap" },
-    },
-    {
-      title: "Global Communion Service",
+      title: "Ignite Con '25",
       content:
         "Join believers worldwide in a powerful time of unity and worship as we partake in communion together, transcending borders and celebrating our shared faith.",
       time: "10 AM",
-      date: "1st June, 2025",
-      icon: { style: "bg-orange-600 text-orange-200", name: "book-open-text" },
+      date: "31st August, 2025",
+      icon: { style: "bg-orange-600 text-orange-200", name: "flame" },
     },
   ];
 
@@ -384,10 +392,10 @@ export default function Home() {
                       <DynamicIcon
                         name={
                           badge.icon as
-                            | "globe"
-                            | "hand-heart"
-                            | "flame"
-                            | "earth"
+                          | "globe"
+                          | "hand-heart"
+                          | "flame"
+                          | "earth"
                         }
                         fallback={() => <Globe />}
                         className="size-5"
@@ -411,14 +419,12 @@ export default function Home() {
       <div className="my-10 lg:my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
         <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden py-2">
           <Marquee baseVelocity={-2}>
-            * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community
-            Outreach this Saturday
+            * Join Us This 31st August * Ignite Con &lsquo;25  *  Join Us This 31st August * Ignite Con &lsquo;25
           </Marquee>
         </div>
         <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden py-2">
           <Marquee baseVelocity={-2}>
-            * Join Us This Sunday * Bible Study Wednesdays at 7PM * Community
-            Outreach this Saturday
+            * Join Us This 31st August * Ignite Con &lsquo;25  *  Join Us This 31st August * Ignite Con &lsquo;25
           </Marquee>
         </div>
       </div>
