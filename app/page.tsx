@@ -139,9 +139,9 @@ export default function Home() {
     //   icon: { style: "bg-orange-600 text-orange-200", name: "book-open-text" },
     // },
     {
-      title: "Ignite Con '25",
+      title: "Ignite Con '25",
       content:
-        "Join believers worldwide in a powerful time of unity and worship as we partake in communion together, transcending borders and celebrating our shared faith.",
+        "Join us as we set Pretoria on fire for Jesus at Ignite Conference 2025!",
       time: "10 AM",
       date: "31st August, 2025",
       icon: { style: "bg-orange-600 text-orange-200", name: "flame" },
