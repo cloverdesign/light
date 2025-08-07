@@ -145,6 +145,16 @@ export default function Home() {
       time: "10 AM",
       date: "31st August, 2025",
       icon: { style: "bg-orange-600 text-orange-200", name: "flame" },
+      url: "https://kingsforms.online/igniteregistration"
+    },
+    {
+      title: "ICPLC 2025",
+      content:
+        "Meet us in Loveworld City for revelation, fire, and unstoppable vision!",
+      time: "10 AM",
+      date: "4th - 7th September 2025",
+      icon: { style: "bg-aero-600 text-deep-blue-600", name: "book-open-text" },
+      url: "https://icplc-live.vercel.app/"
     },
   ];
 
@@ -514,6 +524,7 @@ export default function Home() {
                 content={item.content}
                 time={item.time}
                 date={item.date}
+                url={item.url}
               />
             ))}
           </motion.div>

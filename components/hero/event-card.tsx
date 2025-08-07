@@ -1,6 +1,7 @@
 import React from "react";
 import { DynamicIcon } from 'lucide-react/dynamic'
 import { Calendar, CalendarDays, Clock } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface CardProps {
     title: string;
@@ -11,19 +12,29 @@ interface CardProps {
         name: string,
         style: string
     };
+    url: string;
 }
 
-export const EventCard: React.FC<CardProps> = ({ title, content, time, date, icon }) => {
+export const EventCard: React.FC<CardProps> = ({ title, content, time, date, icon, url }) => {
     return (
-        <div className="w-[90vw] md:w-[450px] shrink-0 border border-aero-200 rounded-2xl pt-8 flex flex-col gap-6">
-            <div className="flex items-center gap-5 px-8">
-                <span className={`${icon.style} w-fit p-3 rounded-full flex items-center justify-center`}>
-                    <DynamicIcon name={icon.name as any} fallback={() => <Calendar />} className="size-5 md:size-9" />
-                </span>
-                <h1 className="text-2xl md:text-[30px] !capitalize">{title}</h1>
+        <div className="w-[90vw] md:w-[450px] min-h-[300px] shrink-0 border border-aero-200 rounded-2xl pt-8 flex flex-col gap-6 justify-between">
+            <div className="flex flex-col justify-between gap-6">
+                <div className="flex items-center gap-5 px-8">
+                    <span className={`${icon.style} w-fit p-3 rounded-full flex items-center justify-center`}>
+                        <DynamicIcon name={icon.name as any} fallback={() => <Calendar />} className="size-5 md:size-9" />
+                    </span>
+                    <h1 className="text-2xl md:text-[30px] !capitalize">{title}</h1>
+                </div>
+                <p className="text-base md:text-xl text-deep-blue-400 px-8">{content}</p>
+                <div className="px-8">
+                    <Button variant="outline">
+                        <a href={url} target="_blank">
+                            Regsiter Now
+                        </a>
+                    </Button>
+                </div>
             </div>
-            <p className="text-base md:text-xl text-deep-blue-400 px-8">{content}</p>
-            <div className="flex items-center text-deep-blue-400 gap-8 border-t border-aero-200 pb-6 px-8 pt-4">
+            <div className="flex items-center text-deep-blue-400 gap-8 border-t border-aero-200 pb-6 px-8 pt-4 h-fit">
                 <span className="flex items-center gap-2">
                     <CalendarDays className="size-5" />
                     <p className="text-sm">{date}</p>
