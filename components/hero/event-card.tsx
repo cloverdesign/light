@@ -29,7 +29,7 @@ export const EventCard: React.FC<CardProps> = ({ title, content, time, date, ico
                 <div className="px-8">
                     <Button variant="outline">
                         <a href={url} target="_blank">
-                            Regsiter Now
+                            Register Now
                         </a>
                     </Button>
                 </div>
