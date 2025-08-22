@@ -386,7 +386,7 @@ export default function Home() {
           className="flex items-center w-max gap-8 py-5"
           initial={{ x: 0 }}
           animate={{ x: "-50%" }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         >
           {[...heroImages, ...heroImages, ...heroImages, ...heroImages].map(
             (image, index) => (

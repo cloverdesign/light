@@ -428,7 +428,7 @@ export default function About() {
         </div>
 
         {/*History Section */}
-        <div className="flex flex-col items-center gap-28 mb-50">
+        <div className="flex flex-col items-center gap-10">
           <div>
             <div className="overflow-y-hidden">
               <motion.h1
@@ -473,7 +473,7 @@ export default function About() {
                     type: "spring",
                     bounce: 0.5,
                   }}
-                  className={`w-fit p-2 bg-yellow-600 text-yellow-1000 absolute rounded-full block border-3 border-white z-[10] -bottom-2 right-2 -rotate-13`}
+                  className={`w-fit p-2 bg-yellow-600 text-yellow-1000 absolute rounded-full block border-3 border-white z-[5] -bottom-2 right-2 -rotate-13`}
                 >
                   <FlameIcon />
                 </motion.span>
@@ -497,8 +497,10 @@ export default function About() {
               </motion.h1>
             </div>
           </div>
-          <div className="px-32 flex items-center">
-            <p className="text-center">BLW is a long-standing ministry of over 30 years, with various fellowships in campuses across the world. The vision for BLW-Lighthouse was birthed in 2024, with fellowships across Pretoria North and a mandate to raise a generation of young people who are sold out for Jesus Christ and walk in God’s perfect will for their lives. BLW-Lighthouse is a group of fellowships that started with Sefako Makgatho University, with cells and fellowships in TUT Ga-rankuwa, TUT Soshanguve and Madeira Isles. The fellowship has contributed to the spiritual growth of over 500 students and counting. If you are in the Pretoria North area, then we look forward to being a part of your journey as well.</p>
+          <div className="px-6 lg:px-32 flex items-center">
+            <p className="text-center whitespace-pre-line">
+              {`BLW is a long-standing ministry of over 30 years, with various fellowships in campuses across the world. The vision for BLW-Lighthouse was birthed in 2024, with fellowships across Pretoria North and a mandate to raise a generation of young people who are sold out for Jesus Christ and walk in God’s perfect will for their lives. \n\n BLW-Lighthouse is a group of fellowships that started with Sefako Makgatho University, with cells and fellowships in TUT Ga-rankuwa, TUT Soshanguve and Madeira Isles. The fellowship has contributed to the spiritual growth of over 500 students and counting. If you are in the Pretoria North area, then we look forward to being a part of your journey as well.`}
+            </p>
           </div>
         </div>
       </div>
