@@ -9,7 +9,7 @@ const Donations = () => {
     const [amount, setAmount] = React.useState('');
 
     return (
-        <section className="pt-[150px] pb-20 font-body flex flex-col items-center gap-8">
+        <section className="pt-[150px] pb-20 font-body flex flex-col items-center gap-8 px-8">
             <div className="overflow-y-hidden text-center">
                 <motion.h1
                     data-animate="heading1"
@@ -35,7 +35,7 @@ const Donations = () => {
                 {/* Required Merchant Info */}
                 <input type="hidden" name="merchant_id" value="24181130" />
                 <input type="hidden" name="merchant_key" value="lhg9udtxhawad" />
-                {/* <input type="hidden" name="return_url" value="https://your-site.com/thank-you" /> */}
+                <input type="hidden" name="return_url" value="https://www.blwlighthouse.org/giving/donations/success" />
                 {/* <input type="hidden" name="cancel_url" value="https://your-site.com/cancelled" /> */}
                 {/* Payment Info */}
                 <input type="hidden" name="item_name" value="Donation" />
@@ -57,17 +57,17 @@ const Donations = () => {
                     />
                 </div>
 
-                <div className="flex items-center justify-between w-full gap-2">
+                <div className="flex flex-wrap items-center lg:justify-between w-full gap-2">
                     <Button variant="secondary" type="button" onClick={() => setAmount('25')}>R25</Button>
                     <Button variant="secondary" type="button" onClick={() => setAmount('100')}>R100</Button>
                     <Button variant="secondary" type="button" onClick={() => setAmount('125')}>R125</Button>
-                    <Button variant="secondary" type="button" onClick={() => setAmount('')}>Custom Amount</Button>
+                    <Button variant="secondary" type="button" onClick={() => setAmount('')}>Custom</Button>
                 </div>
 
                 {/* Personal Info */}
                 <div className="flex flex-col gap-2">
                     <p className="font-semibold text-xl">Your Details</p>
-                    <div className="flex items-center gap-4">
+                    <div className="flex lg:flex-row flex-col items-center gap-4">
                         <Input
                             type="text"
                             name="name_first"

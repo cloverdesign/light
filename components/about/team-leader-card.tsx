@@ -291,7 +291,7 @@ const TeamLeaderCard: React.FC<TeamLeaderCardProps> = ({
         <div className="p-6 pr-16 sm:pr-20 flex flex-col justify-between min-h-48">
           {/* Header */}
           <div className="flex-1">
-            <p className="text-lg lg:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+            <p className="text-lg lg:text-xl font-bold text-deep-blue-500 mb-3 line-clamp-2">
               {name}
             </p>
 

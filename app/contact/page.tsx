@@ -27,9 +27,10 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 export default function Contact() {
-    const [reason, setReason] = useState("Reason");
+    const [reason, setReason] = useState("Prayer Request");
     const socialsRef = useRef(null);
     const isInView = useInView(socialsRef, { once: true, amount: 0.3 });
+    const [loading, setLoading] = useState(false);
 
     const socials = [
         {
@@ -79,9 +80,38 @@ export default function Contact() {
             style: "absolute lg:top-0 top-[300px] -rotate-[3deg]",
         },
     ];
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formData = {
+            name: (document.querySelector('input[placeholder="Full Name"]') as HTMLInputElement)?.value,
+            email: (document.querySelector('input[placeholder="Email"]') as HTMLInputElement)?.value,
+            phone: (document.querySelector('input[placeholder="Phone Number"]') as HTMLInputElement)?.value,
+            reason,
+            message: (document.querySelector('textarea') as HTMLTextAreaElement)?.value,
+        };
+
+        try {
+            await fetch("https://script.google.com/macros/s/AKfycbxTwx-M5AvY-XpOuaSCZ9RzDjD1OWMQZr4-XP-LBlAUZ3IKitMVKH2FokCFiaZNnZE/exec", {
+                method: "POST",
+                mode: "no-cors", // bypass CORS
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <section className="pt-[105px] font-body">
-            <div className="pt-20 h-screen flex flex-col lg:flex-row items-center gap-16 lg:gap-32 lg:px-32 px-8 mb-50">
+            <div className="pt-20 lg:h-screen flex flex-col lg:flex-row items-center gap-16 lg:gap-32 lg:px-32 px-8 mb-50">
                 <div className="flex flex-col gap-4 lg:w-1/3">
                     <div className="relative">
                         <span
@@ -104,11 +134,11 @@ export default function Contact() {
                         to say hi.
                     </p>
                 </div>
-                <form className="flex flex-col gap-6 lg:w-2/3">
-                    <Input icon="user-round" placeholder="Full Name" />
+                <form className="flex flex-col gap-6 lg:w-2/3" onSubmit={handleSubmit}>
+                    <Input icon="user-round" placeholder="Full Name" required />
                     <div className="flex flex-col lg:flex-row items-center gap-6">
-                        <Input icon="mailbox" placeholder="Email" />
-                        <Input icon="smartphone" placeholder="Phone Number" />
+                        <Input icon="mailbox" placeholder="Email" type="email" required />
+                        <Input icon="smartphone" placeholder="Phone Number" type="tel" required />
                     </div>
                     <div className="flex flex-col lg:flex-row gap-6">
                         <DropdownMenu>
@@ -148,13 +178,16 @@ export default function Contact() {
                             placeholder="Enter your message here"
                             className="lg:w-4/6"
                             label="Message"
+                            required
                         />
                     </div>
                     <Button
+                        type="submit"
                         variant="outline"
+                        disabled={loading}
                         className="lg:self-end self-center lg:w-fit w-full"
                     >
-                        Send Message
+                        {loading ? "Sending..." : "Send Message"}
                     </Button>
                 </form>
             </div>

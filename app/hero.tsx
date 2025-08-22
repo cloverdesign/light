@@ -61,7 +61,7 @@ export const Hero = () => {
   return (
     <div
       ref={scope}
-      className="flex flex-col items-center gap-8 lg:gap-16 lg:h-screen z-[2] relative"
+      className="flex flex-col items-center gap-8 lg:gap-16 z-[2] relative"
     >
       <div className="flex flex-col items-center justify-center">
         <div className="overflow-y-hidden">

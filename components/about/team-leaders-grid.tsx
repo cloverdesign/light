@@ -32,8 +32,8 @@ const TeamLeadersGrid: React.FC<TeamLeadersGridProps> = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
@@ -100,9 +100,8 @@ const TeamLeadersGrid: React.FC<TeamLeadersGridProps> = ({
           {leaders.map((leader, index) => (
             <div
               key={`${leader.name}-${index}`}
-              className={`max-w-4xl mx-auto ${
-                index % 2 === 0 ? "lg:mr-auto lg:ml-0" : "lg:ml-auto lg:mr-0"
-              }`}
+              className={`max-w-4xl mx-auto ${index % 2 === 0 ? "lg:mr-auto lg:ml-0" : "lg:ml-auto lg:mr-0"
+                }`}
             >
               <TeamLeaderCard
                 name={leader.name}

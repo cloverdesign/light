@@ -386,7 +386,7 @@ export default function Home() {
           className="flex items-center w-max gap-8 py-5"
           initial={{ x: 0 }}
           animate={{ x: "-50%" }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
         >
           {[...heroImages, ...heroImages, ...heroImages, ...heroImages].map(
             (image, index) => (
@@ -558,25 +558,25 @@ export default function Home() {
             drag
             ref={badgeContainerRef}
             icon={{ name: "book-heart", size: "size-[88px]" }}
-            className="bg-aero-100 text-aero-800 p-8 shadow-md absolute top-[22px] left-[21px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
+            className="bg-aero-100 text-aero-800 p-8 absolute top-[22px] left-[21px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
           />
           <CircleBadge
             drag
             ref={badgeContainerRef}
             icon={{ name: "user-round", size: "size-[88px]" }}
-            className="bg-orange-600 text-orange-300 p-8 shadow-md absolute top-[37px] left-[100px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
+            className="bg-orange-600 text-orange-300 p-8 absolute top-[37px] left-[100px] -rotate-[9deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
           />
           <CircleBadge
             drag
             ref={badgeContainerRef}
             icon={{ name: "hand-helping", size: "size-[88px]" }}
-            className="bg-aero-600 text-deep-blue-600 p-8 shadow-md absolute top-[135px] left-[121px] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
+            className="bg-aero-600 text-deep-blue-600 p-8 absolute top-[135px] left-[121px] rotate-[5deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
           />
           <CircleBadge
             drag
             ref={badgeContainerRef}
             icon={{ name: "heart-handshake", size: "size-[88px]" }}
-            className="bg-yellow-600 text-yellow-1000 p-8 shadow-md absolute top-[121px] left-[14px] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
+            className="bg-yellow-600 text-yellow-1000 p-8 absolute top-[121px] left-[14px] -rotate-[11deg] will-change-transform border-white border-[11px] rounded-full cursor-grab active:cursor-grabbing"
           />
         </div>
         <div className="lg:w-1/2 text-center lg:text-right flex flex-col lg:justify-center gap-4 h-1/2 lg:h-full">
