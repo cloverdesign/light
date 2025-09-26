@@ -99,7 +99,7 @@ export default function Navbar() {
             {menuOpen &&
                 <motion.section
                     id="menu-backdrop"
-                    className="bg-yellow-600/20 backdrop-blur-sm h-screen w-screen z-50 absolute top-0 left-0 menu-backdrop flex items-end px-3 pb-3"
+                    className="bg-yellow-600/20 backdrop-blur-sm h-screen w-screen z-50 absolute top-0 left-0 menu-backdrop flex items-end px-3 pb-16"
                     initial={{
                         opacity: 0
                     }}

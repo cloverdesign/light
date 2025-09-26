@@ -553,7 +553,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Service</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Serve others with humility and compassion, putting their needs before our own.
               </p>
             </div>
 
@@ -565,7 +565,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Love</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Love unconditionally, just as Christ loved us first.
               </p>
             </div>
 
@@ -577,7 +577,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Worship</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Honor God with our lives, words, and actions in spirit and truth.
               </p>
             </div>
           </motion.div>
@@ -602,7 +602,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Prayer</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Stay rooted in constant communication with God for guidance and strength.
               </p>
             </div>
 
@@ -614,7 +614,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Giving</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Share generously of our time, resources, and talents to bless others.
               </p>
             </div>
 
@@ -626,7 +626,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Excellence</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Do all things with integrity and diligence, reflecting God’s greatness.
               </p>
             </div>
           </motion.div>
@@ -651,7 +651,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Service</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Serve others with humility and compassion, putting their needs before our own.
               </p>
             </div>
 
@@ -663,7 +663,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Love</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Love unconditionally, just as Christ loved us first.
               </p>
             </div>
 
@@ -675,7 +675,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Worship</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Honor God with our lives, words, and actions in spirit and truth.
               </p>
             </div>
           </motion.div>
@@ -688,7 +688,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Prayer</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Stay rooted in constant communication with God for guidance and strength.
               </p>
             </div>
 
@@ -700,7 +700,7 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Giving</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Share generously of our time, resources, and talents to bless others.
               </p>
             </div>
 
@@ -712,11 +712,12 @@ export default function About() {
                 <h2 className="!capitalize text-[48px]">Excellence</h2>
               </div>
               <p className="text-2xl text-deep-blue-400">
-                Unconditional love, just as Christ first loved us.
+                Do all things with integrity and diligence, reflecting God’s greatness.
               </p>
             </div>
           </motion.div>
         </div>
+
       </div>
 
       {/* Statements of Faith Section */}
