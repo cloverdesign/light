@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/layout/smooth-scroll";
 import Providers from "./providers";
 import Preloader from "@/components/ui/preloader";
 import LiveButton from "@/components/live/liveBtn";
+import { headers } from "next/headers";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -24,22 +25,27 @@ export const metadata: Metadata = {
   description: "Empowering the next generation of leaders through faith, education, and community.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const hostname = requestHeaders.get("host")?.split(":")[0]?.toLowerCase() ?? "";
+  const configuredAdminHost = process.env.ADMIN_HOSTNAME?.toLowerCase();
+  const isAdminHost = configuredAdminHost
+    ? hostname === configuredAdminHost
+    : hostname.startsWith("admin.");
+  const isAdminRoute = isAdminHost || requestHeaders.get("x-admin-route") === "true";
+
   return (
     <html lang="en">
       <body
         className={`${interSans.variable} ${championGothic.variable} antialiased relative transition-discrete`}
       >
-        <Navbar />
-        <SmoothScroll />
-        <Preloader />
+        {!isAdminRoute && <><Navbar /><SmoothScroll /><Preloader /></>}
         <Providers>{children}</Providers>
-        <Footer />
-        <LiveButton />
+        {!isAdminRoute && <><Footer /><LiveButton /></>}
       </body>
     </html>
   );

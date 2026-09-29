@@ -12,7 +12,7 @@ interface TextareaProps extends React.ComponentProps<"textarea"> {
 const Textarea = React.forwardRef<
     HTMLTextAreaElement,
     TextareaProps
->(({ className, icon, label, ...props }, ref) => {
+>(({ className, icon, label, rows = 10, ...props }, ref) => {
     return (
         <div
             className={cn(
@@ -28,12 +28,12 @@ const Textarea = React.forwardRef<
                         className="size-4 text-aero-800"
                     />
                 )}
-                <p className="text-aero-700">{label ?? "Label"}</p>
+                <label htmlFor={props.id} className="text-aero-700">{label ?? "Label"}</label>
             </div>
             <textarea
                 ref={ref}
                 {...props}
-                rows={10}
+                rows={rows}
                 className="w-full h-fit file:border-0 file:bg-transparent focus-visible:outline-none file:text-sm file:font-medium file:text-foreground placeholder:text-aero-700 disabled:cursor-not-allowed"
             />
         </div>

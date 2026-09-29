@@ -1,49 +1,23 @@
-import React from "react";
-import { DynamicIcon } from 'lucide-react/dynamic'
-import { Calendar, CalendarDays, Clock } from "lucide-react";
-import { Button } from "../ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { EventDetails } from "@/components/events/event-details";
+import { igniteEvent } from "@/lib/events";
 
-interface CardProps {
-    title: string;
-    content: string;
-    time: string;
-    date: string;
-    icon: {
-        name: string,
-        style: string
-    };
-    url: string;
-}
-
-export const EventCard: React.FC<CardProps> = ({ title, content, time, date, icon, url }) => {
-    return (
-        <div className="w-[90vw] md:w-[450px] min-h-[300px] shrink-0 border border-aero-200 rounded-2xl pt-8 flex flex-col gap-6 justify-between">
-            <div className="flex flex-col justify-between gap-6">
-                <div className="flex items-center gap-5 px-8">
-                    <span className={`${icon.style} w-fit p-3 rounded-full flex items-center justify-center`}>
-                        <DynamicIcon name={icon.name as any} fallback={() => <Calendar />} className="size-5 md:size-9" />
-                    </span>
-                    <h1 className="text-2xl md:text-[30px] !capitalize">{title}</h1>
-                </div>
-                <p className="text-base md:text-xl text-deep-blue-400 px-8">{content}</p>
-                <div className="px-8">
-                    <Button variant="outline">
-                        <a href={url} target="_blank">
-                            Register Now
-                        </a>
-                    </Button>
-                </div>
-            </div>
-            <div className="flex items-center text-deep-blue-400 gap-8 border-t border-aero-200 pb-6 px-8 pt-4 h-fit">
-                <span className="flex items-center gap-2">
-                    <CalendarDays className="size-5" />
-                    <p className="text-sm">{date}</p>
-                </span>
-                <span className="flex items-center gap-2">
-                    <Clock className="size-5" />
-                    <p className="text-sm">{time}</p>
-                </span>
-            </div>
-        </div>
-    )
+export function EventCard() {
+  return (
+    <article className="grid overflow-hidden rounded-3xl border border-aero-200 bg-white md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <Link href={igniteEvent.registrationUrl} className="block focus-visible:outline-4 focus-visible:-outline-offset-4 focus-visible:outline-yellow-600" aria-label={`Register for ${igniteEvent.title}`}>
+        <Image src={igniteEvent.poster} alt={igniteEvent.posterAlt} width={1280} height={1600} sizes="(min-width: 1280px) 500px, (min-width: 768px) 45vw, 100vw" className="h-auto w-full" />
+      </Link>
+      <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-14">
+        <h3 className="text-4xl leading-tight sm:text-5xl lg:text-6xl">{igniteEvent.title}</h3>
+        <p className="mt-3 text-xl text-deep-blue-500">{igniteEvent.theme}.</p>
+        <p className="mt-5 text-sm leading-7 text-deep-blue-400">Join {igniteEvent.organiser} at {igniteEvent.venue}, {igniteEvent.location}. We look forward to welcoming you.</p>
+        <EventDetails className="my-8 border-y border-aero-100 py-6" />
+        <Button asChild className="w-full gap-3 sm:w-fit"><Link href={igniteEvent.registrationUrl}>Register now <ArrowRight aria-hidden="true" className="size-4" /></Link></Button>
+      </div>
+    </article>
+  );
 }
