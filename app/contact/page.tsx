@@ -31,6 +31,7 @@ export default function Contact() {
     const socialsRef = useRef(null);
     const isInView = useInView(socialsRef, { once: true, amount: 0.3 });
     const [loading, setLoading] = useState(false);
+    const [formStatus, setFormStatus] = useState("");
 
     const socials = [
         {
@@ -81,29 +82,34 @@ export default function Contact() {
         },
     ];
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = e.currentTarget;
         setLoading(true);
+        setFormStatus("");
 
+        const values = new FormData(form);
         const formData = {
-            name: (document.querySelector('input[placeholder="Full Name"]') as HTMLInputElement)?.value,
-            email: (document.querySelector('input[placeholder="Email"]') as HTMLInputElement)?.value,
-            phone: (document.querySelector('input[placeholder="Phone Number"]') as HTMLInputElement)?.value,
+            name: String(values.get("name") ?? ""),
+            email: String(values.get("email") ?? ""),
+            phone: String(values.get("phone") ?? ""),
             reason,
-            message: (document.querySelector('textarea') as HTMLTextAreaElement)?.value,
+            message: String(values.get("message") ?? ""),
         };
 
         try {
-            await fetch("https://script.google.com/macros/s/AKfycbxTwx-M5AvY-XpOuaSCZ9RzDjD1OWMQZr4-XP-LBlAUZ3IKitMVKH2FokCFiaZNnZE/exec", {
+            const response = await fetch("/api/forms", {
                 method: "POST",
-                mode: "no-cors", // bypass CORS
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                body: JSON.stringify({ ...formData, type: "contact" }),
+                headers: { "Content-Type": "application/json" },
             });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "Please try again.");
+            setFormStatus("Thanks for reaching out. Your message has been received.");
+            form.reset();
+            setReason("Prayer Request");
         } catch (err) {
-            console.error(err);
+            setFormStatus(err instanceof Error ? err.message : "We could not send your message. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -135,10 +141,10 @@ export default function Contact() {
                     </p>
                 </div>
                 <form className="flex flex-col gap-6 lg:w-2/3" onSubmit={handleSubmit}>
-                    <Input icon="user-round" placeholder="Full Name" required />
+                    <Input icon="user-round" name="name" placeholder="Full Name" required />
                     <div className="flex flex-col lg:flex-row items-center gap-6">
-                        <Input icon="mailbox" placeholder="Email" type="email" required />
-                        <Input icon="smartphone" placeholder="Phone Number" type="tel" required />
+                        <Input icon="mailbox" name="email" placeholder="Email" type="email" required />
+                        <Input icon="smartphone" name="phone" placeholder="Phone Number" type="tel" required />
                     </div>
                     <div className="flex flex-col lg:flex-row gap-6">
                         <DropdownMenu>
@@ -177,6 +183,7 @@ export default function Contact() {
                             icon="message-square-heart"
                             placeholder="Enter your message here"
                             className="lg:w-4/6"
+                            name="message"
                             label="Message"
                             required
                         />
@@ -189,6 +196,7 @@ export default function Contact() {
                     >
                         {loading ? "Sending..." : "Send Message"}
                     </Button>
+                    <p role="status" aria-live="polite" className="text-sm text-deep-blue-500">{formStatus}</p>
                 </form>
             </div>
             <motion.div

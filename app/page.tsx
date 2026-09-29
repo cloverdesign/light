@@ -1,16 +1,15 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Globe, Hand } from "lucide-react";
+import { Globe, Hand } from "lucide-react";
 import {
   motion,
   useVelocity,
   useScroll,
   useTransform,
   useSpring,
-  useMotionValue,
 } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { EventCard } from "@/components/hero/event-card";
 import CircleBadge from "@/components/ui/circle-badge";
 import Image from "next/image";
@@ -26,13 +25,12 @@ import Link from "next/link";
 import { spring } from "motion";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Marquee } from "@/components/ui/marquee";
-import { useWindowSize } from "@uidotdev/usehooks";
+import { igniteEvent } from "@/lib/events";
 import { Hero } from "./hero";
 
 const MotionButton = motion.create(Button);
 const MotionImage = motion.create(Image);
 
-const DRAG_BUFFER = 50;
 
 export default function Home() {
   const heroImages = [
@@ -121,43 +119,6 @@ export default function Home() {
     },
   ];
 
-  const events = [
-    // {
-    //   title: "Foundation School Graduation",
-    //   content:
-    //     "Celebrate the achievements of our Foundation School graduates as they complete their spiritual journey and step into their next season of ministry and service.",
-    //   time: "10 AM",
-    //   date: "1st June, 2025",
-    //   icon: { style: "bg-aero-600 text-deep-blue-600", name: "graduation-cap" },
-    // },
-    // {
-    //   title: "Global Communion Service",
-    //   content:
-    //     "Join believers worldwide in a powerful time of unity and worship as we partake in communion together, transcending borders and celebrating our shared faith.",
-    //   time: "10 AM",
-    //   date: "1st June, 2025",
-    //   icon: { style: "bg-orange-600 text-orange-200", name: "book-open-text" },
-    // },
-    {
-      title: "Ignite Con '25",
-      content:
-        "Join us as we set Pretoria on fire for Jesus at Ignite Conference 2025!",
-      time: "10 AM",
-      date: "31st August, 2025",
-      icon: { style: "bg-orange-600 text-orange-200", name: "flame" },
-      url: "https://kingsforms.online/igniteregistration"
-    },
-    {
-      title: "ICPLC 2025",
-      content:
-        "Meet us in Loveworld City for revelation, fire, and unstoppable vision!",
-      time: "10 AM",
-      date: "4th - 7th September 2025",
-      icon: { style: "bg-aero-600 text-deep-blue-600", name: "book-open-text" },
-      url: "https://icplc-live.vercel.app/"
-    },
-  ];
-
   const initialTestimonials = [
     {
       name: "Noluthando N",
@@ -203,56 +164,6 @@ export default function Home() {
   const [expandedTestimonials, setExpandedTestimonials] = useState<Set<string>>(
     new Set(),
   );
-
-  const [eventsIndex, setEventsIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const size = useWindowSize();
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(size.width ? size.width < 768 : false); // md breakpoint
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, [size.width]);
-
-  const getCardWidth = () => {
-    if (isMobile) {
-      return size.width ? size.width - 32 : 320; // fallback to 320px if width is null
-    } else {
-      return 450;
-    }
-  };
-
-  const gap = 32;
-  const cardWidth = getCardWidth();
-  const totalCardWidth = cardWidth + gap;
-
-  const dragX = useMotionValue(0);
-
-  const onDragEnd = () => {
-    const x = dragX.get();
-
-    if (x <= -DRAG_BUFFER && eventsIndex < events.length - 1) {
-      setEventsIndex((prev) => prev + 1);
-    } else if (x >= DRAG_BUFFER && eventsIndex > 0) {
-      setEventsIndex((prev) => prev - 1);
-    }
-  };
-
-  const goToPrevious = () => {
-    if (eventsIndex > 0) {
-      setEventsIndex((prev) => prev - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (eventsIndex < events.length - 1) {
-      setEventsIndex((prev) => prev + 1);
-    }
-  };
 
   const handleSelectTestimonial = (item: Testimonial) => {
     const newOrder = [
@@ -429,127 +340,23 @@ export default function Home() {
       <div className="my-10 lg:my-50 h-[50vh] flex flex-col items-center justify-center overflow-hidden relative">
         <div className="border-y-[1px] bg-white border-aero-300 rotate-[8deg] overflow-hidden py-2">
           <Marquee baseVelocity={-2}>
-            * Join Us This 31st August * Ignite Con &lsquo;25  *  Join Us This 31st August * Ignite Con &lsquo;25
+            {`* ${igniteEvent.title} * ${igniteEvent.date} · ${igniteEvent.time} * ${igniteEvent.theme} *`}
           </Marquee>
         </div>
         <div className="border-y-[1px] bg-white border-aero-300 -rotate-[8deg] overflow-hidden py-2">
           <Marquee baseVelocity={-2}>
-            * Join Us This 31st August * Ignite Con &lsquo;25  *  Join Us This 31st August * Ignite Con &lsquo;25
+            {`* ${igniteEvent.title} * ${igniteEvent.date} · ${igniteEvent.time} * ${igniteEvent.theme} *`}
           </Marquee>
         </div>
       </div>
 
-      <div className="mb-50 lg:pl-[127px] px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between overflow-x-hidden gap-10">
-        <div className="flex flex-col gap-4">
-          <div className="overflow-y-hidden">
-            <motion.h2
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 0.2,
-                type: spring,
-                bounce: 0.5,
-              }}
-              className="text-[35px] leading-[48px] lg:text-[56px] lg:leading-[72px]"
-            >
-              Upcoming
-              <div className="relative inline-block ml-4 w-fit h-fit">
-                <p>Events</p>
-                <svg
-                  className="absolute left-2 -bottom-0.5 w-full"
-                  width="119"
-                  height="13"
-                  viewBox="0 0 119 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/motion.svg"
-                >
-                  <motion.path
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.8,
-                      ease: "easeInOut",
-                      delay: 0.7,
-                    }}
-                    d="M1.73944 8.84912C9.59305 8.84912 17.3869 7.91732 25.1483 6.78363C32.5318 5.70515 39.986 4.99725 47.4305 4.46779C53.9941 4.00098 60.4657 3.85806 67.0057 3.0908C73.5987 2.31731 80.2905 2.16401 86.9251 2.21453C91.5177 2.2495 95.9504 3.24781 100.492 3.79494C104.13 4.23327 107.728 4.96366 111.304 5.75089C112.956 6.1146 114.718 6.28537 116.343 6.73669C117.794 7.13995 113.637 6.8776 113.62 6.87752C106.317 6.84418 97.4776 5.22042 90.5866 8.56746C90.1857 8.76221 89.9667 8.84912 89.5226 8.84912C88.3605 8.84912 91.8291 9.20799 92.9338 9.56891C94.5208 10.0874 96.2673 10.4067 97.8941 10.7894C98.3569 10.8983 98.6925 10.665 98.9112 11.1024"
-                    stroke="#FFC855"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-            </motion.h2>
-          </div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.8 }}
-            className="text-deep-blue-400 lg:w-[60%] w-full md:w-[30%]"
-          >
-            Stay connected with our vibrant fellowship through upcoming events
-          </motion.p>
+      <section id="events" aria-labelledby="events-heading" className="mx-auto mb-32 max-w-7xl scroll-mt-32 px-6 font-body md:px-10 lg:mb-50">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <h2 id="events-heading" className="text-[40px] leading-tight lg:text-[56px]">Upcoming events</h2>
+          <p className="max-w-sm text-sm leading-6 text-deep-blue-400">There’s a place for you at Lighthouse. Join us for our next gathering.</p>
         </div>
-        <div className="py-2 flex flex-col gap-10 overflow-hidden relative">
-          <motion.div
-            drag="x"
-            dragConstraints={{
-              left: 0,
-              right: 0,
-            }}
-            style={{
-              x: dragX,
-            }}
-            animate={{
-              translateX: -eventsIndex * totalCardWidth,
-            }}
-            transition={{
-              type: "spring",
-              mass: 3,
-              stiffness: 400,
-              damping: 50,
-            }}
-            onDragEnd={onDragEnd}
-            className="flex items-center gap-8 cursor-grab active:cursor-grabbing w-max relative"
-          >
-            {[...events].map((item, index) => (
-              <EventCard
-                icon={item.icon}
-                key={index}
-                title={item.title}
-                content={item.content}
-                time={item.time}
-                date={item.date}
-                url={item.url}
-              />
-            ))}
-          </motion.div>
-          <div className="flex items-center lg:ml-20 gap-8">
-            <Button
-              variant="tertiary"
-              size="round"
-              className="rounded-full"
-              onClick={goToPrevious}
-              disabled={eventsIndex === 0}
-            >
-              <ChevronLeft />
-            </Button>
-            <Button
-              variant="tertiary"
-              size="round"
-              className="rounded-full"
-              onClick={goToNext}
-              disabled={eventsIndex === events.length - 1}
-            >
-              <ChevronRight />
-            </Button>
-          </div>
-        </div>
-      </div>
+        <EventCard />
+      </section>
 
       {/* Grow Section */}
       <div className="mb-50 lg:mb-75 flex flex-col lg:flex-row items-center justify-center h-[100vh] lg:h-[50vh] p-8 xl:px-32 gap-20 lg:gap-8">

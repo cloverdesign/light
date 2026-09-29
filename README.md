@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Forms and admin inbox
+
+The contact form and event registration form save submissions to the `form_submissions` table in Supabase. Run [`supabase/form_submissions.sql`](supabase/form_submissions.sql) in the Supabase SQL Editor, then set these server-side environment variables in `.env.local` and in the deployment environment:
+
+```text
+SUPABASE_URL=https://<project-ref>.supabase.co
+SUPABASE_SECRET_KEY=<sb_secret_...>
+ADMIN_PASSWORD=<long-unique-password>
+ADMIN_HOSTNAME=admin.example.com
+```
+
+Keep the secret key private; it must not use a `NEXT_PUBLIC_` variable. Point the `admin.example.com` DNS record at the same deployment as the main site. The admin inbox then opens at `https://admin.example.com/` (or `/admin` on the main domain). Admin sessions expire after 12 hours.
+
+Event registrations are at `/events/register`. Shared event details live in `lib/events.ts`, and the e-card is in `public/events/ignite-con-2026.jpeg`. Both the homepage and registration page use these details. New registrations store the event ID and name with the response; the existing JSON submission table needs no additional migration.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
