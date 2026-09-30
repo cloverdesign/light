@@ -126,7 +126,10 @@ export function Combobox({ id, name, options, value, onChange, pinnedOption, key
           aria-label={placeholder}
           // Keep focus in the input so a click doesn't blur and close the list first.
           onMouseDown={(event) => event.preventDefault()}
-          className="absolute z-20 mt-2 max-h-72 w-full overflow-y-auto rounded-lg border border-aero-200 bg-white p-1 font-body text-sm font-normal text-deep-blue-600 shadow-lg"
+          // The site's Lenis smooth scroll captures wheel and touch scrolling page-wide;
+          // this hands scrolling inside the list back to the browser.
+          data-lenis-prevent
+          className="absolute z-20 mt-2 max-h-72 w-full overflow-y-auto overscroll-contain rounded-lg border border-aero-200 bg-white p-1 font-body text-sm font-normal text-deep-blue-600 shadow-lg"
         >
           {noMatches && <li className="px-3 py-2.5 text-deep-blue-400">No matches{pinnedOption ? ` — choose “${pinnedOption}” to type it in.` : "."}</li>}
           {matches.map((option, index) => (
