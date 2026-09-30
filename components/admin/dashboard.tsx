@@ -1,26 +1,29 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   ArrowLeft, ArrowRight, CalendarDays, FileText, LayoutDashboard,
-  LogOut, Mail, MessageSquare, Phone, RefreshCw, Search,
+  LogOut, Mail, MessageSquare, Phone, RefreshCw, ScanLine, Search,
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import type { Submission } from "@/lib/submissions";
+import { RegistrationTransfer } from "@/components/admin/registration-transfer";
+import { isUnsent, TicketDetails, ticketStatus, UnsentTicketsBanner } from "@/components/admin/ticket-actions";
 
 type Filter = "all" | "contact" | "event_registration";
 type View = "overview" | "submissions";
 
 const PAGE_SIZE = 8;
 const fieldLabels: Record<string, string> = {
-  eventName: "Event", eventId: "Event ID",
+  eventName: "Event", eventId: "Event ID", ticketCode: "Ticket code",
   name: "Full name", fullName: "Full name", email: "Email address", phone: "Phone number",
   reason: "Message type", message: "Message", ageGroup: "Age group", isStudent: "Student",
-  campus: "Campus / university", area: "Area / suburb", needsTransport: "Transport needed",
-  firstTimer: "First time", hasPrayerRequest: "Prayer request", prayerRequest: "Prayer request details",
+  campus: "Campus / university", lighthouseCampus: "Lighthouse campus", otherCampus: "Campus (not listed)", area: "Area / suburb", needsTransport: "Transport needed",
+  firstTimer: "First time", hasPrayerRequest: "Prayer request", prayerRequest: "Prayer request details", source: "Source",
 };
 
 type DashboardProps = {
@@ -43,6 +46,7 @@ export default function Dashboard({ submissions, loading, error, onRefresh, onSi
     contact: submissions.filter((item) => item.type === "contact").length,
     event_registration: submissions.filter((item) => item.type === "event_registration").length,
   }), [submissions]);
+  const unsentCount = useMemo(() => submissions.filter(isUnsent).length, [submissions]);
   const filtered = useMemo(() => {
     const search = query.trim().toLowerCase();
     return submissions.filter((item) =>
@@ -84,6 +88,9 @@ export default function Dashboard({ submissions, loading, error, onRefresh, onSi
                 <Icon aria-hidden="true" className="size-4 shrink-0" />{label}
               </Button>
             ))}
+            <Button asChild variant="ghost" size="xs" className="justify-start gap-2 px-3 py-2.5 text-xs text-deep-blue-400 hover:bg-aero-100 sm:text-sm">
+              <Link href="/admin/scanner"><ScanLine aria-hidden="true" className="size-4 shrink-0" />Gate scanner</Link>
+            </Button>
           </nav>
           <div>
             <Button variant="ghost" size="xs" className="gap-2 px-3 py-2.5 text-deep-blue-400 hover:bg-aero-100 lg:w-full lg:justify-start" disabled={signingOut} onClick={() => void signOut()}>
@@ -151,6 +158,9 @@ export default function Dashboard({ submissions, loading, error, onRefresh, onSi
             ))}
           </div>
 
+          {filter !== "contact" && <div className="mb-4 flex flex-wrap gap-3"><RegistrationTransfer onImported={onRefresh} /></div>}
+          {filter !== "contact" && <UnsentTicketsBanner count={unsentCount} onChange={onRefresh} />}
+
           {error && <p role="alert" className="mb-4 rounded-lg bg-orange-100 px-4 py-3 text-sm text-orange-900">{error}</p>}
 
           <div className="overflow-hidden rounded-xl border border-deep-blue-600/10 bg-white" aria-busy={loading}>
@@ -163,7 +173,8 @@ export default function Dashboard({ submissions, loading, error, onRefresh, onSi
                 const email = String(item.data.email || "");
                 const phone = String(item.data.phone || "");
                 const isContact = item.type === "contact";
-                const details = Object.entries(item.data).filter(([key, value]) => value !== "" && !["name", "fullName", "eventId"].includes(key));
+                const details = Object.entries(item.data).filter(([key, value]) => value !== "" && !["name", "fullName", "eventId", "ticketCode"].includes(key));
+                const status = isContact ? null : ticketStatus(item);
                 return (
                   <AccordionItem key={item.id} value={item.id} className="border-b border-deep-blue-600/10 last:border-b-0">
                     <AccordionTrigger className="gap-4 border-0 px-5 py-5 font-body normal-case hover:bg-aero-100/40 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-aero-600 lg:px-5 [&>svg]:size-4 [&>svg]:rotate-90 [&[data-state=open]>svg]:rotate-180">
@@ -172,11 +183,12 @@ export default function Dashboard({ submissions, loading, error, onRefresh, onSi
                           <span aria-hidden="true" className={`flex size-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${isContact ? "bg-aero-100 text-aero-900" : "bg-yellow-100 text-yellow-900"}`}>{name.split(/\s+/).slice(0, 2).map((word) => word[0]).join("")}</span>
                           <span className="min-w-0"><span className="block truncate text-sm font-semibold">{name}</span><span className="mt-0.5 block truncate text-xs font-normal text-deep-blue-400">{email || phone || "No contact details"}</span></span>
                         </span>
-                        <span className="pl-12 text-xs font-normal text-deep-blue-400 md:pl-0">{isContact ? "Contact message" : "Event registration"}</span>
+                        <span className="flex flex-wrap items-center gap-2 pl-12 text-xs font-normal text-deep-blue-400 md:pl-0">{isContact ? "Contact message" : "Event registration"}{status && <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${status.tone}`}>{status.label}</span>}</span>
                         <time className="hidden text-xs font-normal text-deep-blue-400 md:block" dateTime={item.created_at} title={new Date(item.created_at).toLocaleString()}>{new Date(item.created_at).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })}</time>
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="border-x-0 border-t border-deep-blue-600/10 px-2 py-6 lg:px-0">
+                      {!isContact && <TicketDetails item={item} onChange={onRefresh} />}
                       <div className="mb-6 flex flex-wrap gap-2">
                         {email && <Button asChild variant="outline" size="xs" className="gap-2 px-3"><a href={`mailto:${email}`}><Mail aria-hidden="true" className="size-3.5" />Email</a></Button>}
                         {phone && <Button asChild variant="outline" size="xs" className="gap-2 px-3"><a href={`tel:${phone}`}><Phone aria-hidden="true" className="size-3.5" />Call</a></Button>}
