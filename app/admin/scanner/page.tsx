@@ -29,6 +29,6 @@ export default function ScannerPage() {
 
   useEffect(() => { void load(); }, [load]);
 
-  if (!stats) return <AdminLogin checking={checking} loadError={error} onSignedIn={load} title="Gate scanner." subtitle={`Sign in with the admin password to start checking tickets.`} />;
+  if (!stats) return <AdminLogin checking={checking} loadError={error} onSignedIn={load} title="Gate scanner." subtitle="Sign in with the admin password to start checking tickets." dark />;
   return <GateScanner initialStats={stats} onUnauthorized={() => setStats(null)} />;
 }

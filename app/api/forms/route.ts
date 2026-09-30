@@ -21,7 +21,6 @@ export async function POST(request: Request) {
     } else if (type === "event_registration") {
       const studentChoice = text(body.isStudent, 20);
       const prayerChoice = text(body.hasPrayerRequest, 20);
-      const isStudent = studentChoice === "Yes";
       const hasPrayerRequest = prayerChoice === "Yes";
       const lighthouseCampus = text(body.lighthouseCampus, 80);
       const campusUnlisted = lighthouseCampus === campusNotListed;
@@ -31,14 +30,13 @@ export async function POST(request: Request) {
         ticketCode: createTicketCode(),
         fullName: text(body.fullName, 120), email: text(body.email, 254), phone: text(body.phone, 40),
         ageGroup: text(body.ageGroup, 40), isStudent: studentChoice,
-        campus: isStudent ? text(body.campus, 160) : "",
         lighthouseCampus, otherCampus: campusUnlisted ? text(body.otherCampus, 160) : "",
         area: text(body.area, 160),
         needsTransport: text(body.needsTransport, 20), firstTimer: text(body.firstTimer, 20),
         hasPrayerRequest: prayerChoice,
         prayerRequest: hasPrayerRequest ? text(body.prayerRequest, 3000) : "",
       };
-      if (!data.fullName || !data.email || !/^\S+@\S+\.\S+$/.test(data.email) || !data.phone || !registrationAgeGroups.some((group) => group === data.ageGroup) || !data.area || !["Yes", "No"].includes(data.isStudent) || !["Yes", "No"].includes(data.needsTransport) || !["Yes", "No"].includes(data.firstTimer) || !["Yes", "No"].includes(data.hasPrayerRequest) || (isStudent && !data.campus) || (!campusUnlisted && !lighthouseCampuses.some((name) => name === lighthouseCampus)) || (campusUnlisted && !data.otherCampus) || (hasPrayerRequest && !data.prayerRequest)) {
+      if (!data.fullName || !data.email || !/^\S+@\S+\.\S+$/.test(data.email) || !data.phone || !registrationAgeGroups.some((group) => group === data.ageGroup) || !data.area || !["Yes", "No"].includes(data.isStudent) || !["Yes", "No"].includes(data.needsTransport) || !["Yes", "No"].includes(data.firstTimer) || !["Yes", "No"].includes(data.hasPrayerRequest) || (!campusUnlisted && !lighthouseCampuses.some((name) => name === lighthouseCampus)) || (campusUnlisted && !data.otherCampus) || (hasPrayerRequest && !data.prayerRequest)) {
         return NextResponse.json({ error: "Please complete the required fields." }, { status: 400 });
       }
       await saveSubmission(type, data);

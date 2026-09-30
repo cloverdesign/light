@@ -12,7 +12,6 @@ const fieldClass = "grid gap-2 text-sm font-medium";
 const inputClass = "font-normal focus-within:border-aero-500 focus-within:ring-2 focus-within:ring-aero-100";
 
 export function RegistrationForm() {
-  const [student, setStudent] = useState("");
   const [campus, setCampus] = useState("");
   const [prayer, setPrayer] = useState("");
   const [error, setError] = useState("");
@@ -37,7 +36,6 @@ export function RegistrationForm() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Please try again.");
       form.reset();
-      setStudent("");
       setCampus("");
       setPrayer("");
       setTicket({ code: result.ticketCode, emailSent: result.emailSent });
@@ -73,8 +71,7 @@ export function RegistrationForm() {
           <label className={fieldClass} htmlFor="email">Email address<Input id="email" className={inputClass} icon="mail" name="email" type="email" autoComplete="email" maxLength={254} placeholder="you@example.com" required /></label>
           <label className={fieldClass} htmlFor="phone">Phone number<Input id="phone" className={inputClass} icon="smartphone" name="phone" type="tel" autoComplete="tel" maxLength={40} placeholder="Your contact number" required /></label>
           <label className={fieldClass} htmlFor="age-group">Age group<Select id="age-group" name="ageGroup" defaultValue="" required><option value="" disabled>Select age group</option>{registrationAgeGroups.map((group) => <option key={group}>{group}</option>)}</Select></label>
-          <label className={fieldClass} htmlFor="is-student">Are you a student?<Select id="is-student" name="isStudent" value={student} onChange={(event) => setStudent(event.target.value)} required><option value="" disabled>Select an option</option><option>Yes</option><option>No</option></Select></label>
-          {student === "Yes" && <label className={`${fieldClass} sm:col-span-2`} htmlFor="campus">Campus / university<Input id="campus" className={inputClass} name="campus" autoComplete="organization" maxLength={160} placeholder="Name of your campus or university" required /></label>}
+          <label className={fieldClass} htmlFor="is-student">Are you a student?<Select id="is-student" name="isStudent" defaultValue="" required><option value="" disabled>Select an option</option><option>Yes</option><option>No</option></Select></label>
           <label className={`${fieldClass} sm:col-span-2`} htmlFor="lighthouse-campus">Lighthouse campus<Select id="lighthouse-campus" name="lighthouseCampus" value={campus} onChange={(event) => setCampus(event.target.value)} required><option value="" disabled>Select your campus</option>{lighthouseCampuses.map((name) => <option key={name}>{name}</option>)}<option>{campusNotListed}</option></Select></label>
           {campus === campusNotListed && <label className={`${fieldClass} sm:col-span-2`} htmlFor="other-campus">Which campus are you from?<Input id="other-campus" className={inputClass} icon="map-pin" name="otherCampus" maxLength={160} placeholder="Type the name of your campus" required /></label>}
         </div>

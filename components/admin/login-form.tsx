@@ -12,9 +12,11 @@ type AdminLoginProps = {
   onSignedIn: () => Promise<void>;
   title?: string;
   subtitle?: string;
+  /** Match the dark gate-scanner page. */
+  dark?: boolean;
 };
 
-export function AdminLogin({ checking, loadError = "", onSignedIn, title = "Welcome back.", subtitle = "Sign in to your Lighthouse workspace." }: AdminLoginProps) {
+export function AdminLogin({ checking, loadError = "", onSignedIn, title = "Welcome back.", subtitle = "Sign in to your Lighthouse workspace.", dark = false }: AdminLoginProps) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [signingIn, setSigningIn] = useState(false);
@@ -43,11 +45,11 @@ export function AdminLogin({ checking, loadError = "", onSignedIn, title = "Welc
   }
 
   return (
-    <main className="flex min-h-[calc(100svh-88px)] flex-col px-6">
+    <main className={`flex min-h-[calc(100svh-88px)] flex-col px-6 ${dark ? "bg-deep-blue-600 text-aero-100" : ""}`}>
       <section aria-labelledby="login-heading" className="mx-auto flex w-full max-w-[400px] flex-1 flex-col justify-center py-16 sm:py-24">
         <div className="mb-10 text-center">
           <h1 id="login-heading" className="text-[48px] leading-[1.05] sm:text-[56px]">{title}</h1>
-          <p className="mx-auto mt-4 max-w-[280px] text-sm leading-6 text-deep-blue-400">{subtitle}</p>
+          <p className={`mx-auto mt-4 max-w-[280px] text-sm leading-6 ${dark ? "text-aero-200" : "text-deep-blue-400"}`}>{subtitle}</p>
         </div>
         <form onSubmit={login} className="grid gap-6" aria-busy={signingIn}>
           <div>
@@ -63,7 +65,7 @@ export function AdminLogin({ checking, loadError = "", onSignedIn, title = "Welc
           <Button type="submit" disabled={checking || signingIn} className="w-full gap-2 py-4 text-sm" variant="main">{signingIn ? "Signing in…" : checking ? "Checking session…" : "Sign in"}<ArrowRight aria-hidden="true" className="size-4" /></Button>
         </form>
       </section>
-      <footer className="pb-7 text-center text-xs text-deep-blue-400">Lighthouse · Administration</footer>
+      <footer className={`pb-7 text-center text-xs ${dark ? "text-aero-300" : "text-deep-blue-400"}`}>Lighthouse · Administration</footer>
     </main>
   );
 }
