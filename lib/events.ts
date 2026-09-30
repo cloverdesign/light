@@ -16,3 +16,14 @@ export const igniteEvent = {
 } as const;
 
 export const registrationAgeGroups = ["Under 13", "13–17", "18–24", "25–34", "35–44", "45+"] as const;
+
+export const lighthouseCampuses = [
+  "BLW Emeris Menlyn",
+  "BLW Pretoria Central",
+  "BLW Pretoria Madeira",
+  "BLW SMU",
+  "BLW TUT Ga-Rankuwa",
+  "BLW TUT Soshanguve",
+] as const;
+
+export const campusNotListed = "Campus not listed";

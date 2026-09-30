@@ -6,17 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { igniteEvent, registrationAgeGroups } from "@/lib/events";
+import { campusNotListed, igniteEvent, lighthouseCampuses, registrationAgeGroups } from "@/lib/events";
 
 const fieldClass = "grid gap-2 text-sm font-medium";
 const inputClass = "font-normal focus-within:border-aero-500 focus-within:ring-2 focus-within:ring-aero-100";
 
 export function RegistrationForm() {
   const [student, setStudent] = useState("");
+  const [campus, setCampus] = useState("");
   const [prayer, setPrayer] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [complete, setComplete] = useState(false);
+  const [ticket, setTicket] = useState<{ code: string; emailSent: boolean } | null>(null);
   const inFlight = useRef(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -37,8 +38,9 @@ export function RegistrationForm() {
       if (!response.ok) throw new Error(result.error || "Please try again.");
       form.reset();
       setStudent("");
+      setCampus("");
       setPrayer("");
-      setComplete(true);
+      setTicket({ code: result.ticketCode, emailSent: result.emailSent });
     } catch (err) {
       setError(err instanceof Error ? err.message : "We couldn’t save your registration. Please try again.");
     } finally {
@@ -47,12 +49,17 @@ export function RegistrationForm() {
     }
   }
 
-  if (complete) return (
+  if (ticket) return (
     <section role="status" className="rounded-2xl border border-aero-200 bg-white p-8 sm:p-10">
       <CheckCircle2 aria-hidden="true" className="size-10 text-aero-800" />
       <h2 tabIndex={-1} ref={(heading) => { heading?.focus(); }} className="mt-6 text-4xl outline-none">You’re registered!</h2>
       <p className="mt-4 text-sm leading-7 text-deep-blue-400">We’ve received your registration for {igniteEvent.title}. We look forward to seeing you at {igniteEvent.venue} on {igniteEvent.date} at {igniteEvent.time}.</p>
-      <Button variant="outline" className="mt-8" onClick={() => setComplete(false)}>Register someone else</Button>
+      <div className="mt-6 rounded-xl bg-aero-100/60 px-5 py-4 text-center">
+        <p className="text-xs font-medium uppercase tracking-wide text-deep-blue-400">Ticket code</p>
+        <p className="mt-1 font-mono text-2xl font-semibold tracking-widest text-deep-blue-600">{ticket.code}</p>
+      </div>
+      <p className="mt-4 text-sm leading-7 text-deep-blue-400">{ticket.emailSent ? "Your ticket and QR code are on their way to your inbox. Please bring it with you to the entrance." : "We couldn’t email your ticket right now. Please save or screenshot this code and present it at the entrance."}</p>
+      <Button variant="outline" className="mt-8" onClick={() => setTicket(null)}>Register someone else</Button>
     </section>
   );
 
@@ -68,6 +75,8 @@ export function RegistrationForm() {
           <label className={fieldClass} htmlFor="age-group">Age group<Select id="age-group" name="ageGroup" defaultValue="" required><option value="" disabled>Select age group</option>{registrationAgeGroups.map((group) => <option key={group}>{group}</option>)}</Select></label>
           <label className={fieldClass} htmlFor="is-student">Are you a student?<Select id="is-student" name="isStudent" value={student} onChange={(event) => setStudent(event.target.value)} required><option value="" disabled>Select an option</option><option>Yes</option><option>No</option></Select></label>
           {student === "Yes" && <label className={`${fieldClass} sm:col-span-2`} htmlFor="campus">Campus / university<Input id="campus" className={inputClass} name="campus" autoComplete="organization" maxLength={160} placeholder="Name of your campus or university" required /></label>}
+          <label className={`${fieldClass} sm:col-span-2`} htmlFor="lighthouse-campus">Lighthouse campus<Select id="lighthouse-campus" name="lighthouseCampus" value={campus} onChange={(event) => setCampus(event.target.value)} required><option value="" disabled>Select your campus</option>{lighthouseCampuses.map((name) => <option key={name}>{name}</option>)}<option>{campusNotListed}</option></Select></label>
+          {campus === campusNotListed && <label className={`${fieldClass} sm:col-span-2`} htmlFor="other-campus">Which campus are you from?<Input id="other-campus" className={inputClass} icon="map-pin" name="otherCampus" maxLength={160} placeholder="Type the name of your campus" required /></label>}
         </div>
       </fieldset>
 

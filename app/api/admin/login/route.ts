@@ -1,9 +1,6 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
-
-function token(password: string) {
-  return createHmac("sha256", process.env.ADMIN_PASSWORD || "").update(`lighthouse-admin:${password}`).digest("hex");
-}
+import { ADMIN_COOKIE, adminToken as token } from "@/lib/admin-auth";
 
 export async function POST(request: Request) {
   const configuredPassword = process.env.ADMIN_PASSWORD;
@@ -14,7 +11,7 @@ export async function POST(request: Request) {
   const actual = Buffer.from(token(candidate));
   if (!timingSafeEqual(expected, actual)) return NextResponse.json({ error: "Incorrect password." }, { status: 401 });
   const response = NextResponse.json({ ok: true });
-  response.cookies.set("lighthouse_admin", token(configuredPassword), {
+  response.cookies.set(ADMIN_COOKIE, token(configuredPassword), {
     httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "strict", path: "/", maxAge: 60 * 60 * 12,
   });
   return response;
@@ -22,6 +19,6 @@ export async function POST(request: Request) {
 
 export async function DELETE() {
   const response = NextResponse.json({ ok: true });
-  response.cookies.delete("lighthouse_admin");
+  response.cookies.delete(ADMIN_COOKIE);
   return response;
 }
