@@ -22,7 +22,7 @@ const fieldLabels: Record<string, string> = {
   eventName: "Event", eventId: "Event ID", ticketCode: "Ticket code",
   name: "Full name", fullName: "Full name", email: "Email address", phone: "Phone number",
   reason: "Message type", message: "Message", ageGroup: "Age group", isStudent: "Student",
-  campus: "Campus / university", lighthouseCampus: "Lighthouse campus", otherCampus: "Campus (not listed)", area: "Area / suburb", needsTransport: "Transport needed",
+  campus: "Campus / university", institution: "Institution of learning", otherInstitution: "Institution (other)", lighthouseCampus: "Lighthouse campus", otherCampus: "Campus (not listed)", area: "Area / suburb", needsTransport: "Transport needed",
   firstTimer: "First time", hasPrayerRequest: "Prayer request", prayerRequest: "Prayer request details", source: "Source",
 };
 

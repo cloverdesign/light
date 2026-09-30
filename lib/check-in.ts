@@ -9,7 +9,7 @@ export function describeAttendee(registration: Submission) {
   return {
     ticketCode: String(data.ticketCode || ""),
     name: String(data.fullName || data.name || "Guest"),
-    campus: String(data.otherCampus || data.lighthouseCampus || ""),
+    campus: String(data.otherInstitution || data.institution || data.otherCampus || data.lighthouseCampus || ""),
     checkedInAt: registration.checked_in_at ?? "",
   };
 }

@@ -5,9 +5,9 @@ import type QrScanner from "qr-scanner";
 import { BookOpen, Camera, CameraOff, CheckCircle2, CircleAlert, Keyboard, TriangleAlert, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { Combobox } from "@/components/ui/combobox";
 import type { CheckInResult } from "@/lib/check-in";
-import { campusNotListed, igniteEvent, lighthouseCampuses } from "@/lib/events";
+import { igniteEvent, institutionKeywords, institutionOther, institutions } from "@/lib/events";
 
 type Stats = { registered: number; checkedIn: number };
 type Panel = "manual" | "walk-in" | "guide" | null;
@@ -258,7 +258,7 @@ function ManualEntry({ onCheck }: { onCheck: (code: string) => void }) {
 }
 
 function WalkIn({ onDone, onClose }: { onDone: (result: CheckInResult) => void; onClose: () => void }) {
-  const [campus, setCampus] = useState("");
+  const [institution, setInstitution] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -284,14 +284,10 @@ function WalkIn({ onDone, onClose }: { onDone: (result: CheckInResult) => void; 
         <label className={fieldClass} htmlFor="walk-in-name">Full name<Input id="walk-in-name" icon="user-round" name="fullName" required maxLength={120} autoComplete="off" placeholder="Their full name" className={inputClass} /></label>
         <label className={fieldClass} htmlFor="walk-in-phone">Phone number<Input id="walk-in-phone" icon="smartphone" name="phone" type="tel" required maxLength={40} autoComplete="off" placeholder="Their contact number" className={inputClass} /></label>
         <label className={fieldClass} htmlFor="walk-in-email">Email address <span className="-mt-1 font-normal text-aero-300">Optional</span><Input id="walk-in-email" icon="mail" name="email" type="email" maxLength={254} autoComplete="off" placeholder="name@example.com" className={inputClass} /></label>
-        <label className={fieldClass} htmlFor="walk-in-campus">Lighthouse campus
-          <Select id="walk-in-campus" name="lighthouseCampus" required value={campus} onChange={(event) => setCampus(event.target.value)}>
-            <option value="" disabled>Select campus</option>
-            {lighthouseCampuses.map((name) => <option key={name}>{name}</option>)}
-            <option>{campusNotListed}</option>
-          </Select>
-        </label>
-        {campus === campusNotListed && <label className={fieldClass} htmlFor="walk-in-other-campus">Which campus?<Input id="walk-in-other-campus" icon="map-pin" name="otherCampus" required maxLength={160} placeholder="Type the name of their campus" className={inputClass} /></label>}
+        <div className={fieldClass}><label htmlFor="walk-in-institution">Institution of learning <span className="font-normal text-aero-300">(students only)</span></label>
+          <Combobox id="walk-in-institution" name="institution" options={institutions} pinnedOption={institutionOther} keywords={institutionKeywords} value={institution} onChange={setInstitution} placeholder="Search for their institution" />
+        </div>
+        {institution === institutionOther && <label className={fieldClass} htmlFor="walk-in-other-institution">Please specify their institution<Input id="walk-in-other-institution" icon="graduation-cap" name="otherInstitution" required maxLength={160} placeholder="Name of their institution" className={inputClass} /></label>}
         {error && <p role="alert" className="rounded-lg bg-orange-100 px-4 py-3 text-sm leading-6 text-orange-900">{error}</p>}
         <Button type="submit" className="mt-1 w-full">{saving ? "Saving…" : "Register & check in"}</Button>
       </fieldset>

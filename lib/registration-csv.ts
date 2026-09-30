@@ -1,14 +1,16 @@
-import { campusNotListed, igniteEvent, lighthouseCampuses } from "@/lib/events";
+import { igniteEvent, institutionOther, institutions } from "@/lib/events";
 import type { NewSubmission, Submission } from "@/lib/submissions";
 import { createTicketCode, normaliseTicketCode } from "@/lib/tickets";
 
 /** Registration fields kept in `data`, in export order. Headers double as the import format. */
 const dataColumns = [
   ["ticketCode", "Ticket code"], ["fullName", "Full name"], ["email", "Email address"], ["phone", "Phone number"],
-  ["ageGroup", "Age group"], ["isStudent", "Student"], ["campus", "Campus / university"],
-  ["lighthouseCampus", "Lighthouse campus"], ["otherCampus", "Campus (not listed)"], ["area", "Area / suburb"],
+  ["ageGroup", "Age group"], ["isStudent", "Student"],
+  ["institution", "Institution of learning"], ["otherInstitution", "Institution (other)"], ["area", "Area / suburb"],
   ["needsTransport", "Transport needed"], ["firstTimer", "First time"], ["hasPrayerRequest", "Prayer request"],
   ["prayerRequest", "Prayer request details"], ["source", "Source"], ["eventName", "Event"],
+  // Earlier versions of the form asked these; kept so older registrations export in full.
+  ["campus", "Campus / university"], ["lighthouseCampus", "Lighthouse campus"], ["otherCampus", "Campus (not listed)"],
 ] as const;
 const timeColumns = [
   ["created_at", "Registered at"], ["ticket_emailed_at", "Ticket emailed at"], ["checked_in_at", "Checked in at"],
@@ -125,13 +127,13 @@ export function planImport(csv: string, existing: Submission[]): ImportPlan {
     if (!data.email && !data.phone) return plan.invalid.push({ row: rowNumber, reason: "Needs an email address or phone number" });
     if (data.email && !/^\S+@\S+\.\S+$/.test(data.email)) return plan.invalid.push({ row: rowNumber, reason: `“${data.email}” isn’t a valid email address` });
 
-    if (data.lighthouseCampus) {
-      const listed = lighthouseCampuses.find((name) => name.toLowerCase() === data.lighthouseCampus.toLowerCase());
-      if (listed) data.lighthouseCampus = listed;
-      else if (data.lighthouseCampus.toLowerCase() !== campusNotListed.toLowerCase()) {
-        data.otherCampus ||= data.lighthouseCampus;
-        data.lighthouseCampus = campusNotListed;
-      } else data.lighthouseCampus = campusNotListed;
+    if (data.institution) {
+      const listed = institutions.find((name) => name.toLowerCase() === data.institution.toLowerCase());
+      if (listed) data.institution = listed;
+      else if (data.institution.toLowerCase() !== institutionOther.toLowerCase()) {
+        data.otherInstitution ||= data.institution;
+        data.institution = institutionOther;
+      } else data.institution = institutionOther;
     }
 
     const suppliedCode = normaliseTicketCode(values.ticketCode);
